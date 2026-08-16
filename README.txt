@@ -1,20 +1,17 @@
-Korean → Nepali Offline Dictionary
+Korean → Nepali Offline Dictionary — v2
 
-Contents:
-- index.html: dictionary app
-- data.js: 705 dictionary entries from DICTIONARY(1).xlsx
-- manifest.json + sw.js: installable PWA support
+Current unique vocabulary: 773
 
-Features:
-- Search Korean, Nepali, or English text
-- Korean pronunciation button
-- Favorites stored on the device
-- Offline cache after the first load
+Regular update workflow:
+1. Keep DICTIONARY_MASTER.xlsx as the master vocabulary file.
+2. Add new Korean words, Nepali meanings, and opposite words as new rows.
+3. Upload the updated Excel file in ChatGPT.
+4. The app can be regenerated and the GitHub files replaced.
+5. Keep the same GitHub repository and URL.
 
-For iPhone:
-1. Put this folder on an HTTPS web host.
-2. Open index.html in Safari.
-3. Tap Share → Add to Home Screen.
-4. Open the Home Screen icon; it will work offline after the first successful load.
-
-Note: Korean speech uses the device's available Korean text-to-speech voice.
+Files:
+- index.html
+- data.js
+- manifest.json
+- sw.js
+- DICTIONARY_MASTER.xlsx

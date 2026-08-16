@@ -23,70 +23,48 @@ footer{text-align:center;color:#9ca3af;font-size:12px;padding:25px}
 </style>
 </head>
 <body>
-<header>
-<div class="wrap" style="padding:0">
+<header><div class="wrap" style="padding:0">
 <h1>🇰🇷 Korean → Nepali Dictionary</h1>
-<div class="sub">Offline • EPS-TOPIK study • 705 words</div>
-</div>
-</header>
+<div class="sub">Offline • EPS-TOPIK study • 773 words</div>
+</div></header>
 <main class="wrap">
-<input id="search" class="search" autocomplete="off" placeholder="Search Korean, Nepali, or English…">
+<input id="search" class="search" autocomplete="off" placeholder="Search Korean, Nepali, or opposite word…">
 <div class="controls">
 <button id="allBtn" class="active">All</button>
 <button id="favBtn">★ Favorites</button>
 <button id="clearBtn">Clear</button>
 </div>
-<div id="stats" class="stats"></div>
-<div id="list"></div>
-<footer>Dictionary data from your uploaded Excel file.</footer>
+<div id="stats" class="stats"></div><div id="list"></div>
+<footer>Updated from your latest vocabulary Excel file.</footer>
 </main>
 <script src="data.js"></script>
 <script>
-const search = document.getElementById('search');
-const list = document.getElementById('list');
-const stats = document.getElementById('stats');
-const allBtn = document.getElementById('allBtn');
-const favBtn = document.getElementById('favBtn');
-const clearBtn = document.getElementById('clearBtn');
-let favorites = new Set(JSON.parse(localStorage.getItem('favorites') || '[]'));
-let onlyFav = false;
-
+const search=document.getElementById('search'),list=document.getElementById('list'),stats=document.getElementById('stats');
+const allBtn=document.getElementById('allBtn'),favBtn=document.getElementById('favBtn'),clearBtn=document.getElementById('clearBtn');
+let favorites=new Set(JSON.parse(localStorage.getItem('favorites')||'[]')),onlyFav=false;
 function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
 function render(){
-  const q = search.value.trim().toLowerCase();
-  let arr = DICTIONARY.filter((x,i)=>{
-    if(onlyFav && !favorites.has(String(i))) return false;
-    if(!q) return true;
-    return (x.ko+' '+x.ne+' '+x.opp).toLowerCase().includes(q);
-  });
-  stats.textContent = `${arr.length} result${arr.length===1?'':'s'} • ${DICTIONARY.length} total`;
-  if(!arr.length){list.innerHTML='<div class="empty">No matching word found.</div>';return;}
-  list.innerHTML = arr.map(x=>{
-    const i=DICTIONARY.indexOf(x), fav=favorites.has(String(i));
-    return `<article class="card">
-      <div class="row"><div class="ko">${esc(x.ko)}</div>
-      <button class="speak" onclick="speak('${esc(x.ko).replace(/'/g,"\\'")}')">🔊</button>
-      <button class="fav" onclick="toggleFav(${i})">${fav?'★':'☆'}</button></div>
-      <div class="ne">${esc(x.ne)}</div>
-      ${x.opp?`<div class="opp">반대말 / Opposite: <b>${esc(x.opp)}</b></div>`:''}
-    </article>`;
-  }).join('');
+ const q=search.value.trim().toLowerCase();
+ const arr=DICTIONARY.map((x,i)=>({x,i})).filter(o=>{
+   const x=o.x;
+   if(onlyFav&&!favorites.has(String(o.i)))return false;
+   return !q||(x.ko+' '+x.ne+' '+x.opp).toLowerCase().includes(q);
+ });
+ stats.textContent=`${arr.length} result${arr.length===1?'':'s'} • ${DICTIONARY.length} total`;
+ list.innerHTML=arr.length?arr.map(o=>{
+   const x=o.x,fav=favorites.has(String(o.i));
+   return `<article class="card"><div class="row"><div class="ko">${esc(x.ko)}</div>
+   <button class="speak" onclick="speak(${JSON.stringify(x.ko)})">🔊</button>
+   <button class="fav" onclick="toggleFav(${o.i})">${fav?'★':'☆'}</button></div>
+   <div class="ne">${esc(x.ne)}</div>
+   ${x.opp?`<div class="opp">반대말 / Opposite: <b>${esc(x.opp)}</b></div>`:''}</article>`;
+ }).join(''):'<div class="empty">No matching word found.</div>';
 }
-function speak(text){
-  if('speechSynthesis' in window){
-    speechSynthesis.cancel();
-    const u=new SpeechSynthesisUtterance(text);u.lang='ko-KR';u.rate=.85;speechSynthesis.speak(u);
-  }
-}
-function toggleFav(i){
-  const k=String(i); favorites.has(k)?favorites.delete(k):favorites.add(k);
-  localStorage.setItem('favorites',JSON.stringify([...favorites]));render();
-}
+function speak(t){if('speechSynthesis'in window){speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang='ko-KR';u.rate=.85;speechSynthesis.speak(u);}}
+function toggleFav(i){let k=String(i);favorites.has(k)?favorites.delete(k):favorites.add(k);localStorage.setItem('favorites',JSON.stringify([...favorites]));render();}
 search.addEventListener('input',render);
 allBtn.onclick=()=>{onlyFav=false;allBtn.classList.add('active');favBtn.classList.remove('active');render();}
 favBtn.onclick=()=>{onlyFav=true;favBtn.classList.add('active');allBtn.classList.remove('active');render();}
 clearBtn.onclick=()=>{search.value='';render();search.focus();}
 render();
-</script>
-</body>
-</html>
+</script></body></html>
