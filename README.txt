@@ -1,17 +1,15 @@
-Korean → Nepali Offline Dictionary — v2
+Korean → Nepali Offline Dictionary
 
-Current unique vocabulary: 773
+Open index.html directly on Windows to use the dictionary offline.
 
-Regular update workflow:
-1. Keep DICTIONARY_MASTER.xlsx as the master vocabulary file.
-2. Add new Korean words, Nepali meanings, and opposite words as new rows.
-3. Upload the updated Excel file in ChatGPT.
-4. The app can be regenerated and the GitHub files replaced.
-5. Keep the same GitHub repository and URL.
+Features:
+- Korean → Nepali search
+- Search Korean and Nepali
+- Korean pronunciation using browser/device speech synthesis
+- Similar words and opposites
+- Mobile and desktop layout
+- No internet required for dictionary data
+- GitHub Pages ready: upload index.html to the root of a repository
 
-Files:
-- index.html
-- data.js
-- manifest.json
-- sw.js
-- DICTIONARY_MASTER.xlsx
+Sound:
+The page uses the browser's built-in speech synthesis with ko-KR. If Korean pronunciation is unavailable, install a Korean speech/language voice in Windows.
