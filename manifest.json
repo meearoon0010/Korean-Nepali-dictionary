@@ -1,9 +1,9 @@
 {
-  "name": "Korean Nepali Offline Dictionary",
-  "short_name": "Korean Dictionary",
-  "start_url": "./index.html",
+  "name": "Korean–Nepali Dictionary",
+  "short_name": "Korean–Nepali",
+  "start_url": ".",
   "display": "standalone",
-  "background_color": "#f4f6f8",
+  "background_color": "#f5f7fb",
   "theme_color": "#111827",
-  "lang": "en"
+  "description": "Professional Korean–Nepali dictionary"
 }
