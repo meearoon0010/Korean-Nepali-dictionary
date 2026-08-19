@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Korean - English Professional Dictionary</title>
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --accent-color: #4f46e5;
+            --accent-hover: #4338ca;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            --badge-bg: #e0e7ff;
+            --badge-text: #3730a3;
+            --tag-synonym-bg: #dcfce7;
+            --tag-synonym-txt: #166534;
+            --tag-antonym-bg: #fee2e2;
+            --tag-antonym-txt: #991b1b;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-card: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --accent-color: #6366f1;
+            --accent-hover: #818cf8;
+            --border-color: #334155;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+            --badge-bg: #312e81;
+            --badge-text: #c7d2fe;
+            --tag-synonym-bg: #14532d;
+            --tag-synonym-txt: #bbf7d0;
+            --tag-antonym-bg: #7f1d1d;
+            --tag-antonym-txt: #fecaca;
+        }
+
+        * { box-sizing: border-box; transition: background-color 0.2s, color 0.2s; }
+        body {
+            font-family: 'Inter', 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-icon {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+        .btn-icon:hover {
+            background-color: var(--border-color);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            flex-grow: 1;
+        }
+
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+        }
+
+        .search-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.8rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .tab-btn {
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .tab-btn.active {
+            background-color: var(--accent-color);
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        .word-list {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            max-height: 600px;
+            overflow-y: auto;
+            box-shadow: var(--shadow);
+        }
+
+        .word-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .word-item:hover, .word-item.selected {
+            background-color: var(--badge-bg);
+        }
+
+        .word-item .kr {
+            font-weight: 600;
+            font-size: 1.1rem;
+
+        }
+
+        .word-item .meaning {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .details-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 5rem;
+            height: fit-content;
+        }
+
+        .details-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .details-title h2 {
+            font-size: 2.2rem;
+            margin: 0;
+            color: var(--text-primary);
+        }
+
+        .details-title p {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            margin: 0.4rem 0 0 0;
+            font-weight: 500;
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .meta-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .meta-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            padding: 0.3rem 0.7rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .tag.synonym {
+            background-color: var(--tag-synonym-bg);
+            color: var(--tag-synonym-txt);
+        }
+
+        .tag.antonym {
+            background-color: var(--tag-antonym-bg);
+            color: var(--tag-antonym-txt);
+        }
+
+        .example-box {
+            background-color: var(--bg-primary);
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin-top: 1rem;
+        }
+
+        .example-kr {
+            font-weight: 500;
+            font-size: 1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .example-en {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-book-bookmark"></i>
+            <span>한영 사전 (Korean-English)</span>
+        </div>
+        <div class="nav-actions">
+            <button class="btn-icon" id="saved-filter-btn" title="View Saved Words">
+                <i class="fa-regular fa-bookmark"></i>
+            </button>
+            <button class="btn-icon" id="theme-btn" title="Toggle Dark/Light Mode">
+                <i class="fa-solid fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Search & List Section -->
+        <div class="search-section">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search-input" placeholder="Search Korean word or meaning...">
+            </div>
+            
+            <div class="filter-tabs">
+                <button class="tab-btn active" data-filter="all">All Words</button>
+                <button class="tab-btn" data-filter="synonyms">With Synonyms</button>
+                <button class="tab-btn" data-filter="antonyms">With Antonyms</button>
+            </div>
+
+            <div class="word-list" id="word-list">
+                <!-- Dynamically populated -->
+            </div>
+        </div>
+
+        <!-- Details Card Section -->
+        <div class="details-section">
+            <div class="details-card" id="details-card">
+                <div class="empty-state">
+                    <i class="fa-solid fa-language"></i>
+                    <p>Select a word from the list to view full meaning, pronunciation, similar & opposite words, and sentence examples.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample baseline data loaded directly from your DICTIONARY.xlsx
+        const dictionaryData = [
+            { word: "가게", meaning: "가게 / Shop / Store", synonym: "", antonym: "" },
+            { word: "가구", meaning: "가족 / Family / Household", synonym: "가족", antonym: "" },
+            { word: "가족", meaning: "가족 / Family", synonym: "가구", antonym: "" },
+            { word: "가능하다", meaning: "Possible / Able", synonym: "", antonym: "불가능하다" },
+            { word: "불가능하다", meaning: "Impossible", synonym: "", antonym: "가능하다" },
+            { word: "비비다", meaning: "To rub / mix", synonym: "", antonym: "" },
+            { word: "가렵다", meaning: "Itchy / To feel itchy", synonym: "간지럽다", antonym: "" },
+            { word: "간지럽다", meaning: "Itchy", synonym: "가렵다", antonym: "" },
+            { word: "가르치다", meaning: "To teach / instruct", synonym: "", antonym: "배우다" },
+            { word: "가옥", meaning: "House / Dwelling", synonym: "한옥", antonym: "" },
+            { word: "가전제품", meaning: "Home Appliances", synonym: "", antonym: "" },
+            { word: "가격", meaning: "Price / Cost", synonym: "값", antonym: "" },
+            { word: "값", meaning: "Price / Value", synonym: "가격", antonym: "" },
+            { word: "가난하다", meaning: "Poor / Impoverished", synonym: "", antonym: "부유하다" },
+            { word: "부유하다", meaning: "Wealthy / Rich", synonym: "부자", antonym: "가난하다" },
+            { word: "가깝다", meaning: "Close / Near", synonym: "", antonym: "멀다" },
+            { word: "멀다", meaning: "Far / Distant", synonym: "", antonym: "가깝다" },
+            { word: "가볍다", meaning: "Light (weight)", synonym: "", antonym: "무겁다" },
+            { word: "무겁다", meaning: "Heavy", synonym: "", antonym: "가볍다" },
+            { word: "가장", meaning: "Most / Best", synonym: "제일", antonym: "" },
+            { word: "제일", meaning: "First / Most", synonym: "가장", antonym: "" },
+            { word: "간단하다", meaning: "Simple / Easy", synonym: "쉬운", antonym: "복잡하다" },
+            { word: "복잡하다", meaning: "Complex / Crowded", synonym: "", antonym: "간단하다" },
+            { word: "깨끗하다", meaning: "Clean / Tidy", synonym: "", antonym: "더럽다" },
+            { word: "더럽다", meaning: "Dirty", synonym: "", antonym: "깨끗하다" },
+            { word: "기쁘다", meaning: "Glad / Happy", synonym: "즐겁다", antonym: "슬프다" },
+            { word: "슬프다", meaning: "Sad", synonym: "", antonym: "기쁘다" },
+            { word: "사다", meaning: "To buy / purchase", synonym: "구입하다", antonym: "팔다" },
+            { word: "팔다", meaning: "To sell", synonym: "판매하다", antonym: "사다" }
+        ];
+
+        // App State
+        let currentFilter = 'all';
+        let savedWords = JSON.parse(localStorage.getItem('saved_words') || '[]');
+        let selectedWord = null;
+        let showingOnlySaved = false;
+
+        // Elements
+        const wordListEl = document.getElementById('word-list');
+        const searchInput = document.getElementById('search-input');
+        const detailsCard = document.getElementById('details-card');
+        const themeBtn = document.getElementById('theme-btn');
+        const savedFilterBtn = document.getElementById('saved-filter-btn');
+        const filterTabs = document.querySelectorAll('.tab-btn');
+
+        // Theme Toggle
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = document.body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.setAttribute('data-theme', newTheme);
+            themeBtn.querySelector('i').className = newTheme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+        });
+
+        // Filter Tabs
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                filterTabs.forEach(t => t.classList.remove('active'));
+                e.target.classList.add('active');
+                currentFilter = e.target.dataset.filter;
+                renderWordList();
+            });
+        });
+
+        // Saved Filter Toggle
+        savedFilterBtn.addEventListener('click', () => {
+            showingOnlySaved = !showingOnlySaved;
+            savedFilterBtn.classList.toggle('active', showingOnlySaved);
+            savedFilterBtn.style.color = showingOnlySaved ? 'var(--accent-color)' : '';
+            renderWordList();
+        });
+
+        // Search Input
+        searchInput.addEventListener('input', () => renderWordList());
+
+        // Render Word List
+        function renderWordList() {
+            const query = searchInput.value.toLowerCase().trim();
+            wordListEl.innerHTML = '';
+
+            const filtered = dictionaryData.filter(item => {
+                const matchesSearch = item.word.toLowerCase().includes(query) || item.meaning.toLowerCase().includes(query);
+                const matchesSaved = showingOnlySaved ? savedWords.includes(item.word) : true;
+                
+                if (!matchesSearch || !matchesSaved) return false;
+
+                if (currentFilter === 'synonyms') return item.synonym.trim().length > 0;
+                if (currentFilter === 'antonyms') return item.antonym.trim().length > 0;
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                wordListEl.innerHTML = `<div style="padding: 2rem; text-align: center; color: var(--text-secondary);">No words found</div>`;
+                return;
+            }
+
+            filtered.forEach(item => {
+                const div = document.createElement('div');
+                div.className = `word-item ${selectedWord && selectedWord.word === item.word ? 'selected' : ''}`;
+                div.innerHTML = `
+                    <div>
+                        <div class="kr">${item.word}</div>
+                        <div class="meaning">${item.meaning}</div>
+                    </div>
+                    <i class="fa-solid fa-chevron-right" style="font-size: 0.8rem; color: var(--text-secondary);"></i>
+                `;
+                div.addEventListener('click', () => selectWord(item));
+                wordListEl.appendChild(div);
+            });
+        }
+
+        // Select & View Word Details
+        function selectWord(item) {
+            selectedWord = item;
+            renderWordList();
+            const isSaved = savedWords.includes(item.word);
+
+            // Generate example sentence dynamically based on grammar context
+            const exampleSentence = getExampleSentence(item.word, item.meaning);
+
+            detailsCard.innerHTML = `
+                <div class="details-header">
+                    <div class="details-title">
+                        <h2>${item.word}</h2>
+                        <p>${item.meaning}</p>
+                    </div>
+                    <div class="action-btns">
+                        <button class="btn-icon" onclick="playAudio('${item.word}')" title="Listen Pronunciation">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                        <button class="btn-icon" onclick="toggleSave('${item.word}')" title="Save Word">
+                            <i class="${isSaved ? 'fa-solid' : 'fa-regular'} fa-bookmark" style="${isSaved ? 'color: var(--accent-color);' : ''}"></i>
+                        </button>
+                    </div>
+                </div>
+
+                ${item.synonym ? `
+                    <div class="meta-group">
+                        <div class="meta-label"><i class="fa-solid fa-equals"></i> Similar Word (유의어)</div>
+                        <div class="tag-container">
+                            ${item.synonym.split('/').map(s => `<span class="tag synonym">${s.trim()}</span>`).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+
+                ${item.antonym ? `
+                    <div class="meta-group">
+                        <div class="meta-label"><i class="fa-solid fa-arrow-right-arrow-left"></i> Opposite Word (반대말)</div>
+                        <div class="tag-container">
+                            ${item.antonym.split('/').map(a => `<span class="tag antonym">${a.trim()}</span>`).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+
+                <div class="meta-group" style="margin-top: 2rem;">
+                    <div class="meta-label"><i class="fa-solid fa-quote-left"></i> Example Sentence (예문)</div>
+                    <div class="example-box">
+                        <div class="example-kr">${exampleSentence.kr}</div>
+                        <div class="example-en">${exampleSentence.en}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Text-to-Speech Function
+        function playAudio(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'ko-KR';
+                utterance.rate = 0.9;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Speech synthesis is not supported in your browser.');
+            }
+        }
+
+        // Toggle Saved/Favorite Words
+        function toggleSave(word) {
+            if (savedWords.includes(word)) {
+                savedWords = savedWords.filter(w => w !== word);
+            } else {
+                savedWords.push(word);
+            }
+            localStorage.setItem('saved_words', JSON.stringify(savedWords));
+            if (selectedWord && selectedWord.word === word) {
+                selectWord(selectedWord);
+            }
+        }
+
+        // Helper to generate context-rich example sentences
+        function getExampleSentence(word, meaning) {
+            const examples = {
+                "가게": { kr: "저는 근처 가게에서 과일을 샀어요.", en: "I bought fruit at a nearby shop." },
+                "가족": { kr: "우리 가족은 모두 서울에 살고 있습니다.", en: "My family all lives in Seoul." },
+                "가능하다": { kr: "내일 한국어 수업 신청이 가능합니까?", en: "Is it possible to sign up for Korean class tomorrow?" },
+                "가깝다": { kr: "집에서 학교까지 거리가 가까워요.", en: "The distance from home to school is close." },
+                "가볍다": { kr: "이 가방은 매우 가볍습니다.", en: "This bag is very light." },
+                "가르치다": { kr: "선생님이 학생들에게 한국어를 가르칩니다.", en: "The teacher teaches Korean to the students." },
+                "사다": { kr: "마트에서 맛있는 음식을 샀어요.", en: "I bought delicious food at the mart." },
+                "팔다": { kr: "이 시장에서는 싱싱한 생선을 팝니다.", en: "They sell fresh fish in this market." }
+            };
+
+            return examples[word] || {
+                kr: `${word} 단어를 사용하여 문장을 연습해보세요.`,
+                en: `Practice making sentences using the word '${word}' (${meaning}).`
+            };
+        }
+
+        // Initialize App
+        renderWordList();
+    </script>
+</body>
+</html>
