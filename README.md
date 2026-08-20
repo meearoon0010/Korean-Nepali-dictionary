@@ -1,70 +1,63 @@
-# 한-네 사전 · Korean-Nepali Dictionary
+# 한-네 사전 · Korean–Nepali Dictionary
 
-An installable, offline-first Korean ↔ Nepali dictionary Progressive Web App (PWA). Pure HTML/CSS/JS — no build step, no dependencies. Just open `index.html` or deploy the folder as-is (e.g. GitHub Pages).
+A small, static, two-way Korean ↔ Nepali dictionary. No backend, no build step — just HTML/CSS/JS, so it runs directly on **GitHub Pages**.
+
+**Includes 1,303 Korean words** with their Nepali meanings (plus similar/opposite words where the source data had them).
 
 ## Features
 
-- **Search** — instant search across Korean and Nepali (word, meaning, similar/opposite words), 1,211 built-in entries
-- **Favorites** — star any word, saved locally
-- **Add your own words** — stored locally on the device, fully editable/deletable
-- **Pronunciation** — uses the browser's built-in Speech Synthesis API (`ko-KR`) to read Korean words aloud, with adjustable speech rate
-- **Dark mode** — manual toggle, remembers your choice, defaults to system preference
-- **Flashcards** — flip-card practice, choose source (all / favorites / my words) and direction (Korean→Nepali or Nepali→Korean)
-- **Quiz** — multiple-choice quiz mode with scoring, same source/direction options
-- **Export** — download favorites, your custom words, or the full dictionary as JSON/CSV
-- **Responsive UI** — works on phone, tablet, and desktop
-- **PWA / offline caching** — installable to home screen, service worker caches the app shell and dictionary data so it works with no internet connection
-
-## Project structure
-
-```
-├── index.html          # App shell / all views
-├── manifest.json        # PWA manifest
-├── service-worker.js    # Offline caching (cache-first, background refresh)
-├── css/
-│   └── style.css        # All styling incl. dark mode theme
-├── js/
-│   ├── data.js           # Dictionary data (generated from DICTIONARY.xlsx)
-│   └── app.js             # App logic
-└── icons/                # App icons (regular + maskable, 192/512)
-```
+- **Two-way search** — one search box matches Korean, Nepali, and any similar/opposite words at once. Type `가게` or `pasal` and both find the same entry.
+- **Pronunciation** — tap the speaker icon to hear the Korean word read aloud (uses your browser's built-in text-to-speech, `ko-KR` voice if available).
+- **Favorites** — star any word; it's saved in your browser (`localStorage`) so it's still there next visit.
+- **Add your own words** — the "+ Add word" button lets you add entries not in the base list. They show up under the "Mine" tab and can be deleted any time.
+- Everything you add or star stays **on your device only** — nothing is sent anywhere.
 
 ## Running locally
 
-Any static file server works, e.g.:
+Just open `index.html` in a browser. For local development with a simple server (recommended so the speech API and fonts behave normally):
 
 ```bash
-npx serve .
-# or
-python3 -m http.server 8080
+python3 -m http.server 8000
+# then open http://localhost:8000
 ```
-
-Then open `http://localhost:8080`. (Opening `index.html` directly via `file://` also works, though the service worker won't register under `file://` in most browsers — use a local server to test the offline/PWA behavior.)
 
 ## Deploying to GitHub Pages
 
-1. Push this folder to a GitHub repository (root, or a `docs/` folder).
-2. In the repo settings, enable **Pages** and point it at the branch/folder you used.
-3. Visit the published URL — the "Install app" option will appear in supported browsers once served over HTTPS.
+1. Create a new repository on GitHub (e.g. `korean-nepali-dictionary`) and push these files to it:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial dictionary app"
+   git branch -M main
+   git remote add origin https://github.com/<your-username>/<repo-name>.git
+   git push -u origin main
+   ```
+2. In the repo, go to **Settings → Pages**.
+3. Under **Build and deployment**, set **Source** to `Deploy from a branch`, branch `main`, folder `/ (root)`.
+4. Save. GitHub will publish it at `https://<your-username>.github.io/<repo-name>/` within a minute or two.
 
-## Updating the dictionary data
+No other configuration is needed — there's no build step, package.json, or server.
 
-`js/data.js` defines a single `WORDS_DATA` array of objects:
+## File structure
 
-```js
-{ id: 1, word: "가게", meaning: "पसल", similar: "", opposite: "" }
+```
+index.html    — page structure
+style.css     — all styling
+script.js     — search, favorites, add-word, pronunciation logic
+words.js      — the 1,303-entry Korean–Nepali dataset (as a JS variable)
 ```
 
-To regenerate it from a spreadsheet, export your source data with columns `Words, Meaning, Similar Words, Opposite Words` and rebuild the array in that shape (any script/spreadsheet tool that outputs JSON works fine — no special tooling is required at runtime).
+## Updating the word list
 
-## Notes on pronunciation
+`words.js` just assigns a JSON array to `window.DICT_DATA`. Each entry looks like:
 
-Speech uses the device/browser's installed voices. If no Korean (`ko-KR`) voice is installed, the browser will fall back to a default voice or may not produce audio — this depends on the operating system, not the app. Settings → "Test Korean voice" shows which voice (if any) is being used.
+```js
+{ "ko": "가게", "np": "पसल", "similar": "", "opposite": "" }
+```
 
-## Privacy
+Edit or extend that array directly to add words in bulk (e.g. regenerated from a spreadsheet), separately from the "Add word" button which is for one-off personal additions saved in the browser.
 
-All user data (favorites, custom words, theme, speech rate) is stored only in the browser's `localStorage` on the user's own device. Nothing is sent to a server — there is no backend.
+## Notes
 
-## License
-
-Feel free to adapt this project for your own use.
+- The dictionary's "Nepali" column is the source data's meaning column — a handful of entries include an English word instead of/alongside Nepali (carried over as-is from the original spreadsheet).
+- Pronunciation quality depends on the voices installed in the visitor's browser/OS. Most Chrome/Edge/Safari installs include a Korean voice; if none is found, the browser falls back to its default voice.
