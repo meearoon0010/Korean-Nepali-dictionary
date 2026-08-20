@@ -14,12 +14,14 @@ A small, static, two-way Korean ↔ Nepali dictionary. No backend, no build step
 
 ## Running locally
 
-Just open `index.html` in a browser. For local development with a simple server (recommended so the speech API and fonts behave normally):
+The word list loads via `fetch('words.json')`, so **don't just double-click `index.html`** — browsers block `fetch` on `file://` pages. Run a tiny local server instead:
 
 ```bash
 python3 -m http.server 8000
 # then open http://localhost:8000
 ```
+
+(GitHub Pages serves everything over `https://`, so no server setup is needed once it's deployed — this is only for testing on your own machine.)
 
 ## Deploying to GitHub Pages
 
@@ -44,18 +46,20 @@ No other configuration is needed — there's no build step, package.json, or ser
 index.html    — page structure
 style.css     — all styling
 script.js     — search, favorites, add-word, pronunciation logic
-words.js      — the 1,303-entry Korean–Nepali dataset (as a JS variable)
+words.json    — the 1,303-entry Korean–Nepali dataset
 ```
 
 ## Updating the word list
 
-`words.js` just assigns a JSON array to `window.DICT_DATA`. Each entry looks like:
+`words.json` is a plain JSON array — the app fetches it at load time. Each entry looks like:
 
-```js
+```json
 { "ko": "가게", "np": "पसल", "similar": "", "opposite": "" }
 ```
 
-Edit or extend that array directly to add words in bulk (e.g. regenerated from a spreadsheet), separately from the "Add word" button which is for one-off personal additions saved in the browser.
+To add words in bulk later (e.g. regenerated from an updated spreadsheet), **just replace `words.json`** — on GitHub you can edit or upload it directly through the web UI (Add file → Upload files, or click the file → the pencil/edit icon), no need to touch `index.html`, `style.css`, or `script.js` at all. `similar` and `opposite` can be left as empty strings `""` if not applicable.
+
+This is separate from the in-app "Add word" button, which is for one-off personal additions saved in each visitor's own browser (not shared, not written back to this file).
 
 ## Notes
 

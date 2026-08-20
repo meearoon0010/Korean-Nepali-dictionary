@@ -3,17 +3,9 @@
 
   var LS_FAV = "kndict_favorites_v1";
   var LS_MINE = "kndict_mine_v1";
+  var DATA_URL = "words.json";
 
-  var baseData = (window.DICT_DATA || []).map(function (d, i) {
-    return {
-      id: "b" + i,
-      ko: d.ko || "",
-      np: d.np || "",
-      similar: d.similar || "",
-      opposite: d.opposite || "",
-      mine: false
-    };
-  });
+  var baseData = [];
 
   var favorites = loadJSON(LS_FAV, []);
   var mine = loadJSON(LS_MINE, []);
@@ -340,5 +332,36 @@
     document.querySelector('.tab[data-tab="mine"]').click();
   });
 
-  render();
+  function init() {
+    els.results.innerHTML =
+      '<p class="empty-state" style="grid-column:1/-1;">Loading dictionary…</p>';
+    fetch(DATA_URL)
+      .then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        return res.json();
+      })
+      .then(function (data) {
+        baseData = (data || []).map(function (d, i) {
+          return {
+            id: "b" + i,
+            ko: d.ko || "",
+            np: d.np || "",
+            similar: d.similar || "",
+            opposite: d.opposite || "",
+            mine: false
+          };
+        });
+        render();
+      })
+      .catch(function (err) {
+        els.results.innerHTML =
+          '<p class="empty-state" style="grid-column:1/-1;">Couldn\'t load words.json (' +
+          escapeHtml(err.message) +
+          "). If you're opening this file directly from disk, run a local server instead " +
+          "(e.g. <code>python3 -m http.server</code>) — browsers block file:// fetches. " +
+          "On GitHub Pages this loads normally.</p>";
+      });
+  }
+
+  init();
 })();
