@@ -2,14 +2,15 @@
 
 A small, static, two-way Korean ↔ Nepali dictionary. No backend, no build step — just HTML/CSS/JS, so it runs directly on **GitHub Pages**.
 
-**Includes 1,303 Korean words** with their Nepali meanings (plus similar/opposite words where the source data had them).
+**Includes 1,273 Korean words** with their Nepali meanings (plus similar/opposite words where the source data had them).
 
 ## Features
 
 - **Two-way search** — one search box matches Korean, Nepali, and any similar/opposite words at once. Type `가게` or `pasal` and both find the same entry.
 - **Pronunciation** — tap the speaker icon to hear the Korean word read aloud (uses your browser's built-in text-to-speech, `ko-KR` voice if available).
 - **Favorites** — star any word; it's saved in your browser (`localStorage`) so it's still there next visit.
-- Favorites stay **on your device only** — nothing is sent anywhere.
+- **Add your own words** — the "+ Add word" button lets you add entries not in the base list. They show up under the "Mine" tab and can be deleted any time.
+- Everything you add or star stays **on your device only** — nothing is sent anywhere.
 
 ## Running locally
 
@@ -44,8 +45,8 @@ No other configuration is needed — there's no build step, package.json, or ser
 ```
 index.html    — page structure
 style.css     — all styling
-script.js     — search, favorites, pronunciation logic
-words.json    — the 1,303-entry Korean–Nepali dataset
+script.js     — search, favorites, add-word, pronunciation logic
+words.json    — the 1,273-entry Korean–Nepali dataset
 ```
 
 ## Updating the word list
@@ -57,6 +58,8 @@ words.json    — the 1,303-entry Korean–Nepali dataset
 ```
 
 To add words in bulk later (e.g. regenerated from an updated spreadsheet), **just replace `words.json`** — on GitHub you can edit or upload it directly through the web UI (Add file → Upload files, or click the file → the pencil/edit icon), no need to touch `index.html`, `style.css`, or `script.js` at all. `similar` and `opposite` can be left as empty strings `""` if not applicable.
+
+This is separate from the in-app "Add word" button, which is for one-off personal additions saved in each visitor's own browser (not shared, not written back to this file).
 
 ## Notes
 

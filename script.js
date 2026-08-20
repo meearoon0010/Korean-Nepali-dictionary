@@ -2,10 +2,12 @@
   "use strict";
 
   var LS_FAV = "kndict_favorites_v1";
+  var LS_MINE = "kndict_mine_v1";
   var DATA_URL = "words.json";
 
   var baseData = [];
   var favorites = loadJSON(LS_FAV, []);
+  var mine = loadJSON(LS_MINE, []);
 
   var currentTab = "all";
   var currentQuery = "";
@@ -18,8 +20,14 @@
     tabs: document.querySelectorAll(".tab[data-tab]"),
     countAll: document.getElementById("countAll"),
     countFav: document.getElementById("countFav"),
+    countMine: document.getElementById("countMine"),
     stats: document.getElementById("stats"),
     footCount: document.getElementById("footCount"),
+    addWordBtn: document.getElementById("addWordBtn"),
+    modalOverlay: document.getElementById("modalOverlay"),
+    modalClose: document.getElementById("modalClose"),
+    cancelAdd: document.getElementById("cancelAdd"),
+    addWordForm: document.getElementById("addWordForm"),
     toast: document.getElementById("toast")
   };
 
@@ -39,6 +47,10 @@
     }
   }
 
+  function allData() {
+    return baseData.concat(mine);
+  }
+
   function isFav(id) {
     return favorites.indexOf(id) !== -1;
   }
@@ -49,6 +61,20 @@
     else favorites.splice(idx, 1);
     saveJSON(LS_FAV, favorites);
     render();
+  }
+
+  function removeMine(id) {
+    mine = mine.filter(function (w) {
+      return w.id !== id;
+    });
+    saveJSON(LS_MINE, mine);
+    var favIdx = favorites.indexOf(id);
+    if (favIdx !== -1) {
+      favorites.splice(favIdx, 1);
+      saveJSON(LS_FAV, favorites);
+    }
+    render();
+    showToast("Word removed.");
   }
 
   function normalize(s) {
@@ -67,10 +93,14 @@
   }
 
   function getFiltered() {
-    var data = baseData;
+    var data = allData();
     if (currentTab === "fav") {
       data = data.filter(function (e) {
         return isFav(e.id);
+      });
+    } else if (currentTab === "mine") {
+      data = data.filter(function (e) {
+        return e.mine;
       });
     }
     if (currentQuery) {
@@ -106,9 +136,16 @@
         "</span></div>";
     }
     return (
-      '<div class="card" data-id="' +
+      '<div class="card' +
+      (entry.mine ? " mine" : "") +
+      '" data-id="' +
       entry.id +
       '">' +
+      (entry.mine
+        ? '<span class="mine-tag">yours</span><button class="remove-mine" data-remove="' +
+          entry.id +
+          '" title="Delete this word">delete</button>'
+        : "") +
       '<div class="card-top">' +
       '<p class="ko-word">' +
       escapeHtml(entry.ko) +
@@ -141,9 +178,11 @@
     els.results.innerHTML = data.map(cardHtml).join("");
     els.empty.hidden = data.length !== 0;
 
-    els.countAll.textContent = baseData.length;
+    var all = allData();
+    els.countAll.textContent = all.length;
     els.countFav.textContent = favorites.length;
-    els.stats.textContent = baseData.length + " entries";
+    els.countMine.textContent = mine.length;
+    els.stats.textContent = all.length + " entries";
     els.footCount.textContent = baseData.length;
   }
 
@@ -204,16 +243,22 @@
   els.results.addEventListener("click", function (e) {
     var favBtn = e.target.closest("[data-fav]");
     var speakBtn = e.target.closest("[data-speak]");
+    var removeBtn = e.target.closest("[data-remove]");
     if (favBtn) {
       toggleFav(favBtn.getAttribute("data-fav"));
       return;
     }
     if (speakBtn) {
       var id = speakBtn.getAttribute("data-speak");
-      var entry = baseData.find(function (x) {
+      var entry = allData().find(function (x) {
         return x.id === id;
       });
       if (entry) speakEntry(entry);
+      return;
+    }
+    if (removeBtn) {
+      var rid = removeBtn.getAttribute("data-remove");
+      if (confirm("Delete this word you added?")) removeMine(rid);
     }
   });
 
@@ -249,6 +294,40 @@
     });
   });
 
+  // ---- Modal ----
+  function openModal() {
+    els.modalOverlay.hidden = false;
+    document.getElementById("fKo").focus();
+  }
+  function closeModal() {
+    els.modalOverlay.hidden = true;
+    els.addWordForm.reset();
+  }
+  els.addWordBtn.addEventListener("click", openModal);
+  els.modalClose.addEventListener("click", closeModal);
+  els.cancelAdd.addEventListener("click", closeModal);
+  els.modalOverlay.addEventListener("click", function (e) {
+    if (e.target === els.modalOverlay) closeModal();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !els.modalOverlay.hidden) closeModal();
+  });
+
+  els.addWordForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var ko = document.getElementById("fKo").value.trim();
+    var np = document.getElementById("fNp").value.trim();
+    var similar = document.getElementById("fSimilar").value.trim();
+    var opposite = document.getElementById("fOpposite").value.trim();
+    if (!ko || !np) return;
+    var id = "m" + Date.now() + Math.floor(Math.random() * 1000);
+    mine.unshift({ id: id, ko: ko, np: np, similar: similar, opposite: opposite, mine: true });
+    saveJSON(LS_MINE, mine);
+    closeModal();
+    showToast("Word added.");
+    document.querySelector('.tab[data-tab="mine"]').click();
+  });
+
   function init() {
     els.results.innerHTML =
       '<p class="empty-state" style="grid-column:1/-1;">Loading dictionary…</p>';
@@ -264,7 +343,8 @@
             ko: d.ko || "",
             np: d.np || "",
             similar: d.similar || "",
-            opposite: d.opposite || ""
+            opposite: d.opposite || "",
+            mine: false
           };
         });
         render();
