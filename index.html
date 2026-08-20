@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>한-네 사전 · कोरियाली-नेपाली शब्दकोश</title>
-<meta name="description" content="A two-way Korean–Nepali dictionary with pronunciation, favorites, and your own added words.">
+<meta name="description" content="A two-way Korean–Nepali dictionary with pronunciation and favorites.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23163832%22/><text x=%2250%22 y=%2266%22 font-size=%2255%22 text-anchor=%22middle%22 fill=%22%23E3A73A%22>가</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,8 +39,6 @@
   <nav class="tabs" role="tablist">
     <button class="tab active" data-tab="all" role="tab" aria-selected="true">All words <span class="count" id="countAll"></span></button>
     <button class="tab" data-tab="fav" role="tab" aria-selected="false">★ Favorites <span class="count" id="countFav"></span></button>
-    <button class="tab" data-tab="mine" role="tab" aria-selected="false">Mine <span class="count" id="countMine"></span></button>
-    <button id="addWordBtn" class="tab add-tab">+ Add word</button>
   </nav>
 
   <section id="resultsWrap">
@@ -50,40 +48,8 @@
 </main>
 
 <footer class="foot">
-  <p>Data: <span id="footCount"></span> Korean–Nepali entries, plus anything you add on this device. Favorites and your added words are stored locally in your browser (no server, no account).</p>
+  <p>Data: <span id="footCount"></span> Korean–Nepali entries. Favorites are stored locally in your browser (no server, no account).</p>
 </footer>
-
-<!-- Add word modal -->
-<div id="modalOverlay" class="modal-overlay" hidden>
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-    <div class="modal-head">
-      <h2 id="modalTitle">Add a word</h2>
-      <button id="modalClose" class="icon-btn" aria-label="Close">&times;</button>
-    </div>
-    <form id="addWordForm">
-      <label>
-        <span>Korean <em>(required)</em></span>
-        <input type="text" id="fKo" required placeholder="가게">
-      </label>
-      <label>
-        <span>Nepali / English meaning <em>(required)</em></span>
-        <input type="text" id="fNp" required placeholder="पसल">
-      </label>
-      <label>
-        <span>Similar words <em>(optional)</em></span>
-        <input type="text" id="fSimilar" placeholder="가족">
-      </label>
-      <label>
-        <span>Opposite words <em>(optional)</em></span>
-        <input type="text" id="fOpposite" placeholder="불가능하다">
-      </label>
-      <div class="modal-actions">
-        <button type="button" id="cancelAdd" class="btn ghost">Cancel</button>
-        <button type="submit" class="btn primary">Save word</button>
-      </div>
-    </form>
-  </div>
-</div>
 
 <div id="toast" class="toast" hidden></div>
 
