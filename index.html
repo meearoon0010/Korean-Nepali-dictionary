@@ -50,7 +50,7 @@
 </main>
 
 <footer class="foot">
-  <p>Data: <span id="footCount"></span> Korean–Nepali entries, plus anything you add on this device. Favorites and your added words are stored locally in your browser (no server, no account).</p>
+  <p>Data: <span id="footCount"></span> Korean–Nepali entries, plus anything you add or edit on this device. Favorites, added words, and edits are stored locally in your browser (no server, no account) — they don't change the shared word list for other visitors.</p>
 </footer>
 
 <!-- Add word modal -->
@@ -78,8 +78,9 @@
         <input type="text" id="fOpposite" placeholder="불가능하다">
       </label>
       <div class="modal-actions">
+        <button type="button" id="resetEdit" class="btn ghost" hidden>Reset to original</button>
         <button type="button" id="cancelAdd" class="btn ghost">Cancel</button>
-        <button type="submit" class="btn primary">Save word</button>
+        <button type="submit" class="btn primary" id="saveWordBtn">Save word</button>
       </div>
     </form>
   </div>

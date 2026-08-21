@@ -3,14 +3,17 @@
 
   var LS_FAV = "kndict_favorites_v1";
   var LS_MINE = "kndict_mine_v1";
+  var LS_EDITS = "kndict_edits_v1";
   var DATA_URL = "words.json";
 
-  var baseData = [];
+  var rawBaseData = [];
   var favorites = loadJSON(LS_FAV, []);
   var mine = loadJSON(LS_MINE, []);
+  var edits = loadJSON(LS_EDITS, {});
 
   var currentTab = "all";
   var currentQuery = "";
+  var editingId = null; // null = add mode, otherwise editing this entry's id
 
   var els = {
     results: document.getElementById("results"),
@@ -25,8 +28,11 @@
     footCount: document.getElementById("footCount"),
     addWordBtn: document.getElementById("addWordBtn"),
     modalOverlay: document.getElementById("modalOverlay"),
+    modalTitle: document.getElementById("modalTitle"),
     modalClose: document.getElementById("modalClose"),
     cancelAdd: document.getElementById("cancelAdd"),
+    resetEdit: document.getElementById("resetEdit"),
+    saveWordBtn: document.getElementById("saveWordBtn"),
     addWordForm: document.getElementById("addWordForm"),
     toast: document.getElementById("toast")
   };
@@ -47,8 +53,24 @@
     }
   }
 
+  // Merge base data with any local edits, plus user-added words
   function allData() {
-    return baseData.concat(mine);
+    var base = rawBaseData.map(function (entry) {
+      var ed = edits[entry.id];
+      if (ed) {
+        return {
+          id: entry.id,
+          ko: ed.ko,
+          np: ed.np,
+          similar: ed.similar,
+          opposite: ed.opposite,
+          mine: false,
+          edited: true
+        };
+      }
+      return entry;
+    });
+    return base.concat(mine);
   }
 
   function isFav(id) {
@@ -75,6 +97,13 @@
     }
     render();
     showToast("Word removed.");
+  }
+
+  function resetEditFor(id) {
+    delete edits[id];
+    saveJSON(LS_EDITS, edits);
+    render();
+    showToast("Reverted to original.");
   }
 
   function normalize(s) {
@@ -119,6 +148,8 @@
 
   var speakIcon =
     '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 12c0-1.5-.7-2.8-1.8-3.7l1-1.5c1.5 1.2 2.4 3 2.4 5.2s-.9 4-2.4 5.2l-1-1.5c1.1-.9 1.8-2.2 1.8-3.7z" opacity=".85"/></svg>';
+  var editIcon =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>';
 
   function cardHtml(entry) {
     var favOn = isFav(entry.id);
@@ -135,17 +166,23 @@
         escapeHtml(entry.opposite) +
         "</span></div>";
     }
+    var badge = "";
+    if (entry.mine) {
+      badge =
+        '<span class="mine-tag">yours</span><button class="remove-mine" data-remove="' +
+        entry.id +
+        '" title="Delete this word">delete</button>';
+    } else if (entry.edited) {
+      badge = '<span class="mine-tag edited-tag">edited</span>';
+    }
     return (
       '<div class="card' +
       (entry.mine ? " mine" : "") +
+      (entry.edited ? " edited" : "") +
       '" data-id="' +
       entry.id +
       '">' +
-      (entry.mine
-        ? '<span class="mine-tag">yours</span><button class="remove-mine" data-remove="' +
-          entry.id +
-          '" title="Delete this word">delete</button>'
-        : "") +
+      badge +
       '<div class="card-top">' +
       '<p class="ko-word">' +
       escapeHtml(entry.ko) +
@@ -155,6 +192,11 @@
       entry.id +
       '" title="Hear Korean pronunciation" aria-label="Pronounce">' +
       speakIcon +
+      "</button>" +
+      '<button class="icon-btn edit-btn" data-edit="' +
+      entry.id +
+      '" title="Edit this entry" aria-label="Edit">' +
+      editIcon +
       "</button>" +
       '<button class="icon-btn fav-btn' +
       (favOn ? " fav-on" : "") +
@@ -183,7 +225,7 @@
     els.countFav.textContent = favorites.length;
     els.countMine.textContent = mine.length;
     els.stats.textContent = all.length + " entries";
-    els.footCount.textContent = baseData.length;
+    els.footCount.textContent = rawBaseData.length;
   }
 
   // ---- Speech ----
@@ -244,6 +286,7 @@
     var favBtn = e.target.closest("[data-fav]");
     var speakBtn = e.target.closest("[data-speak]");
     var removeBtn = e.target.closest("[data-remove]");
+    var editBtn = e.target.closest("[data-edit]");
     if (favBtn) {
       toggleFav(favBtn.getAttribute("data-fav"));
       return;
@@ -254,6 +297,14 @@
         return x.id === id;
       });
       if (entry) speakEntry(entry);
+      return;
+    }
+    if (editBtn) {
+      var eid = editBtn.getAttribute("data-edit");
+      var eentry = allData().find(function (x) {
+        return x.id === eid;
+      });
+      if (eentry) openEditModal(eentry);
       return;
     }
     if (removeBtn) {
@@ -294,16 +345,38 @@
     });
   });
 
-  // ---- Modal ----
-  function openModal() {
+  // ---- Modal (shared by Add + Edit) ----
+  function openAddModal() {
+    editingId = null;
+    els.modalTitle.textContent = "Add a word";
+    els.saveWordBtn.textContent = "Save word";
+    els.resetEdit.hidden = true;
+    els.addWordForm.reset();
     els.modalOverlay.hidden = false;
     document.getElementById("fKo").focus();
   }
+
+  function openEditModal(entry) {
+    editingId = entry.id;
+    els.modalTitle.textContent = "Edit word";
+    els.saveWordBtn.textContent = "Save changes";
+    document.getElementById("fKo").value = entry.ko;
+    document.getElementById("fNp").value = entry.np;
+    document.getElementById("fSimilar").value = entry.similar || "";
+    document.getElementById("fOpposite").value = entry.opposite || "";
+    // Only show "reset to original" for base (non-"mine") entries that have an edit override
+    els.resetEdit.hidden = entry.mine || !edits[entry.id];
+    els.modalOverlay.hidden = false;
+    document.getElementById("fKo").focus();
+  }
+
   function closeModal() {
     els.modalOverlay.hidden = true;
     els.addWordForm.reset();
+    editingId = null;
   }
-  els.addWordBtn.addEventListener("click", openModal);
+
+  els.addWordBtn.addEventListener("click", openAddModal);
   els.modalClose.addEventListener("click", closeModal);
   els.cancelAdd.addEventListener("click", closeModal);
   els.modalOverlay.addEventListener("click", function (e) {
@@ -313,6 +386,13 @@
     if (e.key === "Escape" && !els.modalOverlay.hidden) closeModal();
   });
 
+  els.resetEdit.addEventListener("click", function () {
+    if (editingId) {
+      resetEditFor(editingId);
+      closeModal();
+    }
+  });
+
   els.addWordForm.addEventListener("submit", function (e) {
     e.preventDefault();
     var ko = document.getElementById("fKo").value.trim();
@@ -320,12 +400,36 @@
     var similar = document.getElementById("fSimilar").value.trim();
     var opposite = document.getElementById("fOpposite").value.trim();
     if (!ko || !np) return;
-    var id = "m" + Date.now() + Math.floor(Math.random() * 1000);
-    mine.unshift({ id: id, ko: ko, np: np, similar: similar, opposite: opposite, mine: true });
-    saveJSON(LS_MINE, mine);
-    closeModal();
-    showToast("Word added.");
-    document.querySelector('.tab[data-tab="mine"]').click();
+
+    if (editingId) {
+      // Editing an existing entry
+      var target = mine.find(function (w) {
+        return w.id === editingId;
+      });
+      if (target) {
+        // "mine" entry — update in place
+        target.ko = ko;
+        target.np = np;
+        target.similar = similar;
+        target.opposite = opposite;
+        saveJSON(LS_MINE, mine);
+      } else {
+        // base entry — store as a local override
+        edits[editingId] = { ko: ko, np: np, similar: similar, opposite: opposite };
+        saveJSON(LS_EDITS, edits);
+      }
+      closeModal();
+      showToast("Changes saved.");
+      render();
+    } else {
+      // Adding a new word
+      var id = "m" + Date.now() + Math.floor(Math.random() * 1000);
+      mine.unshift({ id: id, ko: ko, np: np, similar: similar, opposite: opposite, mine: true });
+      saveJSON(LS_MINE, mine);
+      closeModal();
+      showToast("Word added.");
+      document.querySelector('.tab[data-tab="mine"]').click();
+    }
   });
 
   function init() {
@@ -337,7 +441,7 @@
         return res.json();
       })
       .then(function (data) {
-        baseData = (data || []).map(function (d, i) {
+        rawBaseData = (data || []).map(function (d, i) {
           return {
             id: "b" + i,
             ko: d.ko || "",

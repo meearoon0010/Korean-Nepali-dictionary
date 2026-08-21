@@ -10,7 +10,8 @@ A small, static, two-way Korean ↔ Nepali dictionary. No backend, no build step
 - **Pronunciation** — tap the speaker icon to hear the Korean word read aloud (uses your browser's built-in text-to-speech, `ko-KR` voice if available).
 - **Favorites** — star any word; it's saved in your browser (`localStorage`) so it's still there next visit.
 - **Add your own words** — the "+ Add word" button lets you add entries not in the base list. They show up under the "Mine" tab and can be deleted any time.
-- Everything you add or star stays **on your device only** — nothing is sent anywhere.
+- **Edit any entry** — the pencil icon on any card (including the original 1,273 words) opens an editable form for the Korean word, meaning, similar words, and opposite words. A "Reset to original" option reverts a base entry back to the shipped data.
+- Everything you add, edit, or star stays **on your device only** — nothing is sent anywhere, and it doesn't change `words.json` in the repo. To fix data for *every* visitor, edit `words.json` directly on GitHub instead (see below).
 
 ## Running locally
 
