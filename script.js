@@ -156,13 +156,13 @@
     var meta = "";
     if (entry.similar) {
       meta +=
-        '<div class="meta-line"><b>similar</b> <span class="tagword">' +
+        '<div class="meta-line similar-line"><b>similar</b> <span class="tagword">' +
         escapeHtml(entry.similar) +
         "</span></div>";
     }
     if (entry.opposite) {
       meta +=
-        '<div class="meta-line"><b>opposite</b> <span class="tagword">' +
+        '<div class="meta-line opposite-line"><b>opposite</b> <span class="tagword">' +
         escapeHtml(entry.opposite) +
         "</span></div>";
     }

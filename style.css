@@ -7,6 +7,7 @@
   --gold-2:#C98826;
   --crimson:#B8433C;
   --sage:#6E8B6D;
+  --green:#2E7D4F;
   --line: rgba(247,241,228,0.18);
   --line-strong: rgba(247,241,228,0.35);
   --text-hi:#F7F1E4;
@@ -146,10 +147,14 @@ main{position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:8px 
   font-family:var(--font-dev); font-size:16.5px; color:var(--ink);
   margin:6px 0 0; line-height:1.4;
 }
-.meta-row{margin-top:10px; display:flex; flex-direction:column; gap:4px;}
-.meta-line{font-size:12px; color:#5C6E62; font-family:var(--font-body);}
-.meta-line b{color:var(--crimson); font-weight:600;}
-.meta-line .tagword{font-family:var(--font-display); font-size:12.5px;}
+.meta-row{margin-top:10px; display:flex; flex-direction:column; gap:6px;}
+.meta-line{font-size:12.5px; color:#5C6E62; font-family:var(--font-body);}
+.meta-line b{font-weight:600; text-transform:uppercase; letter-spacing:0.03em; font-size:11px; opacity:0.75;}
+.meta-line .tagword{font-family:var(--font-display); font-size:17px; font-weight:600; margin-left:4px;}
+.meta-line.similar-line b{color:var(--green);}
+.meta-line.similar-line .tagword{color:var(--green);}
+.meta-line.opposite-line b{color:var(--crimson);}
+.meta-line.opposite-line .tagword{color:var(--crimson);}
 
 .empty-state{
   text-align:center; padding:60px 20px; color:var(--text-dim); font-size:14px;
