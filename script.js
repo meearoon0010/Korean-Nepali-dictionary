@@ -435,7 +435,7 @@
   function init() {
     els.results.innerHTML =
       '<p class="empty-state" style="grid-column:1/-1;">Loading dictionary…</p>';
-    fetch(DATA_URL)
+    fetch(DATA_URL + "?v=" + Date.now(), { cache: "no-store" })
       .then(function (res) {
         if (!res.ok) throw new Error("HTTP " + res.status);
         return res.json();
