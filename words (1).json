@@ -1,0 +1,8168 @@
+[
+  {
+    "ko": "가게",
+    "np": "पसल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "가격",
+    "np": "मूल्य",
+    "similar": "값",
+    "opposite": ""
+  },
+  {
+    "ko": "가구",
+    "np": "परिवार , फर्निचर",
+    "similar": "가족",
+    "opposite": ""
+  },
+  {
+    "ko": "가깝다",
+    "np": "नजिक हुनु",
+    "similar": "",
+    "opposite": "멀다"
+  },
+  {
+    "ko": "가늘다",
+    "np": "पातलो , छरीलो , मसिनो",
+    "similar": "",
+    "opposite": "굵다"
+  },
+  {
+    "ko": "가능하다",
+    "np": "सम्भव हुनु",
+    "similar": "",
+    "opposite": "불가능하다"
+  },
+  {
+    "ko": "가렵다",
+    "np": "चिलाउनु",
+    "similar": "간지럽다",
+    "opposite": ""
+  },
+  {
+    "ko": "가르치다",
+    "np": "सिकाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "가방",
+    "np": "झोला",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "가옥",
+    "np": "कोरीयाको परम्परागत घर",
+    "similar": "한옥",
+    "opposite": ""
+  },
+  {
+    "ko": "가전체품",
+    "np": "HOME APPLIANCES",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "가족",
+    "np": "परिवार",
+    "similar": "가구",
+    "opposite": ""
+  },
+  {
+    "ko": "가죽",
+    "np": "छाला",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "가지다",
+    "np": "बोक्नु , रहनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "가축",
+    "np": "घरपालुवा जनावर",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "가치",
+    "np": "मूल्य , VALUE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "간단하다",
+    "np": "सहज/साधारण हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "간접",
+    "np": "अप्रत्यक्ष",
+    "similar": "",
+    "opposite": "직접"
+  },
+  {
+    "ko": "간지럽다",
+    "np": "चिलाउनु",
+    "similar": "가렵다",
+    "opposite": ""
+  },
+  {
+    "ko": "간편하다",
+    "np": "सरल र सहज",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "간편하다",
+    "np": "EASILY, सजिलो हुनु",
+    "similar": "편리하다",
+    "opposite": ""
+  },
+  {
+    "ko": "감각",
+    "np": "महसुस / अनुभूति",
+    "similar": "느끼다",
+    "opposite": ""
+  },
+  {
+    "ko": "감소하다",
+    "np": "DECREASE , घट्नु",
+    "similar": "줄다",
+    "opposite": "늘다 / 증가하다"
+  },
+  {
+    "ko": "갑자기",
+    "np": "अचानक",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "값",
+    "np": "मूल्य",
+    "similar": "가격",
+    "opposite": ""
+  },
+  {
+    "ko": "강물",
+    "np": "नदीको पानि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "갖추다",
+    "np": "रहनु / तयार हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "같다",
+    "np": "उस्तै हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "같이",
+    "np": "संगै",
+    "similar": "함께",
+    "opposite": ""
+  },
+  {
+    "ko": "개",
+    "np": "वटा , कुकुर",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "개다",
+    "np": "कपडा पटाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "개량하다",
+    "np": "सुधार / उन्नति गर्नु",
+    "similar": "개선하다",
+    "opposite": ""
+  },
+  {
+    "ko": "개발",
+    "np": "भौतिक विकास",
+    "similar": "재발",
+    "opposite": ""
+  },
+  {
+    "ko": "개선",
+    "np": "IMPROVEMENT",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "개선하다",
+    "np": "सुधार / उन्नति गर्नु",
+    "similar": "개량하다",
+    "opposite": ""
+  },
+  {
+    "ko": "개설되다",
+    "np": "खोलिनु / आरम्भ गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "개인별로",
+    "np": "व्यक्तिगत अनुसार",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "갯수",
+    "np": "गणना नम्बर , संख्या",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "거래 (खरे)",
+    "np": "TRANSACTION / कारोबार",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "거래 내역",
+    "np": "TRANSACTIONको विवरण",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "거볍다",
+    "np": "हलुङ्गो हुनु",
+    "similar": "",
+    "opposite": "무겁다"
+  },
+  {
+    "ko": "거주지",
+    "np": "बसोबास स्थान",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "거주하다",
+    "np": "बसोबास गर्नु / स्थायी रूपमा बस्नु",
+    "similar": "묵다 / 머부르다",
+    "opposite": ""
+  },
+  {
+    "ko": "거짓말",
+    "np": "झुटो कुरा",
+    "similar": "",
+    "opposite": "사실"
+  },
+  {
+    "ko": "거칠하다",
+    "np": "खस्रो हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "건조 시키다",
+    "np": "सुख्खा बनाउनु",
+    "similar": "말리다",
+    "opposite": ""
+  },
+  {
+    "ko": "걷다",
+    "np": "सुकाएको कपडा उठाउनु",
+    "similar": "",
+    "opposite": "널다"
+  },
+  {
+    "ko": "걸레",
+    "np": "टालो",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "걸치다",
+    "np": "फैलीनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "검색하다",
+    "np": "खोजि गर्नु, INTERNET सर्च गर्नु",
+    "similar": "찾다 / 조사하다 / 탐색하다",
+    "opposite": ""
+  },
+  {
+    "ko": "것끼리",
+    "np": "कुराहरु बिचमा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "게다가",
+    "np": "साथै",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "게으르다",
+    "np": "अल्छि हुनु",
+    "similar": "",
+    "opposite": "부지런하다"
+  },
+  {
+    "ko": "겨류하다",
+    "np": "एक आपसमा परिवर्तन हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "격식",
+    "np": "औपचारिकता, FORMALITY",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "겪다",
+    "np": "दुख/कष्ट भोग्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "견디다",
+    "np": "सहनु",
+    "similar": "참다",
+    "opposite": ""
+  },
+  {
+    "ko": "결제",
+    "np": "भुक्तानी , PAYMENT",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "결제하다",
+    "np": "भुक्तानी गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "결합하다",
+    "np": "जोड्नु , संयोजन गर्नु",
+    "similar": "연결하다 / 잇다",
+    "opposite": ""
+  },
+  {
+    "ko": "경기",
+    "np": "खेल प्रतियोगिता",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "경력자",
+    "np": "अनुभबी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "경우",
+    "np": "अवस्था",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "경유",
+    "np": "TRANSIT उडान",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "경쟁",
+    "np": "प्रतिस्पर्दा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "경제",
+    "np": "अर्थतन्त्र",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "경축하다",
+    "np": "उत्सव मनाउनु",
+    "similar": "기념하다",
+    "opposite": ""
+  },
+  {
+    "ko": "경치",
+    "np": "प्राकृतिक दृश्य",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "경험",
+    "np": "अनुभव ( EXPERIENCE)",
+    "similar": "체험",
+    "opposite": ""
+  },
+  {
+    "ko": "곁들다",
+    "np": "मिलाएर खानु, थप अतिरिक्त रुपमा गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "곁들여",
+    "np": "साथमा / सँगै / परिकारसँग थपेर",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "계곡",
+    "np": "RIVER",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "계란",
+    "np": "अण्डा",
+    "similar": "달걀",
+    "opposite": ""
+  },
+  {
+    "ko": "계란 지단",
+    "np": "FRY अण्डाको मसिनो तान्द्रा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "계발",
+    "np": "व्यक्तिगत विकास , PERSONAL विकास",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "계산하다",
+    "np": "हिसाब गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "계속하다",
+    "np": "लगातार गर्नु",
+    "similar": "지속되다",
+    "opposite": ""
+  },
+  {
+    "ko": "계시다",
+    "np": "हुनु , रहनु",
+    "similar": "있다",
+    "opposite": ""
+  },
+  {
+    "ko": "계절",
+    "np": "ऋतु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "계좌",
+    "np": "खाता",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "계좌 이체",
+    "np": "BALANCE TRANSFER गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "계통",
+    "np": "प्रणाली/संरचना",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "계획/도모",
+    "np": "योजना",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "고가",
+    "np": "बहुमुल्य",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "고객",
+    "np": "ग्राहक",
+    "similar": "손님",
+    "opposite": ""
+  },
+  {
+    "ko": "고급",
+    "np": "उच्च तह",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "고급된",
+    "np": "ADVANCED",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "고급화되다",
+    "np": "उच्च स्तरीय हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "고기",
+    "np": "मासु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "고려하다",
+    "np": "सोच्नु",
+    "similar": "여기다 / 생각하다",
+    "opposite": ""
+  },
+  {
+    "ko": "고르다",
+    "np": "खोज्नु, रोज्नु , तास्नु",
+    "similar": "찾다 , 선택하다",
+    "opposite": ""
+  },
+  {
+    "ko": "고소하다",
+    "np": "नटको स्वाद हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "고스란히",
+    "np": "जस्ताको तेस्तै / नबिगारी",
+    "similar": "그대로",
+    "opposite": ""
+  },
+  {
+    "ko": "고시원",
+    "np": "सस्तो खालको होटेल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "고온",
+    "np": "HIGH TEMPERATURE",
+    "similar": "",
+    "opposite": "저온"
+  },
+  {
+    "ko": "고용노동부",
+    "np": "श्रम मन्त्रालय",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "고용하다",
+    "np": "रोजगार दिनु",
+    "similar": "",
+    "opposite": "해고하다"
+  },
+  {
+    "ko": "고용허가제",
+    "np": "रोजगार अनुमति प्रणाली",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "고정 시키다",
+    "np": "FIX गराउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "골고루",
+    "np": "सामान्य रुपले",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "골목",
+    "np": "गल्लि, ALLEY",
+    "similar": "복도",
+    "opposite": ""
+  },
+  {
+    "ko": "곱다",
+    "np": "सुन्दर हुनु , आकर्षक हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "공간",
+    "np": "SPACE, PLACE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "공과금",
+    "np": "UTILITY BILLS / सार्बजनिक महसुल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "공기",
+    "np": "हावा",
+    "similar": "바람",
+    "opposite": ""
+  },
+  {
+    "ko": "공깃밥",
+    "np": "भातको कचौरा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "공무원",
+    "np": "सरकारी कर्मचारी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "공업",
+    "np": "अधौगिक",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "공연",
+    "np": "प्रस्तुति",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "공용",
+    "np": "PUBLIC SERVICE प्रयोग गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "공적인",
+    "np": "FORMAL",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "공짜",
+    "np": "निशुल्क",
+    "similar": "무상 / 무료",
+    "opposite": ""
+  },
+  {
+    "ko": "과속",
+    "np": "OVERSPEED",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "과수원",
+    "np": "फलफुल बगान",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "과식",
+    "np": "OVEREATING",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "과일",
+    "np": "फलफुल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "과적",
+    "np": "OVERLOAD",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "관개",
+    "np": "सिचाई , IRRIGATION",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "관계",
+    "np": "सम्बन्ध",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "관람하다",
+    "np": "हेर्नु ( खेल / कार्यक्रम)",
+    "similar": "구경하다 / 시청하다",
+    "opposite": ""
+  },
+  {
+    "ko": "관련",
+    "np": "सम्बन्धित हुनु, REPRESENT, CONNECT हुनु",
+    "similar": "해당하다 / 관한",
+    "opposite": ""
+  },
+  {
+    "ko": "관리하다",
+    "np": "व्यवस्था गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "관문",
+    "np": "GATEWAY",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "관절",
+    "np": "JOINT",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "관한",
+    "np": "सम्बन्धित हुनु, REPRESENT, CONNECT हुनु",
+    "similar": "관련 / 해당하다",
+    "opposite": ""
+  },
+  {
+    "ko": "광복절",
+    "np": "स्वतन्त्र दिवस",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "광역시",
+    "np": "उपमहानगरपालिका",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "교량",
+    "np": "BRIDGE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "교육",
+    "np": "व्यवसायिक तालिम",
+    "similar": "훈련",
+    "opposite": ""
+  },
+  {
+    "ko": "교체하다",
+    "np": "परिवर्तन गर्नु , REPLACE गर्नु",
+    "similar": "교환하다 / 바꾸다",
+    "opposite": ""
+  },
+  {
+    "ko": "교학",
+    "np": "SCIENCE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "교환하다",
+    "np": "परिवर्तन गर्नु",
+    "similar": "바꾸다 / 교체하다",
+    "opposite": ""
+  },
+  {
+    "ko": "구경하다",
+    "np": "हेर्नु , अबलोकन गर्नु , घुमेर हेर्नु",
+    "similar": "관람하다 / 시청하다",
+    "opposite": ""
+  },
+  {
+    "ko": "구름",
+    "np": "बादल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "구매하다",
+    "np": "खरिद गर्नु, किन्नु",
+    "similar": "사다 / 구입하다 / 구하다",
+    "opposite": "팔다 / 판매하다"
+  },
+  {
+    "ko": "구별하다",
+    "np": "DISTINGUISH / छुट्याउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "구분되다",
+    "np": "बिभाजन गर्नु, SEPARATE",
+    "similar": "분리하다 , 나누다",
+    "opposite": ""
+  },
+  {
+    "ko": "구비되다",
+    "np": "व्यवस्थित हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "구성",
+    "np": "संरचना",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "구성되다",
+    "np": "COMPOSE / रचना गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "구입하다",
+    "np": "खरिद गर्नु, किन्नु",
+    "similar": "구매하다 / 사다 / 구하다",
+    "opposite": "팔다 / 판매하다"
+  },
+  {
+    "ko": "구체적인",
+    "np": "वास्तविक",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "구축",
+    "np": "संरचना निर्माण",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "구하다",
+    "np": "खोज्नु , प्राप्त गर्नु , किन्नु , बचाउनु",
+    "similar": "사다 / 구매하다 / 구입하다",
+    "opposite": "팔다 / 판매하다"
+  },
+  {
+    "ko": "국가별",
+    "np": "देश अनुसार",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "국경",
+    "np": "राष्ट्रिय महत्तो",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "국물",
+    "np": "सुप",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "국적",
+    "np": "रास्ट्रीयता",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "군로자",
+    "np": "श्रमिक",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "굳다",
+    "np": "जम्नु",
+    "similar": "얼다",
+    "opposite": "녹다"
+  },
+  {
+    "ko": "굵다",
+    "np": "मोटो (स्वरूप ) हुनु",
+    "similar": "",
+    "opposite": "가늘다"
+  },
+  {
+    "ko": "굽다",
+    "np": "पोल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "굽히다",
+    "np": "झुकाउनु / निहुराउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "궁궐",
+    "np": "DARBAR/ PALACE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "권",
+    "np": "वटा (किताब जन्य बस्तुहरु)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "권리",
+    "np": "अधिकार",
+    "similar": "권익",
+    "opposite": ""
+  },
+  {
+    "ko": "권익",
+    "np": "अधिकार",
+    "similar": "권리",
+    "opposite": ""
+  },
+  {
+    "ko": "귀국",
+    "np": "स्वदेश फिर्ता",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "귀엽다",
+    "np": "मायालु हुनु , CUTE हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "귀찮다",
+    "np": "झन्झट लाग्नु / झर्को लाग्नु / गर्न मन नलाग्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "규모",
+    "np": "SIZE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "규율",
+    "np": "नियम",
+    "similar": "규칙",
+    "opposite": ""
+  },
+  {
+    "ko": "규칙",
+    "np": "नियम",
+    "similar": "규율",
+    "opposite": ""
+  },
+  {
+    "ko": "균형",
+    "np": "सन्तुलन",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "귤",
+    "np": "सुन्तला",
+    "similar": "오렌지",
+    "opposite": ""
+  },
+  {
+    "ko": "그대로",
+    "np": "जस्ताको तेस्तै / नबिगारी",
+    "similar": "고스란히",
+    "opposite": ""
+  },
+  {
+    "ko": "그래서",
+    "np": "तेसैले",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "그러나",
+    "np": "तर",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "그러면",
+    "np": "त्येसपछी , त्येसोभए",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "그릇",
+    "np": "कचौरा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "그림",
+    "np": "चित्र",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "그만두다",
+    "np": "कम्पनी छोड्नु , काम रोक्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "그치다",
+    "np": "वर्षा रोकिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "근거",
+    "np": "आधार",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "근육",
+    "np": "MUSCLE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "글",
+    "np": "लेख/ हरफ",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "금방",
+    "np": "छिट्टै , SOON / A MOMENT AGO",
+    "similar": "얼른 / 즉시 / 당장 / 바로",
+    "opposite": ""
+  },
+  {
+    "ko": "금융",
+    "np": "आर्थिक/वित्तीय",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "금주",
+    "np": "रक्सि /मध्यपान निषेध",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "급하다",
+    "np": "हतार हुनु / अत्यावश्यक हुनु",
+    "similar": "",
+    "opposite": "느긋하다"
+  },
+  {
+    "ko": "긍정",
+    "np": "POSITIVE",
+    "similar": "부정",
+    "opposite": ""
+  },
+  {
+    "ko": "기념하다",
+    "np": "स्मरण गर्नु / सम्झनु / उत्सव मनाउनु",
+    "similar": "경축하다",
+    "opposite": ""
+  },
+  {
+    "ko": "기대",
+    "np": "आशा, भरोसा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "기본적인",
+    "np": "आदरभुत",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "기부",
+    "np": "DONATION",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "기상",
+    "np": "उठ्नु , WAKE UP",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "기억하다",
+    "np": "सम्झनु, याद गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "기준",
+    "np": "STANDARD / स्तरीय",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "기회가 되다",
+    "np": "मौका हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "기후",
+    "np": "हावापानी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "긴급하다",
+    "np": "URGENT",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "긴장하다",
+    "np": "NERVOUS हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "길다",
+    "np": "लामो हुनु",
+    "similar": "",
+    "opposite": "짧다"
+  },
+  {
+    "ko": "김",
+    "np": "लेउ (बजार मा किन्न मिल्ने)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "김장하다",
+    "np": "KIMCHI बनाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "김치찌개",
+    "np": "किम्चिको झोल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "깃발",
+    "np": "झन्डा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "깊다",
+    "np": "गहिरो हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "깍두기",
+    "np": "मुलाको अचार",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "깎다",
+    "np": "घटाउनु , काट्नु , तास्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "깔다",
+    "np": "जोत्नु, बिछ्याउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "깜깜하다",
+    "np": "अँध्यारो हुनु",
+    "similar": "어둡다",
+    "opposite": "밝다"
+  },
+  {
+    "ko": "깜짝",
+    "np": "छक्क पर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "깨끗하다",
+    "np": "सफा गर्नु",
+    "similar": "청결하다 / 청소하다",
+    "opposite": ""
+  },
+  {
+    "ko": "깨다",
+    "np": "भाँच्नु / फुटाउनु , ब्यूँझनु , तोड्नु / उल्लङ्घन गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "깨지다",
+    "np": "फुट्नु, टुट्नु",
+    "similar": "파손되다",
+    "opposite": ""
+  },
+  {
+    "ko": "꺼내다",
+    "np": "निकाल्नु / बाहिर निकाल्नु / झिक्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "껴안다",
+    "np": "अंकमाल गर्नु",
+    "similar": "포옹하다",
+    "opposite": ""
+  },
+  {
+    "ko": "꼭",
+    "np": "अनिबार्य",
+    "similar": "반드시 / 무조건",
+    "opposite": ""
+  },
+  {
+    "ko": "꼼꼼하다",
+    "np": "साबधानीपुर्बक ,",
+    "similar": "자세히",
+    "opposite": ""
+  },
+  {
+    "ko": "꾸준히",
+    "np": "निरन्तर",
+    "similar": "지속되다",
+    "opposite": ""
+  },
+  {
+    "ko": "끈",
+    "np": "तुना , डोरी , फिता",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "끊다",
+    "np": "TO CUT, BREAK, STOP , DISCONNECT, QUIT",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "끌다",
+    "np": "तान्नु",
+    "similar": "당기다",
+    "opposite": "밀다"
+  },
+  {
+    "ko": "끓다",
+    "np": "उम्लिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "끓이다",
+    "np": "उमाल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "나누다",
+    "np": "बाँड्नु / विभाजन गर्नु / भाग लगाउनु / साझा गर्नु",
+    "similar": "분리하다 , 구분되다",
+    "opposite": ""
+  },
+  {
+    "ko": "나눔",
+    "np": "SHARE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "나머지",
+    "np": "बाँकी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "나물",
+    "np": "तान्द्रे सागसब्जी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "나쁘다",
+    "np": "खराब हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "나이",
+    "np": "उमेर",
+    "similar": "연세 / 살",
+    "opposite": ""
+  },
+  {
+    "ko": "나이가 들다",
+    "np": "उमेर बढ्नु (बुढो हुनु)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "나이가 많다",
+    "np": "उमेर धेरै हुनु (बुढो हुनु)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "나이가 먹다",
+    "np": "उमेर खानु (बुढो हुनु)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "나이가 적다",
+    "np": "उमेर कमि हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "난방",
+    "np": "तातो कोठा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "날다",
+    "np": "उड्नु, धारिलो हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "날씨",
+    "np": "मौसम",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "날짜",
+    "np": "मिति",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "남기다",
+    "np": "छाडी दिनु , राखी दिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "남다",
+    "np": "बाकी रहनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "남매",
+    "np": "दाजु भाइ दिदि बहिनि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "남은 금액",
+    "np": "बाँकी पैसा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "남편",
+    "np": "बुडा , HUSBAND",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "납부하다",
+    "np": "सरकारी/प्रशासनिक रकम भुक्तानी गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "낫다",
+    "np": "सुधार हुनु, सन्चो हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "낭비하다",
+    "np": "खेर फाल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "낮다",
+    "np": "होंचो हुनु",
+    "similar": "",
+    "opposite": "높다"
+  },
+  {
+    "ko": "내다",
+    "np": "पैसा तिर्नु, दिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "내려가다",
+    "np": "तल झर्नु , कमि हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "내방",
+    "np": "चिसो कोठा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "널다",
+    "np": "कपडा सुकाउनु",
+    "similar": "",
+    "opposite": "걷다"
+  },
+  {
+    "ko": "널리",
+    "np": "व्यापकरुपमा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "넓다",
+    "np": "फराकिलो हुनु",
+    "similar": "",
+    "opposite": "좁다"
+  },
+  {
+    "ko": "넘다",
+    "np": "कट्नु , पार गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "노년층",
+    "np": "बुढो मान्छे",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "노래자랑 대회",
+    "np": "गित प्रतियोगिता",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "노선도",
+    "np": "BUS ROUTE MAP",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "녹다",
+    "np": "पग्लनु",
+    "similar": "",
+    "opposite": "얼다 / 굳다"
+  },
+  {
+    "ko": "녹이",
+    "np": "RUST, खिया लाग्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "논의",
+    "np": "छलफल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "놀라다",
+    "np": "छक्क पर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "농촌",
+    "np": "कृषि क्षेत्र",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "높다",
+    "np": "अग्लो हुनु",
+    "similar": "",
+    "opposite": "낮다"
+  },
+  {
+    "ko": "놓치다",
+    "np": "छुट्नु (गाडी)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "누르다",
+    "np": "दबाउनु/थिच्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "눈을 감다",
+    "np": "आँखा बन्द गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "눈을 깜박거리다",
+    "np": "आँखा झिम्काउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "눈을 뜨다",
+    "np": "आँखा खोल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "눈을 흘기디",
+    "np": "आँखा घुमाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "느긋하다",
+    "np": "फुर्सदिलो हुनु / हतार नभएको हुनु",
+    "similar": "",
+    "opposite": "급하다"
+  },
+  {
+    "ko": "느끼다",
+    "np": "महसुस / SENSE / FEEL",
+    "similar": "감각하다",
+    "opposite": ""
+  },
+  {
+    "ko": "늘다",
+    "np": "बढ्नु",
+    "similar": "",
+    "opposite": "줄다"
+  },
+  {
+    "ko": "늘어나다",
+    "np": "बढ्दै जानु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "다니다",
+    "np": "धाउनु/आउने जाने गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "다세대 주택",
+    "np": "बहु पारिवारिक भवन",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "다소",
+    "np": "केहि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "다양한",
+    "np": "विभिन्न",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "다지다",
+    "np": "दबाउनु , तास्नु , सम्याउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "닦다",
+    "np": "पुछ्नु",
+    "similar": "양치하다",
+    "opposite": ""
+  },
+  {
+    "ko": "단단하다",
+    "np": "बलियो हुनु",
+    "similar": "딱딱하다",
+    "opposite": "부드럽다"
+  },
+  {
+    "ko": "단독 주택",
+    "np": "एकल आवास",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "단손히",
+    "np": "सामान्य",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "단순하다",
+    "np": "सरल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "단순히",
+    "np": "सामान्य",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "단아하다",
+    "np": "सुन्दर, ELEGANT",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "단점",
+    "np": "नराम्रो कुरा , तर्क",
+    "similar": "",
+    "opposite": "장점"
+  },
+  {
+    "ko": "단지",
+    "np": "केवल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "단체",
+    "np": "GROUP, ORGANIZATION,",
+    "similar": "반 / 팀 / 조",
+    "opposite": ""
+  },
+  {
+    "ko": "닫다",
+    "np": "बन्द गर्नु",
+    "similar": "",
+    "opposite": "열다"
+  },
+  {
+    "ko": "달걀",
+    "np": "अण्डा",
+    "similar": "계란",
+    "opposite": ""
+  },
+  {
+    "ko": "담",
+    "np": "COMPOUND वाल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "담다",
+    "np": "भित्र राख्नु ,भर्नु , हाल्नु, समेट्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "담소하다",
+    "np": "कुराकानी गर्नु",
+    "similar": "대화하다 / 말하다 / 얘기하다 / 이야기하다",
+    "opposite": ""
+  },
+  {
+    "ko": "담요",
+    "np": "BLANKET",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "답답하다",
+    "np": "उकुसमुकुस हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "당기다",
+    "np": "तान्नु",
+    "similar": "끌다",
+    "opposite": "밀다"
+  },
+  {
+    "ko": "당일",
+    "np": "सोहि दिन",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "당장",
+    "np": "तुरुन्तै / अहिलै , RIGHT NOW",
+    "similar": "얼른 / 즉시 / 바로 / 금방",
+    "opposite": ""
+  },
+  {
+    "ko": "닿다",
+    "np": "छुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "대규모",
+    "np": "ठुलो साइज,",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "대답",
+    "np": "उत्तर",
+    "similar": "정답",
+    "opposite": ""
+  },
+  {
+    "ko": "대부분",
+    "np": "अधिकांस",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "대신",
+    "np": "सट्टा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "대접하다",
+    "np": "घरमा बोलाएर खाना खुवाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "대중교통",
+    "np": "सार्बजनिक सवारी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "대중화",
+    "np": "जनप्रियता / सबैले रुचाएको",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "대피",
+    "np": "EVACUATE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "대형",
+    "np": "ठुलो",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "대화하다",
+    "np": "कुराकानी गर्नु",
+    "similar": "이야기하다 / 말하다 / 얘기하다 / 담소하다",
+    "opposite": ""
+  },
+  {
+    "ko": "댁",
+    "np": "घर",
+    "similar": "집",
+    "opposite": ""
+  },
+  {
+    "ko": "댓글을 달다",
+    "np": "कमेन्टहरु गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "더욱",
+    "np": "MORE , धेरै",
+    "similar": "훨씬 / 무척",
+    "opposite": ""
+  },
+  {
+    "ko": "덕담",
+    "np": "आशिष",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "덜",
+    "np": "कम",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "덜다",
+    "np": "निकाल्नु / कम गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "덥다",
+    "np": "गर्मि हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "덮다",
+    "np": "ढाक्नु , छोप्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "데레 운전",
+    "np": "मान्छे बोलाई DRIVE गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "데우다",
+    "np": "तताउनु/ स्टिम गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "도시",
+    "np": "सहर",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "도시 근교",
+    "np": "शहरको नजिकैको क्षेत्र",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "도와주다",
+    "np": "सहयोग दिनु/गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "도장",
+    "np": "छाप/सिप/रंग",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "도착하다",
+    "np": "पुग्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "돈",
+    "np": "पैसा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "돈 가스",
+    "np": "बुंगुर बाट बनेको CUTLET",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "돈을 찾다",
+    "np": "पैसा निकाल्नु",
+    "similar": "출금하다",
+    "opposite": ""
+  },
+  {
+    "ko": "돌리다",
+    "np": "घुमाउनु , चलाउनु , फर्काउनु , पठाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "동력",
+    "np": "POWER",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "동물",
+    "np": "जनावर",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "동생",
+    "np": "भाइ - बहिनि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "동시",
+    "np": "एकै समयमा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "동의",
+    "np": "सहमति",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "동작",
+    "np": "ACTIONS, क्रियाकलाप",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "동전",
+    "np": "सिक्का",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "동지",
+    "np": "वर्षको सबै भन्दा छोटो दिन",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "되다",
+    "np": "हुनु , रहनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "된장찌개",
+    "np": "भटमासको लेदोको झोल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "두껍다",
+    "np": "बाक्लो हुनु",
+    "similar": "",
+    "opposite": "얇다"
+  },
+  {
+    "ko": "둘러 앉다",
+    "np": "गोलो घेरा बनाई बस्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "둘러보다",
+    "np": "आसपास हेर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "드러내다",
+    "np": "TO REVEAL /  प्रकट गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "드시다",
+    "np": "सेवन गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "들다",
+    "np": "सामान उचाल्नु, पैसा लाग्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "들르다",
+    "np": "जादै गर्दा कतै पस्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "들리다",
+    "np": "सुनिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "등",
+    "np": "आदि",
+    "similar": "따위",
+    "opposite": ""
+  },
+  {
+    "ko": "등장",
+    "np": "प्रतिक/ देखा पर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "따다",
+    "np": "प्राप्त गर्नु, पाउनु, जित्नु , टिप्नु",
+    "similar": "받다 / 얻다 / 타다",
+    "opposite": ""
+  },
+  {
+    "ko": "따뜻하다",
+    "np": "न्यानो हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "따로",
+    "np": "अलग",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "따위",
+    "np": "आदि",
+    "similar": "등",
+    "opposite": ""
+  },
+  {
+    "ko": "딱딱하다",
+    "np": "कडा हुनु / साह्रो हुनु / कठोर हुनु",
+    "similar": "단단하다",
+    "opposite": "부드럽다"
+  },
+  {
+    "ko": "딸",
+    "np": "छोरि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "딸기",
+    "np": "STRAWBERRY",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "떠너다",
+    "np": "प्रस्थान गर्नु",
+    "similar": "출발하다",
+    "opposite": ""
+  },
+  {
+    "ko": "떠들다",
+    "np": "हल्ला गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "떨다",
+    "np": "टक्टकाउनु",
+    "similar": "털다",
+    "opposite": ""
+  },
+  {
+    "ko": "떨리다",
+    "np": "काम्नु, TREMBLE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "떨어지다",
+    "np": "खस्नु/छुट्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "떼다",
+    "np": "उक्काउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "똑똑하다",
+    "np": "चलाख हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "똥을 싸다",
+    "np": "दिसा गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "뚜껑",
+    "np": "बिर्को",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "뚜렷하다",
+    "np": "स्पष्ट पार्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "뚜렷한",
+    "np": "DISTINCT , स्पष्ट",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "뚝배기",
+    "np": "CERAMIC कचौरा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "뜨겁다",
+    "np": "तातो हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "라면",
+    "np": "चाउ चाउ",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "마감",
+    "np": "समाप्त गर्नु, अन्त्य गर्नु",
+    "similar": "종료",
+    "opposite": ""
+  },
+  {
+    "ko": "마당",
+    "np": "आगन",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "마대로",
+    "np": "लौरो , डन्डी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "마련하다",
+    "np": "तयार गर्नु",
+    "similar": "준비하다 / 조제하다 / 챙기다",
+    "opposite": ""
+  },
+  {
+    "ko": "마루",
+    "np": "KOREAN घरको परम्परागत बैठक कोठा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "마르다",
+    "np": "सुख्खा हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "마리",
+    "np": "वटा (प्राणि)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "마무리",
+    "np": "अन्त्य",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "마찬가지",
+    "np": "तेस्तै हो , अरुले भने जस्तै",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "마찰",
+    "np": "घस्रण, FRICTION",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "마친가지로",
+    "np": "अन्तिम सम्म",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "막",
+    "np": "हालचाल , भर्खरै",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "만가지다",
+    "np": "धेरै कुराहरु, भाच्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "만나다",
+    "np": "भेट्नु",
+    "similar": "뵙다",
+    "opposite": ""
+  },
+  {
+    "ko": "만들다",
+    "np": "बनाउनु, निर्माण गर्नु",
+    "similar": "짓다",
+    "opposite": ""
+  },
+  {
+    "ko": "만족하다",
+    "np": "सन्तुष्ट हुनु",
+    "similar": "",
+    "opposite": "불만족하다"
+  },
+  {
+    "ko": "만지다",
+    "np": "TOUCH",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "많다",
+    "np": "धेरै हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "많아지다",
+    "np": "बढ्दै जानु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "말리다",
+    "np": "सुख्खा बनाउनु",
+    "similar": "건조 시키다",
+    "opposite": ""
+  },
+  {
+    "ko": "말씀하다",
+    "np": "बोल्नु , भन्नु",
+    "similar": "말하다",
+    "opposite": ""
+  },
+  {
+    "ko": "말하다",
+    "np": "कुराकानी गर्नु",
+    "similar": "대화하다 / 이야기하다 / 얘기하다 / 담소하다",
+    "opposite": ""
+  },
+  {
+    "ko": "맑다",
+    "np": "मौसम सफा हुनु",
+    "similar": "",
+    "opposite": "흐리다"
+  },
+  {
+    "ko": "맛",
+    "np": "स्वाद",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "맛없다",
+    "np": "मिठो नहुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "맛있다",
+    "np": "मिठो हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "맛집",
+    "np": "RESTAURANT",
+    "similar": "식당",
+    "opposite": ""
+  },
+  {
+    "ko": "맞다",
+    "np": "मिल्नु/सहि हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "맡기신 금액",
+    "np": "जम्मा गरेको पैसा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "매우",
+    "np": "एकदमै",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "매장",
+    "np": "दोकान",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "매점",
+    "np": "सानो पसल",
+    "similar": "상점 / 가게",
+    "opposite": ""
+  },
+  {
+    "ko": "매진되다",
+    "np": "SOLD OUT",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "맵다",
+    "np": "पिरो हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "머리를 감다",
+    "np": "कपाल पखाल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "머리를 묶다",
+    "np": "कपाल बाध्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "머리를 풀다",
+    "np": "कपाल खोल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "머부르다",
+    "np": "कुनै ठाउँमा केही समय रहनु",
+    "similar": "묵다 / 거주하다",
+    "opposite": ""
+  },
+  {
+    "ko": "먼지",
+    "np": "धुलो",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "멀다",
+    "np": "टाडा हुनु",
+    "similar": "",
+    "opposite": "가깝다"
+  },
+  {
+    "ko": "멀미 나다",
+    "np": "बान्ता आउनु, MOTION SICKNESS",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "멋있다",
+    "np": "सुहाउनु , राम्रो देखिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "메뉴",
+    "np": "MENU",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "며느리",
+    "np": "बुहारी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "면제",
+    "np": "(काम , अवस्था ) छुट",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "멸치",
+    "np": "मसिनो माछा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "명",
+    "np": "जना",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "명칭",
+    "np": "नाम, पद, साइनो",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "모내다",
+    "np": "बिरुवा रोप्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "모르다",
+    "np": "थाहा नहुनु",
+    "similar": "",
+    "opposite": "알다"
+  },
+  {
+    "ko": "모습",
+    "np": "स्वरूप",
+    "similar": "외모",
+    "opposite": ""
+  },
+  {
+    "ko": "모집",
+    "np": "VACANCY",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "목욕하다",
+    "np": "नुहाउनु",
+    "similar": "샤워하다",
+    "opposite": ""
+  },
+  {
+    "ko": "목적",
+    "np": "उदेश्य",
+    "similar": "목표",
+    "opposite": ""
+  },
+  {
+    "ko": "목표",
+    "np": "उदेश्य",
+    "similar": "목적",
+    "opposite": ""
+  },
+  {
+    "ko": "못하다",
+    "np": "गर्न नसक्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "무겁다",
+    "np": "भारि हुनु",
+    "similar": "",
+    "opposite": "거볍다"
+  },
+  {
+    "ko": "무게",
+    "np": "तौल",
+    "similar": "중량",
+    "opposite": ""
+  },
+  {
+    "ko": "무급",
+    "np": "नदिने तलब",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "무더위가",
+    "np": "ज्यादै गर्मि हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "무덥다",
+    "np": "ज्यादै गर्मि हुनु",
+    "similar": "",
+    "opposite": "쌀쌀하다"
+  },
+  {
+    "ko": "무료",
+    "np": "निशुल्क",
+    "similar": "무상 / 공짜",
+    "opposite": ""
+  },
+  {
+    "ko": "무리하다",
+    "np": "शारीरिक क्षमता भन्दा बढी काम गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "무상",
+    "np": "निशुल्क",
+    "similar": "무료 / 공짜",
+    "opposite": ""
+  },
+  {
+    "ko": "무슨",
+    "np": "के , कस्तो",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "무시하다",
+    "np": "वास्ता नगर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "무인",
+    "np": "बेक्रेता बिना (AUTO)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "무인 판매점",
+    "np": "बिक्रेता बिहिन 24 घन्टे पसल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "무조건",
+    "np": "अनिबार्य",
+    "similar": "꼭/ 반드시",
+    "opposite": ""
+  },
+  {
+    "ko": "무척",
+    "np": "MORE , धेरै",
+    "similar": "더욱 / 훨씬",
+    "opposite": ""
+  },
+  {
+    "ko": "묵다",
+    "np": "होटल आदि ठाउँमा केही समय बस्नु",
+    "similar": "머부르다 / 거주하다",
+    "opposite": ""
+  },
+  {
+    "ko": "문",
+    "np": "ढोका",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "문구점",
+    "np": "स्टेशनरी",
+    "similar": "문방구",
+    "opposite": ""
+  },
+  {
+    "ko": "문방구",
+    "np": "स्टेशनरी",
+    "similar": "문구점",
+    "opposite": ""
+  },
+  {
+    "ko": "문서",
+    "np": "DOCUMENT",
+    "similar": "서류",
+    "opposite": ""
+  },
+  {
+    "ko": "문화유산",
+    "np": "CULTURAL HERITAGE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "문화축제",
+    "np": "सांस्कृतिक महोत्सव",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "문회 체험",
+    "np": "सांस्कृतिक अनुभव",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "묻다",
+    "np": "सोध्नु / गाड्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "물가",
+    "np": "बजार मूल्य",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "물건",
+    "np": "सामान",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "물론",
+    "np": "अबस्य पनि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "물약",
+    "np": "झोल औषधि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "물품",
+    "np": "सामाग्री",
+    "similar": "자료",
+    "opposite": ""
+  },
+  {
+    "ko": "미리",
+    "np": "BEFOREHAND , काम अगावै गरेको तर  घटना हुन बाकी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "미역",
+    "np": "बाक्लो बिझाएको लेउ",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "미역국",
+    "np": "लेउको झोल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "미착",
+    "np": "क्रम मा हुनु , ON THE WAY",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "민박",
+    "np": "होम्सटे",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "밀다",
+    "np": "धकेल्नु",
+    "similar": "",
+    "opposite": "끌다 / 당기다"
+  },
+  {
+    "ko": "밀대",
+    "np": "MOP / पोछा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "바꾸다",
+    "np": "परिवर्तन गर्नु",
+    "similar": "교환하다 / 교체하다",
+    "opposite": ""
+  },
+  {
+    "ko": "바닥",
+    "np": "भुइँ",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "바닷가",
+    "np": "BEACH, समुन्द्र किनार",
+    "similar": "해수욕장 / 해변",
+    "opposite": ""
+  },
+  {
+    "ko": "바람",
+    "np": "हावा",
+    "similar": "공기",
+    "opposite": ""
+  },
+  {
+    "ko": "바람이 그치다",
+    "np": "हावा रोकिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "바람이 불다",
+    "np": "हावा चल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "바로",
+    "np": "तुरुन्तै / सिधै , RIGHT AWAY / DIRECTLY",
+    "similar": "얼른 / 즉시 / 당장 / 금방",
+    "opposite": ""
+  },
+  {
+    "ko": "바쁘다",
+    "np": "BUSY हुनु",
+    "similar": "",
+    "opposite": "한가하다"
+  },
+  {
+    "ko": "바지",
+    "np": "PANT",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "반",
+    "np": "GROUP, ORGANIZATION,",
+    "similar": "단체 / 팀 / 조",
+    "opposite": ""
+  },
+  {
+    "ko": "반드시",
+    "np": "अनिबार्य",
+    "similar": "꼭 / 무조건",
+    "opposite": ""
+  },
+  {
+    "ko": "반말",
+    "np": "ठाडो भाषा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "반복적으로",
+    "np": "Repeatedly, दोहिरिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "반찬",
+    "np": "तरकारी (SIDE DISHES )",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "반창고",
+    "np": "कटनको टुक्रा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "반하다",
+    "np": "आकर्षित हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "받다",
+    "np": "प्राप्त गर्नु, पाउनु",
+    "similar": "얻다 / 따다 / 타다",
+    "opposite": ""
+  },
+  {
+    "ko": "받치다",
+    "np": "माथि राख्नु , HOLD गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "발견하다",
+    "np": "पत्ता लगाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "발달하다",
+    "np": "विकास गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "발목이 삐다",
+    "np": "गोलि गाँठो मर्किनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "발송하다",
+    "np": "पठाउनु , DISPATCH गर्नु",
+    "similar": "배송하다 / 배달하다",
+    "opposite": ""
+  },
+  {
+    "ko": "발신인",
+    "np": "पठाउने मान्छे",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "발전 시키다",
+    "np": "विकास गराउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "발표",
+    "np": "घोषणा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "발행하다",
+    "np": "जारी गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "밝다",
+    "np": "CLEAR हुनु",
+    "similar": "환하다",
+    "opposite": "어둡다"
+  },
+  {
+    "ko": "밤새",
+    "np": "रातैभरि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "밥솥",
+    "np": "राइस कुकर",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "밥을 짓다",
+    "np": "भात पकाउनु",
+    "similar": "밥을 하다",
+    "opposite": ""
+  },
+  {
+    "ko": "밥을 하다",
+    "np": "भात पकाउनु",
+    "similar": "밥을 짓다",
+    "opposite": ""
+  },
+  {
+    "ko": "방금",
+    "np": "भर्खरै , JUST NOW (हालचालको PASTको घटना)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "방독 마스크",
+    "np": "ग्यासमा प्रयोग गर्ने मास्क",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "방문하다",
+    "np": "भेटघाट/अबलोकन गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "방식",
+    "np": "तरिका, METHOD",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "방심하다",
+    "np": "ध्यान नदिनु",
+    "similar": "",
+    "opposite": "주의하다"
+  },
+  {
+    "ko": "방진 마스크",
+    "np": "धुलोमा प्रयोग गर्ने मास्क",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "방해하다",
+    "np": "बाधा पुर्याउनु , DISTURB गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "배경",
+    "np": "पृष्ठभूमि , BACKGROUND",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "배낭",
+    "np": "TREKKING BAG",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "배달시키다",
+    "np": "डेलिबरी गराउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "배달하다",
+    "np": "घरमा DELIVERY गर्नु",
+    "similar": "배송하다 / 발송하다",
+    "opposite": ""
+  },
+  {
+    "ko": "배려하다",
+    "np": "ख्याल गर्नु",
+    "similar": "위해주다",
+    "opposite": ""
+  },
+  {
+    "ko": "배송하다",
+    "np": "सामन पठाउनु , ढुवानी गर्नु",
+    "similar": "배달하다 / 발송하다",
+    "opposite": ""
+  },
+  {
+    "ko": "배출",
+    "np": "DISPOSE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "배출하다",
+    "np": "TO DISCHARGE , फाल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "배탈이 나다",
+    "np": "पेट गडबड हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "버리다",
+    "np": "फाल्नु , त्याग्नु , फ्याक्नु ,छोड्नु",
+    "similar": "폐기하다",
+    "opposite": ""
+  },
+  {
+    "ko": "번개",
+    "np": "चट्याङ",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "번역가",
+    "np": "अनुवादक",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "번역하다",
+    "np": "अनुबाद गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "벌써",
+    "np": "ALREADY , सोचेको भन्दा अगाडी काम हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "법",
+    "np": "नियम , तरिका",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "법률 교육",
+    "np": "कानुनी तालिम",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "변기",
+    "np": "कमोड़को प्लेट",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "변동하다",
+    "np": "परिवर्तन गर्नु",
+    "similar": "변하다",
+    "opposite": ""
+  },
+  {
+    "ko": "변하다",
+    "np": "परिवर्तन गर्नु",
+    "similar": "변동하다",
+    "opposite": ""
+  },
+  {
+    "ko": "변화",
+    "np": "CHANGE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "별로",
+    "np": "अनुसार",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "별표",
+    "np": "STAR बटन/संकेत",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "병",
+    "np": "बोत्तल , रोग",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "병상",
+    "np": "अवस्था",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "보관하다",
+    "np": "STORE गर्नु / राख्नु",
+    "similar": "보호하다 / 지키다",
+    "opposite": ""
+  },
+  {
+    "ko": "보내다",
+    "np": "पठाउनु",
+    "similar": "부치다",
+    "opposite": "받다"
+  },
+  {
+    "ko": "보안하다",
+    "np": "सुरक्षा गर्नु",
+    "similar": "보존되다",
+    "opposite": ""
+  },
+  {
+    "ko": "보여주다",
+    "np": "देखाई दिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "보이다",
+    "np": "देखिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "보장",
+    "np": "ग्यारेन्टी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "보존되다",
+    "np": "संरक्षण हुनु , कायम रहनु",
+    "similar": "보안하다",
+    "opposite": ""
+  },
+  {
+    "ko": "보증금",
+    "np": "धरौटी रकम",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "보호구",
+    "np": "SAFETY EQUIPMENTS",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "보호하다",
+    "np": "SAVE गर्नु, सुरक्षित राख्नु",
+    "similar": "보관하다 / 지키다",
+    "opposite": ""
+  },
+  {
+    "ko": "복도",
+    "np": "गल्लि, ALLEY",
+    "similar": "골목",
+    "opposite": ""
+  },
+  {
+    "ko": "복사",
+    "np": "PHOTOCOPY",
+    "similar": "사본",
+    "opposite": ""
+  },
+  {
+    "ko": "복용하다",
+    "np": "औषधि सेवन गर्नु",
+    "similar": "약을 먹다",
+    "opposite": ""
+  },
+  {
+    "ko": "복잡하다",
+    "np": "CROWDED (भिडभाड)",
+    "similar": "혼잡하다",
+    "opposite": ""
+  },
+  {
+    "ko": "복장",
+    "np": "COSTUME",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "볶다",
+    "np": "भुट्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "봉투",
+    "np": "सपिंग ब्याग , चिठ्ठीको खाम",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "뵙다",
+    "np": "भेट्नु",
+    "similar": "만나다",
+    "opposite": ""
+  },
+  {
+    "ko": "부담",
+    "np": "खर्च",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "부동산",
+    "np": "REAL ESTATE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "부드럽다",
+    "np": "नरम हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "부식성 물질",
+    "np": "CORROSIVE SUBSTANCES",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "부아",
+    "np": "JUNIOR",
+    "similar": "후배",
+    "opposite": "상사"
+  },
+  {
+    "ko": "부인",
+    "np": "WIFE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "부정",
+    "np": "NEGATIVE",
+    "similar": "긍정",
+    "opposite": ""
+  },
+  {
+    "ko": "부지런하다",
+    "np": "मेहनती हुनु",
+    "similar": "",
+    "opposite": "게으르다"
+  },
+  {
+    "ko": "부채",
+    "np": "हाते पंखा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "부치다",
+    "np": "पठाउनु",
+    "similar": "보내다",
+    "opposite": "받다"
+  },
+  {
+    "ko": "부통",
+    "np": "प्राय , धेरै जसो",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "분",
+    "np": "मान्छे (अदारर्थी)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "분류사",
+    "np": "बर्गिकरण गराउने",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "분리하다",
+    "np": "बिभाजन गर्नु, SEPARATE",
+    "similar": "구분되다 , 나누다",
+    "opposite": ""
+  },
+  {
+    "ko": "분명하다",
+    "np": "स्पष्ट, CLEAR गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "분무기",
+    "np": "SPRAY गर्ने भाडा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "분사하다",
+    "np": "छर्कनु",
+    "similar": "치다 / 뿌리다",
+    "opposite": ""
+  },
+  {
+    "ko": "분식",
+    "np": "पिठो बाट बनेको खान",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "분실하다",
+    "np": "हराउनु",
+    "similar": "잃어버리다 / 잃다",
+    "opposite": ""
+  },
+  {
+    "ko": "분야",
+    "np": "क्षेत्र/SECTOR",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "불고기",
+    "np": "बिफ, पोलेको मासु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "불다",
+    "np": "हावा चल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "불성실하다",
+    "np": "बेइमान हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "불익",
+    "np": "घाटा, नोक्सानी",
+    "similar": "",
+    "opposite": "이익"
+  },
+  {
+    "ko": "불참하다",
+    "np": "छुट्नु",
+    "similar": "빠지다",
+    "opposite": ""
+  },
+  {
+    "ko": "불친절하다",
+    "np": "निर्दयी हुनु",
+    "similar": "",
+    "opposite": "친절하다"
+  },
+  {
+    "ko": "불편하다",
+    "np": "असहज हुनु",
+    "similar": "",
+    "opposite": "편하다"
+  },
+  {
+    "ko": "붕대를 감다",
+    "np": "ब्यान्डेज बाध्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "붙이다",
+    "np": "टाँस्न",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "비/우",
+    "np": "वर्षा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "비교",
+    "np": "तुलना",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "비롯하다",
+    "np": "शुरुवात गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "비비다",
+    "np": "माड्नु, मिच्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "비상 약",
+    "np": "आकस्मिक औषधि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "비싸다",
+    "np": "महँगो हुनु",
+    "similar": "",
+    "opposite": "싸다"
+  },
+  {
+    "ko": "비옷",
+    "np": "RAINCOAT",
+    "similar": "우비",
+    "opposite": ""
+  },
+  {
+    "ko": "비원",
+    "np": "दरबारको गोप्य बगैंचा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "비율",
+    "np": "अनुपात",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "비해하다",
+    "np": "तुलना गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "빗자루",
+    "np": "कुचो",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "빠르다",
+    "np": "छिटो हुनु / FAST",
+    "similar": "이르다",
+    "opposite": ""
+  },
+  {
+    "ko": "빠지다",
+    "np": "निस्कनु / खस्नु / झर्नु / डुब्नु / फस्नु / छुट्नु",
+    "similar": "불참하다",
+    "opposite": ""
+  },
+  {
+    "ko": "빨다",
+    "np": "तान्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "빨래하다",
+    "np": "हातले कपडा धुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "빨아드리다",
+    "np": "खिच्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "빼다",
+    "np": "हटाउनु , झिक्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "뼈가 부러지다",
+    "np": "हड्डी भाँचिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "뿌리다",
+    "np": "छर्कनु",
+    "similar": "분사하다 / 치다",
+    "opposite": ""
+  },
+  {
+    "ko": "사다",
+    "np": "खरिद गर्नु, किन्नु",
+    "similar": "구매하다 / 구입하다 / 구하다",
+    "opposite": "팔다 / 판매하다"
+  },
+  {
+    "ko": "사라지다",
+    "np": "TO DISAPPEAR",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "사본",
+    "np": "PHOTOCOPY",
+    "similar": "복사",
+    "opposite": ""
+  },
+  {
+    "ko": "사실",
+    "np": "सत्य / तथ्य",
+    "similar": "",
+    "opposite": "거짓말"
+  },
+  {
+    "ko": "사업주",
+    "np": "रोजगारदाता",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "사용하다",
+    "np": "प्रयोग गर्नु",
+    "similar": "이용하다 / 쓰다 / 착용하다",
+    "opposite": ""
+  },
+  {
+    "ko": "사유",
+    "np": "कारण",
+    "similar": "이유",
+    "opposite": ""
+  },
+  {
+    "ko": "사이",
+    "np": "बिचमा (दुइ बस्तु बीच)",
+    "similar": "중간",
+    "opposite": ""
+  },
+  {
+    "ko": "사이가 가깝다",
+    "np": "सम्बन्ध नजिक हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "사이가 멀다",
+    "np": "सम्बन्ध टाडा हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "사항",
+    "np": "अवस्था",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "사회안잔망",
+    "np": "सामाजिक सुरक्षा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "삭물",
+    "np": "सामान , OBJECTS",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "삭제하다",
+    "np": "हटाउनु , COMPUTER / DATA DELETE गर्नु",
+    "similar": "지우다",
+    "opposite": ""
+  },
+  {
+    "ko": "산책하다",
+    "np": "हिड्डुल गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "산화성 물질",
+    "np": "ग्यास जन्य ज्व्लान्सिल पदार्थ",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "살",
+    "np": "उमेर",
+    "similar": "연세 / 나이",
+    "opposite": ""
+  },
+  {
+    "ko": "살다",
+    "np": "बस्नु",
+    "similar": "계시다 / 거주하다 / 묵다 / 머부르다",
+    "opposite": ""
+  },
+  {
+    "ko": "살짝",
+    "np": "हल्का",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "삶다",
+    "np": "उसिन्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "삶의",
+    "np": "LIFE (जीवन)",
+    "similar": "인생",
+    "opposite": ""
+  },
+  {
+    "ko": "삼촌",
+    "np": "काका",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "상",
+    "np": "पुरस्कार",
+    "similar": "시상",
+    "opposite": ""
+  },
+  {
+    "ko": "상담",
+    "np": "परामर्श",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "상대방",
+    "np": "बिपरित पक्ष",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "상사",
+    "np": "SENIOR",
+    "similar": "선배",
+    "opposite": "부아"
+  },
+  {
+    "ko": "상의하다",
+    "np": "छलफल गर्नु",
+    "similar": "상태",
+    "opposite": ""
+  },
+  {
+    "ko": "상자",
+    "np": "BOX",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "상점",
+    "np": "सानो पसल",
+    "similar": "매점 / 가게",
+    "opposite": ""
+  },
+  {
+    "ko": "상징",
+    "np": "प्रतिक , संकेत",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "상징하다",
+    "np": "प्रतिक/सिम्बोल हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "상쾌하다",
+    "np": "हावा FRESH हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "상태",
+    "np": "अवस्था",
+    "similar": "상황",
+    "opposite": ""
+  },
+  {
+    "ko": "상품",
+    "np": "उत्पादित सामान , PRODUCT",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "상품권",
+    "np": "उपहार COUPON",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "상하다",
+    "np": "धेरै खराब हुनु",
+    "similar": "섞다",
+    "opposite": ""
+  },
+  {
+    "ko": "상황",
+    "np": "अवस्था",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "색상",
+    "np": "रंगीबिरंगी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "생각하다",
+    "np": "सोच्नु , बिचार गर्नु",
+    "similar": "고려하다 ,",
+    "opposite": ""
+  },
+  {
+    "ko": "생기다",
+    "np": "देखा पर्नु (नया)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "생수",
+    "np": "BOTTLED WATER",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "생신",
+    "np": "जन्मदिन",
+    "similar": "생일",
+    "opposite": ""
+  },
+  {
+    "ko": "생일",
+    "np": "जन्मदिन",
+    "similar": "생신",
+    "opposite": ""
+  },
+  {
+    "ko": "생활하다",
+    "np": "जीबनयापन गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "샤워하다",
+    "np": "नुहाउनु",
+    "similar": "목욕하다",
+    "opposite": ""
+  },
+  {
+    "ko": "서늘하다",
+    "np": "सितलो हुनु",
+    "similar": "선선하다 / 시원하다",
+    "opposite": ""
+  },
+  {
+    "ko": "서류",
+    "np": "DOCUMENT",
+    "similar": "문서",
+    "opposite": ""
+  },
+  {
+    "ko": "서술하다",
+    "np": "बर्णन गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "서운하다",
+    "np": "दुख लाग्नु, असन्तुष्ट महसुस हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "서재",
+    "np": "STUDY ROOM",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "서행",
+    "np": "बिस्तारै",
+    "similar": "천천히",
+    "opposite": ""
+  },
+  {
+    "ko": "석식",
+    "np": "साँझको खाना",
+    "similar": "저녁 식사",
+    "opposite": ""
+  },
+  {
+    "ko": "석탄",
+    "np": "कोइला",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "섞다",
+    "np": "बिर्ग्रिनु , खराब हुनु, सड्नु",
+    "similar": "상하다",
+    "opposite": ""
+  },
+  {
+    "ko": "선배",
+    "np": "SENIOR",
+    "similar": "상사",
+    "opposite": "후배"
+  },
+  {
+    "ko": "선선하다",
+    "np": "सितलो हुनु",
+    "similar": "서늘하다 / 시원하다",
+    "opposite": ""
+  },
+  {
+    "ko": "선정하다",
+    "np": "छनोट गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "선택하다",
+    "np": "रोज्नु , छान्नु",
+    "similar": "찾다 , 고르다",
+    "opposite": ""
+  },
+  {
+    "ko": "설거지하다",
+    "np": "भाडा धुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "설립하다",
+    "np": "संस्था/कम्पनी को स्थापना गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "설명하다",
+    "np": "ब्याख्या गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "설사를 하다",
+    "np": "पखाला चल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "설치하다",
+    "np": "सेट गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "섬유",
+    "np": "TEXTILES",
+    "similar": "의류 , 옷",
+    "opposite": ""
+  },
+  {
+    "ko": "섭섭하다",
+    "np": "अप्ठ्यारो महसुस हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "섭취하다",
+    "np": "खानु",
+    "similar": "잡수시다",
+    "opposite": ""
+  },
+  {
+    "ko": "성격",
+    "np": "बानि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "성명",
+    "np": "नाम",
+    "similar": "이름 / 성함",
+    "opposite": ""
+  },
+  {
+    "ko": "성함",
+    "np": "नाम",
+    "similar": "성명 / 이름",
+    "opposite": ""
+  },
+  {
+    "ko": "성형외과",
+    "np": "PLASTIC SURGERY",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "세금",
+    "np": "कर , TAX",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "세대",
+    "np": "पुस्ता",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "세분되다",
+    "np": "उपबिभाजन",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "세차",
+    "np": "गाडी धुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "세척",
+    "np": "PARTS धुनु ( SPECIALLY कम्पनीमा)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "세척하다",
+    "np": "उपकरण पखाल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "세탁소",
+    "np": "LAUNDRY",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "소나가",
+    "np": "ठुलो वर्षा (अकस्मात आउने र रोकिने)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "소독을 하다",
+    "np": "DRESSING गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "소매",
+    "np": "COCKTAIL रक्सि, बाउला",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "소변이 마려다",
+    "np": "पिसाब लाग्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "소식",
+    "np": "समाचार, खबर",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "소중히",
+    "np": "मुल्याबान, IMPORTANT",
+    "similar": "중요",
+    "opposite": ""
+  },
+  {
+    "ko": "소통하다",
+    "np": "COMMUNICATE गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "소화",
+    "np": "आगो निभाउने काम",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "소화가 안 되다",
+    "np": "पाचन नहुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "손님",
+    "np": "ग्राहक",
+    "similar": "고객",
+    "opposite": ""
+  },
+  {
+    "ko": "손쉽다",
+    "np": "एकदमै सजिलो हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "손이 베이다",
+    "np": "हात काटिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "손해",
+    "np": "घाटा , क्षति",
+    "similar": "",
+    "opposite": "혜택"
+  },
+  {
+    "ko": "솔직하다",
+    "np": "FRANK हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "송금",
+    "np": "REMITTANCE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "수거통",
+    "np": "फोहोर राख्ने भाडा",
+    "similar": "수거함",
+    "opposite": ""
+  },
+  {
+    "ko": "수거함",
+    "np": "फोहोर राख्ने भाडा",
+    "similar": "수거통",
+    "opposite": ""
+  },
+  {
+    "ko": "수고하다",
+    "np": "दुख गर्नु , मेहनत गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "수량",
+    "np": "परिमाण , मात्रा",
+    "similar": "양",
+    "opposite": ""
+  },
+  {
+    "ko": "수량 확인",
+    "np": "बुझी लिएको CONFIRM गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "수면",
+    "np": "निन्द्रा",
+    "similar": "참",
+    "opposite": ""
+  },
+  {
+    "ko": "수박",
+    "np": "खर्बुजा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "수술",
+    "np": "OPERATION  , SURGERY",
+    "similar": "시술",
+    "opposite": ""
+  },
+  {
+    "ko": "수영하다",
+    "np": "SWIMMING गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "수중히",
+    "np": "TO CARE OR CHERISH SOMETHING",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "수취인",
+    "np": "पाउने मान्छे",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "수행하다",
+    "np": "EXECUTE / TO PERFORM, संचालन गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "술",
+    "np": "रक्सि",
+    "similar": "주류",
+    "opposite": ""
+  },
+  {
+    "ko": "숨간",
+    "np": "पल , MOMENT",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "쉽다",
+    "np": "आराम गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "습관",
+    "np": "बानी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "승치하다",
+    "np": "सवारीमा चढ्नु",
+    "similar": "타다 / 탑승하다",
+    "opposite": "내리다 / 하차하다"
+  },
+  {
+    "ko": "시다",
+    "np": "अमिलो हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "시상",
+    "np": "पुरस्कार",
+    "similar": "상",
+    "opposite": ""
+  },
+  {
+    "ko": "시술",
+    "np": "PROCEDURE , TREATMENT",
+    "similar": "수술",
+    "opposite": ""
+  },
+  {
+    "ko": "시아버지",
+    "np": "बुढाको बाबा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "시어머니",
+    "np": "बुढाको आमा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "시원하다",
+    "np": "सितलो हुनु",
+    "similar": "서늘하다 / 선선하다",
+    "opposite": ""
+  },
+  {
+    "ko": "시작",
+    "np": "सुरु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "시작하다",
+    "np": "सुरु गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "시청하다",
+    "np": "हेर्नु (SCREEN)",
+    "similar": "구경하다 / 관람하다",
+    "opposite": ""
+  },
+  {
+    "ko": "시켜 먹다",
+    "np": "मगाई खानु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "시키다",
+    "np": "काम गराउनु, ORDER दिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "식당",
+    "np": "RESTAURANT",
+    "similar": "맛집",
+    "opposite": ""
+  },
+  {
+    "ko": "식사를 하다",
+    "np": "खाना खानु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "식사하다",
+    "np": "खाना खानु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "식판",
+    "np": "खाल्डो भएको प्लेट",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "신경을 쓰다",
+    "np": "होस् पुराउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "신래",
+    "np": "कोठा भित्र",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "신문",
+    "np": "पत्रिका",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "신발",
+    "np": "जुत्ता",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "신선하다",
+    "np": "शुद्ध / स्वच्छ हुनु (हावा / तरकारी )",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "신용카드",
+    "np": "CREDIT CARD",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "신자",
+    "np": "BELIEVER (धर्ममा मान्ने मानिस)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "신장",
+    "np": "HEIGHT",
+    "similar": "키",
+    "opposite": ""
+  },
+  {
+    "ko": "신청서",
+    "np": "निबेदन पत्र",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "실시간으로",
+    "np": "वास्तविक समयमा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "실외",
+    "np": "कोठा बाहिर",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "실용적이",
+    "np": "ब्यबहारिक",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "실컷",
+    "np": "सन्तुष्ट हुने गरि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "실태 조사",
+    "np": "सत्य तथ्य खोज",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "싫어하다",
+    "np": "मन नापराउनु",
+    "similar": "",
+    "opposite": "좋아하다"
+  },
+  {
+    "ko": "심야 시간",
+    "np": "LATE NIGHT",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "싱겁다",
+    "np": "अल्नो हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "싱싱하다",
+    "np": "ताजा / रसिलो हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "싸다",
+    "np": "सस्तो हुनु",
+    "similar": "",
+    "opposite": "비싸다"
+  },
+  {
+    "ko": "쌀쌀하다",
+    "np": "एकदमै चिसो / जाडो हुनु",
+    "similar": "",
+    "opposite": "무덥다"
+  },
+  {
+    "ko": "쌓다",
+    "np": "थुपार्नु , चांग लाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "썩다",
+    "np": "कुहिनु / सड्नु / बिग्रनु",
+    "similar": "상하다",
+    "opposite": ""
+  },
+  {
+    "ko": "썰다",
+    "np": "चाना पार्नु/गोलो पारि काट्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "쓰다",
+    "np": "तितो हुनु , प्रयोग गर्नु, लेख्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "쓰러지다",
+    "np": "ढल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "쓰레기",
+    "np": "फोहोर",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "쓸다",
+    "np": "बढार्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "씨끄럽다",
+    "np": "हल्ला हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "씹다",
+    "np": "चपाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "씻다",
+    "np": "धुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "아가씨",
+    "np": "अविवाहित केटि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "아궁이",
+    "np": "चुलो",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "아기",
+    "np": "बच्चा",
+    "similar": "아이",
+    "opposite": ""
+  },
+  {
+    "ko": "아내",
+    "np": "WIFE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "아들",
+    "np": "छोरा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "아름답다",
+    "np": "प्राकृतिक सुन्दर हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "아마",
+    "np": "सायद",
+    "similar": "혹시",
+    "opposite": ""
+  },
+  {
+    "ko": "아이",
+    "np": "बच्चा",
+    "similar": "아기",
+    "opposite": ""
+  },
+  {
+    "ko": "아침 식사",
+    "np": "बिहानको खाना",
+    "similar": "조반",
+    "opposite": ""
+  },
+  {
+    "ko": "아프다",
+    "np": "दुख्नु, बिरामी हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "안개",
+    "np": "तुसारो",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "안내받다",
+    "np": "जानकारी पाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "안심하다",
+    "np": "ढुक्क हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "알다",
+    "np": "थाहा हुनु , बुझ्नु",
+    "similar": "",
+    "opposite": "모르다"
+  },
+  {
+    "ko": "알뜰하다",
+    "np": "सुलभ हुनु / मितव्ययी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "알약",
+    "np": "चक्की औषधि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "압력을 주다",
+    "np": "PRESSURE दिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "야간",
+    "np": "NIGHTको काम",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "야근",
+    "np": "DAYको काम",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "야영을 하다",
+    "np": "क्यम्पिंग गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "야외",
+    "np": "बाहिरि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "야채",
+    "np": "सागसब्जी",
+    "similar": "채소",
+    "opposite": ""
+  },
+  {
+    "ko": "약간",
+    "np": "अलिकति",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "약을 먹다",
+    "np": "औषधि सेवन गर्नु",
+    "similar": "복용하다",
+    "opposite": ""
+  },
+  {
+    "ko": "약을 뿌리다",
+    "np": "औषधि छर्कनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "얀장",
+    "np": "OVERTIME",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "얇다",
+    "np": "पातलो हुनु",
+    "similar": "",
+    "opposite": "두껍다"
+  },
+  {
+    "ko": "얌전하다",
+    "np": "TO BE CALM",
+    "similar": "",
+    "opposite": "활발하다"
+  },
+  {
+    "ko": "양",
+    "np": "परिमाण , मात्रा",
+    "similar": "수량",
+    "opposite": ""
+  },
+  {
+    "ko": "양념",
+    "np": "मसला",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "양보하다",
+    "np": "सिट छाडिदिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "양식",
+    "np": "MODEL / नमुना , पश्चिमी खाना",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "양치하다",
+    "np": "पुछ्नु (दांत)",
+    "similar": "닦다",
+    "opposite": ""
+  },
+  {
+    "ko": "얕다",
+    "np": "गहिरो नहुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "얘기하다",
+    "np": "कुराकानी गर्नु",
+    "similar": "대화하다 / 말하다 / 이야기하다 / 담소하다",
+    "opposite": ""
+  },
+  {
+    "ko": "어긋나다",
+    "np": "नमिल्दो, नसुहाउदो",
+    "similar": "",
+    "opposite": "어울리다"
+  },
+  {
+    "ko": "어둡다",
+    "np": "अध्यारो हुनु",
+    "similar": "",
+    "opposite": "밝다 / 환하다"
+  },
+  {
+    "ko": "어렵다",
+    "np": "अप्ठ्यारो हुनु",
+    "similar": "",
+    "opposite": "쉽다"
+  },
+  {
+    "ko": "어리다",
+    "np": "केटाकेटी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "어린",
+    "np": "YOUNG PEOPLE, ठिटो मानिस",
+    "similar": "젊은 사람 / 청소년",
+    "opposite": ""
+  },
+  {
+    "ko": "어우리지다",
+    "np": "FIT TOGETHER / मिल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "어울리다",
+    "np": "सुहाउनु",
+    "similar": "",
+    "opposite": "어긋나다"
+  },
+  {
+    "ko": "어지럽다",
+    "np": "चक्कर लाग्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "언어서통",
+    "np": "संचार , कुराकानी",
+    "similar": "의사소통",
+    "opposite": ""
+  },
+  {
+    "ko": "얻다",
+    "np": "प्राप्त गर्नु, हासिल गर्नु",
+    "similar": "받다 / 따다 / 타다",
+    "opposite": ""
+  },
+  {
+    "ko": "얼다",
+    "np": "TO FREEZE",
+    "similar": "굳다",
+    "opposite": ""
+  },
+  {
+    "ko": "얼른",
+    "np": "छिटो , QUICKLY",
+    "similar": "즉시 / 당장 / 바로 / 금방",
+    "opposite": ""
+  },
+  {
+    "ko": "엄격하다",
+    "np": "STRICT हुनु",
+    "similar": "",
+    "opposite": "자유롭다"
+  },
+  {
+    "ko": "엘스하다",
+    "np": "GYM गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "여기다",
+    "np": "सोच्नु",
+    "similar": "고려하다 , 생각하다",
+    "opposite": ""
+  },
+  {
+    "ko": "역",
+    "np": "स्टेशन, STATION",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "역할",
+    "np": "ROLE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "역할을 하다",
+    "np": "भूमिका खेल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "연결하다",
+    "np": "जोड्नु , सम्पर्क गराउनु",
+    "similar": "결합하다 / 잇다",
+    "opposite": ""
+  },
+  {
+    "ko": "연고를 바르다",
+    "np": "मलम दल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "연극장",
+    "np": "प्रदर्शन गर्ने ठाउँ",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "연기하다",
+    "np": "समय सार्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "연령",
+    "np": "उमेर समूह",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "연립 주택",
+    "np": "एकै खालको घर/ COLONY",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "연말",
+    "np": "बर्षको अन्तिम",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "연세",
+    "np": "उमेर",
+    "similar": "살 / 나이",
+    "opposite": ""
+  },
+  {
+    "ko": "연차",
+    "np": "बर्षमा दिने 15दिने बिदा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "연휴",
+    "np": "बार्षिक बिदा, लामो बिदा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "열다",
+    "np": "खोल्नु",
+    "similar": "",
+    "opposite": "닫다"
+  },
+  {
+    "ko": "열대 야로",
+    "np": "TROPICAL NIGHT OR HOT NIGHT",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "열대야",
+    "np": "अत्यधिक गर्मि हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "열리다",
+    "np": "खोलिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "열매",
+    "np": "सानो जन्य फलफुल",
+    "similar": "과일",
+    "opposite": ""
+  },
+  {
+    "ko": "영상",
+    "np": "ZERO DEGREE भन्दा माथि",
+    "similar": "",
+    "opposite": "영하"
+  },
+  {
+    "ko": "영상 편집",
+    "np": "VIDEO EDITING",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "영수증",
+    "np": "बिल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "영양제",
+    "np": "VITAMIN",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "영업점",
+    "np": "कारोबार गर्ने शाखा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "영업하다",
+    "np": "कारोबार गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "영하로",
+    "np": "0 DEGREE भन्दा तल",
+    "similar": "",
+    "opposite": "영상"
+  },
+  {
+    "ko": "영향",
+    "np": "INFLUENCE / प्रभाब",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "예금",
+    "np": "DEPOSIT गर्नु BANKमा",
+    "similar": "적금 / 입금",
+    "opposite": ""
+  },
+  {
+    "ko": "예금주",
+    "np": "खाता वाला",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "예금하다",
+    "np": "BANK मा बचत गर्नु",
+    "similar": "입금하다",
+    "opposite": ""
+  },
+  {
+    "ko": "예쁘다",
+    "np": "सुन्दर हुनु (वस्तु , महिला )",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "예술",
+    "np": "ART",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "예약하다",
+    "np": "RESERVE गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "예외",
+    "np": "EXCEPTION OR TO EXCLUDE, बाहेक",
+    "similar": "제외",
+    "opposite": ""
+  },
+  {
+    "ko": "예외",
+    "np": "बाहेक",
+    "similar": "제외",
+    "opposite": ""
+  },
+  {
+    "ko": "예전에",
+    "np": "पहिले",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "예절",
+    "np": "संस्कार",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "오렌지",
+    "np": "सुन्तला",
+    "similar": "귤",
+    "opposite": ""
+  },
+  {
+    "ko": "오류",
+    "np": "ERROR",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "오염되다",
+    "np": "दुषित हुनु , POLLUTION",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "옥상",
+    "np": "भवनको माथि रहेको खुला भाग",
+    "similar": "지붕",
+    "opposite": ""
+  },
+  {
+    "ko": "온돌",
+    "np": "जमिन तताउने कोरियाको पुरानो बिधि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "온천",
+    "np": "तातोपानी कुण्ड",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "온화하다",
+    "np": "मौसम राम्रो हुनु , शान्त हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "올라가다",
+    "np": "माथि जानु, बढ्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "완료",
+    "np": "पुरा",
+    "similar": "완성",
+    "opposite": ""
+  },
+  {
+    "ko": "완성",
+    "np": "पुरा",
+    "similar": "완료",
+    "opposite": ""
+  },
+  {
+    "ko": "완성하다",
+    "np": "पुरा गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "완충",
+    "np": "CUSHIONING MATERIAL",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "왜",
+    "np": "किन?",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "외국인근로자지원센터",
+    "np": "बैदेशिक श्रम सहायता केन्द्र",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "외국인력상담센터",
+    "np": "बैदेशिक श्रम परामर्श केन्द्र",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "외모",
+    "np": "स्वरूप",
+    "similar": "모습",
+    "opposite": ""
+  },
+  {
+    "ko": "외식을 하다",
+    "np": "बाहिर गइ खानु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "외에",
+    "np": "बाहेक",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "외출하다",
+    "np": "काम गर्दा केहि समयको लागि बाहिर जानु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "외한 거래",
+    "np": "बिदेशी मुद्राको कारोबार",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "요새",
+    "np": "आजभोली / किल्ला (FORTESS)",
+    "similar": "최근 / 요즘",
+    "opposite": ""
+  },
+  {
+    "ko": "요즘",
+    "np": "आजभोली",
+    "similar": "최근 / 요새",
+    "opposite": ""
+  },
+  {
+    "ko": "요청하다",
+    "np": "अनुरोध गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "우동",
+    "np": "CHAUMIN",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "우비",
+    "np": "RAINCOAT",
+    "similar": "비옷",
+    "opposite": ""
+  },
+  {
+    "ko": "운영하다",
+    "np": "संचालन गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "운이 없다",
+    "np": "भाग्य नहुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "움직이다",
+    "np": "सर्नु, चल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "원",
+    "np": "KOREAN मुद्रा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "원래/본래",
+    "np": "वास्तविक",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "원조하다",
+    "np": "सहायता गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "원하다",
+    "np": "चाहनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "월세",
+    "np": "मासिक भाडा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "위반하다",
+    "np": "उल्लंघनगर्नु, VIOLATE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "위생하다",
+    "np": "HYGIENIC",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "위해주다",
+    "np": "ख्याल गर्नु",
+    "similar": "배려하다",
+    "opposite": ""
+  },
+  {
+    "ko": "위험하다",
+    "np": "खतरा हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "유급",
+    "np": "दिईने तलब",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "유대감",
+    "np": "BONDING",
+    "similar": "친밀감",
+    "opposite": ""
+  },
+  {
+    "ko": "유대감을 형성",
+    "np": "BOND बनाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "유료",
+    "np": "PAID",
+    "similar": "",
+    "opposite": "무료(FREE) / 공짜"
+  },
+  {
+    "ko": "유리",
+    "np": "सिसा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "유연근무제",
+    "np": "स्वतन्त्ररुपको काम प्रणाली",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "은혜",
+    "np": "गरिमा/ योगदान",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "음료수",
+    "np": "पेय पदार्थ",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "음식",
+    "np": "खाना",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "음식물쓰레기",
+    "np": "खाध्यजन्य फोहोर",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "음식을 먹다",
+    "np": "खाना खानु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "음식을 시키다",
+    "np": "खाना मगाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "음악을 녹음하다",
+    "np": "गित रेकोर्ड गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "음주 운전",
+    "np": "रक्सि पिएर DRIVE गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "응급함",
+    "np": "FIRST AID BOX",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "의논",
+    "np": "बहस , विचारविमर्श",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "의료",
+    "np": "उपचार",
+    "similar": "치료 ,진료",
+    "opposite": ""
+  },
+  {
+    "ko": "의류",
+    "np": "कपडा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "의미",
+    "np": "अर्थ",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "의사소통",
+    "np": "संचार , कुराकानी",
+    "similar": "언어서통",
+    "opposite": ""
+  },
+  {
+    "ko": "의상",
+    "np": "पोशाक, COSTUME",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "의식을 잃다",
+    "np": "बेहोस हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "의약품",
+    "np": "औषधि जन्य आइटम",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "의향",
+    "np": "INTENTION, इरादा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "이동하다",
+    "np": "TO MOVE,",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "이런",
+    "np": "यस्ता",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "이렇게",
+    "np": "यसरी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "이루어지다",
+    "np": "पुरा हुनु, बनाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "이르다",
+    "np": "चांडो / EARLY",
+    "similar": "빠르다",
+    "opposite": ""
+  },
+  {
+    "ko": "이름",
+    "np": "नाम",
+    "similar": "성함 / 성명",
+    "opposite": ""
+  },
+  {
+    "ko": "이모",
+    "np": "सानी आमा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "이모부",
+    "np": "सानो बाबा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "이미",
+    "np": "ALREADY , घट्ना भैसकेको अवस्था",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "이야기하다",
+    "np": "कुराकानी गर्नु",
+    "similar": "대화하다 / 말하다 / 얘기하다 / 담소하다",
+    "opposite": ""
+  },
+  {
+    "ko": "이어지다",
+    "np": "जोड्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "이용하다",
+    "np": "प्रयोग गर्नु (सेवा / सुबिधा)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "이유",
+    "np": "कारण",
+    "similar": "사유",
+    "opposite": ""
+  },
+  {
+    "ko": "이익",
+    "np": "फाइदा, MERIT",
+    "similar": "혜택",
+    "opposite": "불익 , 손해"
+  },
+  {
+    "ko": "이탈하다",
+    "np": "CONTRACT TERMINATE गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "익일 특급",
+    "np": "भोलिपल्ट पुग्ने पार्सल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "인계하다",
+    "np": "अधिकार हस्तान्तरण गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "인삼",
+    "np": "जडिबुटी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "인상",
+    "np": "IMPRESSION",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "인생",
+    "np": "LIFE (जीवन)",
+    "similar": "삶의",
+    "opposite": ""
+  },
+  {
+    "ko": "인화성 물질",
+    "np": "ज्व्लान्सिल पदार्थ",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "일",
+    "np": "काम , एक , दिन",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "일기예보",
+    "np": "WEATHER FORECASTING",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "일단",
+    "np": "अहिलेलाई / अब",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "일반쓰레기",
+    "np": "सामान्य फोहोर",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "일반적",
+    "np": "सामान्य",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "일방 통행",
+    "np": "एक तर्फी बाटो",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "일부",
+    "np": "कुनै एक (पार्ट / भाग )",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "일시",
+    "np": "समय र मिति",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "일식",
+    "np": "JAPANESE खाना",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "일어나다",
+    "np": "उठ्नु/उत्पन्न हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "잃다",
+    "np": "हराउनु",
+    "similar": "잃어버리다 / 분실하다",
+    "opposite": ""
+  },
+  {
+    "ko": "잃어버리다",
+    "np": "हराउनु",
+    "similar": "분실하다 / 잃다",
+    "opposite": ""
+  },
+  {
+    "ko": "임대 계약",
+    "np": "भाडाको सम्झौता",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "입국하다",
+    "np": "देश प्रवेश गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "입금",
+    "np": "नगद जम्मा",
+    "similar": "",
+    "opposite": "출금"
+  },
+  {
+    "ko": "입금하다",
+    "np": "ACCOUNTमा बचत गर्नु",
+    "similar": "예금하다",
+    "opposite": ""
+  },
+  {
+    "ko": "입력하다",
+    "np": "DATA ENTRY गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "입사하다",
+    "np": "COMPANY प्रवेश गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "잇다",
+    "np": "जोड्नु",
+    "similar": "결합하다 / 연결하다",
+    "opposite": ""
+  },
+  {
+    "ko": "있다",
+    "np": "हुनु , रहनु",
+    "similar": "계시다",
+    "opposite": ""
+  },
+  {
+    "ko": "자녀",
+    "np": "सन्तान",
+    "similar": "자식",
+    "opposite": ""
+  },
+  {
+    "ko": "자동",
+    "np": "AUTOMATIC",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "자동화",
+    "np": "AUTOMATIC",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "자래시장",
+    "np": "हाट बजार",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "자료",
+    "np": "सामाग्री",
+    "similar": "물품",
+    "opposite": ""
+  },
+  {
+    "ko": "자리 피우다",
+    "np": "ठाउँ खाली छोड्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "자리를 바꾸다",
+    "np": "ठाउँ परिवर्तन गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "자매",
+    "np": "दिदि बहिनि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "자세히",
+    "np": "पुरा जानकारी , DETAIL मा",
+    "similar": "꼼꼼하다",
+    "opposite": ""
+  },
+  {
+    "ko": "자식",
+    "np": "सन्तान",
+    "similar": "자녀",
+    "opposite": ""
+  },
+  {
+    "ko": "자신",
+    "np": "आफु , आत्मबिस्वास",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "자원 봉사",
+    "np": "स्वयं सेवाको काम",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "자유롭다",
+    "np": "स्वतन्त्र हुनु , खुकुलो हुनु",
+    "similar": "",
+    "opposite": "엄격하다"
+  },
+  {
+    "ko": "자치시",
+    "np": "नगरपालिका",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "작다",
+    "np": "SHORT (HEIGHT)",
+    "similar": "",
+    "opposite": "크다"
+  },
+  {
+    "ko": "작동발매기",
+    "np": "AUTOMATIC TICKET SELLER MACHINE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "작동판매기",
+    "np": "AUTOMATIC GOODS SELLER MACHINE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "작동하다",
+    "np": "मेसिन चलाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "작성하다",
+    "np": "लेख्नु/ भर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "작업 현황",
+    "np": "कामको बर्तावन अवस्था",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "작정하다",
+    "np": "तय गर्नु/निश्चय गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "잔",
+    "np": "कप",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "잔액 조회",
+    "np": "BALANCE CHECK",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "잔치",
+    "np": "सानो पार्टी, EVENT",
+    "similar": "파티",
+    "opposite": ""
+  },
+  {
+    "ko": "잘",
+    "np": "राम्रो , राम्रोसंग",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "잘생기다",
+    "np": "राम्रो हुनु / HANDSOME हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "잘하다",
+    "np": "राम्रोसँग गर्नु / सिपालु हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "잡담하다",
+    "np": "गफ गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "잡수시다",
+    "np": "खानु",
+    "similar": "섭취하다",
+    "opposite": ""
+  },
+  {
+    "ko": "장마가",
+    "np": "MONSOON",
+    "similar": "장마철",
+    "opposite": ""
+  },
+  {
+    "ko": "장마철",
+    "np": "वर्षा याम",
+    "similar": "장마가",
+    "opposite": ""
+  },
+  {
+    "ko": "장만하다",
+    "np": "खानाको TABLE सेट गर्नु",
+    "similar": "차리다",
+    "opposite": ""
+  },
+  {
+    "ko": "장모",
+    "np": "सासु आमा बुढीको",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "장벽이",
+    "np": "BARRIER",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "장인",
+    "np": "ससुरा बा  बुढीको",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "장점",
+    "np": "फाइदा, MERIT",
+    "similar": "",
+    "opposite": "벌점"
+  },
+  {
+    "ko": "장치",
+    "np": "राजनीति",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "장판",
+    "np": "FLOORING",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "재건",
+    "np": "RE CONSTRUCT",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "재다",
+    "np": "नाप्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "재미있다",
+    "np": "रमाइलो हुनु",
+    "similar": "즐겁다",
+    "opposite": ""
+  },
+  {
+    "ko": "재발",
+    "np": "भौतिक विकास",
+    "similar": "개발",
+    "opposite": ""
+  },
+  {
+    "ko": "재발급",
+    "np": "पुन जारि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "재취업",
+    "np": "पुन रोजगार",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "재활용품",
+    "np": "पुन प्रयोगको बस्तु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "저고리",
+    "np": "ज्याकेट, JACKET",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "저녁 식사",
+    "np": "साँझको खाना",
+    "similar": "석식",
+    "opposite": ""
+  },
+  {
+    "ko": "저렴하다",
+    "np": "सबै भन्दा सस्तो हुनु, सुपथ हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "저리다",
+    "np": "झम्झमाउनु",
+    "similar": "쥐나다",
+    "opposite": ""
+  },
+  {
+    "ko": "저장하다",
+    "np": "DATA SAVE गर्नु,DATA सुरक्षित राख्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "적금",
+    "np": "नियमित बचत गर्नु",
+    "similar": "예금 / 입금",
+    "opposite": ""
+  },
+  {
+    "ko": "적금을 넣다",
+    "np": "नियमित बचत गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "적다",
+    "np": "सानो हुनु , लेख्नु",
+    "similar": "쓰다 , 작성",
+    "opposite": ""
+  },
+  {
+    "ko": "적당하다",
+    "np": "उचित हुनु / ठीक हुनु / पर्याप्त हुनु",
+    "similar": "적합하다",
+    "opposite": ""
+  },
+  {
+    "ko": "적용하다",
+    "np": "लागु गर्नु,  APPLY गर्नु",
+    "similar": "정착되다",
+    "opposite": ""
+  },
+  {
+    "ko": "적응",
+    "np": "घुलमिल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "적합하다",
+    "np": "उपयुक्त हुनु / अनुकूल हुनु",
+    "similar": "적당하다",
+    "opposite": ""
+  },
+  {
+    "ko": "전망이 좋다",
+    "np": "दृश्य सुन्दर हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "전문",
+    "np": "बिशेषता",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "전문 서적",
+    "np": "ब्यबसायिक /बिशेषज्ञ पुत्सक",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "전설",
+    "np": "पौराणिक कथा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "전액",
+    "np": "जम्मा रकम",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "전원 주택",
+    "np": "ग्रामिण आवास",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "전체",
+    "np": "सबै, सम्पूर्ण",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "전하다",
+    "np": "कुरा पुर्याउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "전혀",
+    "np": "कति पनि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "절다",
+    "np": "खुट्टा खाच्याउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "절약하다",
+    "np": "पैसा बचाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "젊은 사람",
+    "np": "YOUNG PEOPLE, ठिटो मानिस",
+    "similar": "어린 / 청소년",
+    "opposite": ""
+  },
+  {
+    "ko": "점심 식사",
+    "np": "दिउसोको खाना",
+    "similar": "중식",
+    "opposite": ""
+  },
+  {
+    "ko": "점원",
+    "np": "पसले",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "점잖다",
+    "np": "सभ्य/ शिस्ट हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "점점하다",
+    "np": "बिस्तारै, बिस्तारमा, GRADUALLY",
+    "similar": "점차",
+    "opposite": ""
+  },
+  {
+    "ko": "점차",
+    "np": "बिस्तारै, बिस्तारमा, GRADUALLY",
+    "similar": "점점하다",
+    "opposite": ""
+  },
+  {
+    "ko": "접수 기간",
+    "np": "दर्ता अबधि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "접수 방법",
+    "np": "दर्ता तरिका",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "접시",
+    "np": "प्लेट",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "젓다",
+    "np": "घोल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "정기적으로",
+    "np": "REGULARLY , नियमित",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "정답",
+    "np": "सहि उत्तर",
+    "similar": "대답",
+    "opposite": ""
+  },
+  {
+    "ko": "정도",
+    "np": "जति",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "정돈하다",
+    "np": "सफा-सुग्घर र व्यवस्थित गर्नु",
+    "similar": "정리하다 / 처리하다",
+    "opposite": ""
+  },
+  {
+    "ko": "정리하다",
+    "np": "मिलाउनु / व्यवस्थित गर्नु",
+    "similar": "정돈하다 / 처리하다",
+    "opposite": ""
+  },
+  {
+    "ko": "정중하다",
+    "np": "शिष्ट हुनु / बिनम्र हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "정지하다",
+    "np": "रोक्नु",
+    "similar": "중지하다",
+    "opposite": ""
+  },
+  {
+    "ko": "정착되다",
+    "np": "लागु गर्नु,  APPLY गर्नु , स्थापित हुनु",
+    "similar": "적용하다",
+    "opposite": ""
+  },
+  {
+    "ko": "젖다",
+    "np": "भिज्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "제거하다",
+    "np": "हटाउनु",
+    "similar": "치우다 , 빼다, 삭체하다",
+    "opposite": ""
+  },
+  {
+    "ko": "제거하다",
+    "np": "REMOVE / हटाउनु",
+    "similar": "버리다 , 페기하다",
+    "opposite": ""
+  },
+  {
+    "ko": "제공하다",
+    "np": "उपलब्ध गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "제도",
+    "np": "SYSTEM",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "제스처",
+    "np": "संकेत",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "제안",
+    "np": "प्रस्ताब / सुझाव, SUGGESTION",
+    "similar": "추천",
+    "opposite": ""
+  },
+  {
+    "ko": "제외",
+    "np": "बाहेक",
+    "similar": "예외",
+    "opposite": ""
+  },
+  {
+    "ko": "제외",
+    "np": "EXCEPTION OR TO EXCLUDE, बाहेक",
+    "similar": "예외",
+    "opposite": ""
+  },
+  {
+    "ko": "제외하다",
+    "np": "बाहेक हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "제한",
+    "np": "सिमा/सिमित",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "조",
+    "np": "GROUP, ORGANIZATION,",
+    "similar": "단체 / 반 / 팀",
+    "opposite": ""
+  },
+  {
+    "ko": "조각",
+    "np": "टुक्रा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "조끼",
+    "np": "HALF JACKET , हाल्फ़ कोट",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "조반",
+    "np": "बिहानको खाना",
+    "similar": "아침 식사",
+    "opposite": ""
+  },
+  {
+    "ko": "조언하다",
+    "np": "ADVICE दिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "조온",
+    "np": "LOW TEMPERATURE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "조용하다",
+    "np": "शान्त हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "조절하다",
+    "np": "REGULATE / ADJUST गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "조제하다",
+    "np": "तयार गर्नु ( औषदी )",
+    "similar": "마련하다 / 준비하다 / 챙기다",
+    "opposite": ""
+  },
+  {
+    "ko": "조퇴하다",
+    "np": "काम सक्नु अगी DUTY छोड्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "조화되다",
+    "np": "HARMONY (मिल्नु)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "조회",
+    "np": "चेक जांच , सोधपुछ",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "조회하다",
+    "np": "CHECK गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "존경",
+    "np": "सम्मान",
+    "similar": "존중",
+    "opposite": ""
+  },
+  {
+    "ko": "존댓말",
+    "np": "उच्च भाषा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "존중",
+    "np": "ESTEEM / सम्मान OR RESPECT",
+    "similar": "존경",
+    "opposite": ""
+  },
+  {
+    "ko": "졸리다",
+    "np": "झुल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "좀",
+    "np": "कृपया , अलिकति",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "좁다",
+    "np": "साँघुरो हुनु",
+    "similar": "",
+    "opposite": "넓다"
+  },
+  {
+    "ko": "종량",
+    "np": "तौल , मात्रा",
+    "similar": "무게",
+    "opposite": ""
+  },
+  {
+    "ko": "종량제",
+    "np": "फोहोर फाल्ने प्रणाली",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "종료",
+    "np": "समाप्त गर्नु, अन्त्य गर्नु",
+    "similar": "마감",
+    "opposite": ""
+  },
+  {
+    "ko": "종류",
+    "np": "प्रकार",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "종이",
+    "np": "कागजको BAG",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "종이 가방",
+    "np": "कागजको BAG",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "종종",
+    "np": "बेलाबेलामा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "좋아하다",
+    "np": "मन पराउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "죄송하다",
+    "np": "माफ गर्नु , दिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "주거",
+    "np": "बसाई",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "주로",
+    "np": "प्राय",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "주류",
+    "np": "रक्सि",
+    "similar": "술",
+    "opposite": ""
+  },
+  {
+    "ko": "주름",
+    "np": "कपडाको डोरा / मुजा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "주무시다",
+    "np": "निन्द्रा , सुत्नु",
+    "similar": "참 / 수면",
+    "opposite": ""
+  },
+  {
+    "ko": "주문",
+    "np": "ORDER",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "주문하다",
+    "np": "ORDER गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "주식으로",
+    "np": "MAIN FOOD",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "주의하다",
+    "np": "साबधान हुनु",
+    "similar": "",
+    "opposite": "방심하다"
+  },
+  {
+    "ko": "주인",
+    "np": "GREEN चिया",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "주택",
+    "np": "HOUSING",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "준비하다",
+    "np": "तयार गर्नु",
+    "similar": "마련하다 / 조제하다 / 챙기다",
+    "opposite": ""
+  },
+  {
+    "ko": "줄다",
+    "np": "घट्नु",
+    "similar": "감소하다",
+    "opposite": "증가하다 / 늘다"
+  },
+  {
+    "ko": "줄어들다",
+    "np": "घटी रहनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "줄어지다",
+    "np": "घट्दै जानु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "줄을 서다",
+    "np": "LINEमा उभिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "줍다",
+    "np": "भुइँ को समान हातले उठाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "중간",
+    "np": "बिचमा (समूहको बिचमा)",
+    "similar": "사이",
+    "opposite": ""
+  },
+  {
+    "ko": "중급",
+    "np": "मद्ध्यम तह",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "중량",
+    "np": "तौल",
+    "similar": "무게",
+    "opposite": ""
+  },
+  {
+    "ko": "중소",
+    "np": "साना तथा मध्यम",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "중시하다",
+    "np": "महत्तो दिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "중식",
+    "np": "CHINESE खाना",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "중심지",
+    "np": "केन्द्र बिन्दु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "중앙",
+    "np": "बिचको",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "중요",
+    "np": "मुल्याबान, IMPORTANT",
+    "similar": "소중히",
+    "opposite": ""
+  },
+  {
+    "ko": "중요성",
+    "np": "महत्तोपुर्ण",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "중요하다",
+    "np": "महत्तोपुर्ण हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "중장비",
+    "np": "हेवी गाडी",
+    "similar": "차량",
+    "opposite": ""
+  },
+  {
+    "ko": "중지하다",
+    "np": "रोक्नु",
+    "similar": "정지하다",
+    "opposite": ""
+  },
+  {
+    "ko": "중화학",
+    "np": "CHEMISTRY/ CHEMICAL RELATED",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "쥐나다",
+    "np": "झम्झमाउनु",
+    "similar": "저리다",
+    "opposite": ""
+  },
+  {
+    "ko": "즉시",
+    "np": "तुरुन्तै , IMMEDIATELY",
+    "similar": "얼른 / 당장/ 바로 / 금방",
+    "opposite": ""
+  },
+  {
+    "ko": "즐겁다",
+    "np": "रमाइलो हुनु",
+    "similar": "재미있다",
+    "opposite": ""
+  },
+  {
+    "ko": "증가하다",
+    "np": "बढ्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "증명",
+    "np": "प्रमाण",
+    "similar": "증빙",
+    "opposite": ""
+  },
+  {
+    "ko": "증빙",
+    "np": "प्रमाण",
+    "similar": "증명",
+    "opposite": ""
+  },
+  {
+    "ko": "증상",
+    "np": "लक्षण",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "증설되다",
+    "np": "बिस्तार गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "지급하다",
+    "np": "तोकिएको रकम भुक्तानी गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "지나다",
+    "np": "पार गर्नु, cross गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "지내다",
+    "np": "बिताउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "지대",
+    "np": "जमिन क्षेत्र",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "지붕",
+    "np": "घरलाई ढाक्ने छाना",
+    "similar": "옥상",
+    "opposite": ""
+  },
+  {
+    "ko": "지사제",
+    "np": "पखाला निरोधक औषधि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "지속되다",
+    "np": "लगातार गर्नु (कालान्तर देखि)",
+    "similar": "계속하다",
+    "opposite": ""
+  },
+  {
+    "ko": "지시",
+    "np": "निर्देशन",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "지식",
+    "np": "ज्ञान",
+    "similar": "지혜",
+    "opposite": ""
+  },
+  {
+    "ko": "지역",
+    "np": "क्षेत्र/SECTOR",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "지역마다",
+    "np": "क्षेत्र पिच्छे",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "지우다",
+    "np": "मेटाउनु, DELETE गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "지원기관",
+    "np": "सहयात केन्द्र/संस्था",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "지원하다",
+    "np": "लागु गर्नु, SUPPORT गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "지위",
+    "np": "पद",
+    "similar": "직급 / 직위 / 직책",
+    "opposite": ""
+  },
+  {
+    "ko": "지정되다",
+    "np": "तोक्नु, DESIGNATED",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "지진",
+    "np": "भूकम्प",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "지출하다",
+    "np": "खर्च गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "지키다",
+    "np": "जोगाउनु , पालना गर्नु, रक्षा गर्नु",
+    "similar": "보관하다 / 보호하다",
+    "opposite": ""
+  },
+  {
+    "ko": "지폐",
+    "np": "नोट",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "지혜",
+    "np": "ज्ञान",
+    "similar": "지식",
+    "opposite": ""
+  },
+  {
+    "ko": "직거래",
+    "np": "DIRECT TRANSACTIONS",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "직급",
+    "np": "पद",
+    "similar": "지위 / 직위 / 직책",
+    "opposite": ""
+  },
+  {
+    "ko": "직업",
+    "np": "पेसा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "직위",
+    "np": "पद",
+    "similar": "직급 / 지위 / 직책",
+    "opposite": ""
+  },
+  {
+    "ko": "직접",
+    "np": "आफै , प्रत्यक्ष",
+    "similar": "",
+    "opposite": "간접"
+  },
+  {
+    "ko": "직책",
+    "np": "पद",
+    "similar": "직급 / 직위 / 지위",
+    "opposite": ""
+  },
+  {
+    "ko": "직항",
+    "np": "DIRECT उडान",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "진료하다",
+    "np": "डाक्टरको CONSULATION / जांच",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "진통제",
+    "np": "PAINKILLER",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "짐심 시간",
+    "np": "PEAK HOUR",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "집",
+    "np": "घर",
+    "similar": "댁",
+    "opposite": ""
+  },
+  {
+    "ko": "집중",
+    "np": "FOCUS",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "짓다",
+    "np": "बनाउनु , निर्माण गर्नु",
+    "similar": "만들다",
+    "opposite": ""
+  },
+  {
+    "ko": "짜다",
+    "np": "चर्को हुनु/निचोर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "짜장면",
+    "np": "BLACKBEAN NOODLES",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "짝수",
+    "np": "जोड अंक, EVEN NUMBER",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "짧다",
+    "np": "SHORT (NOT HEIGHT)",
+    "similar": "",
+    "opposite": "길다 (LONG)"
+  },
+  {
+    "ko": "짱",
+    "np": "उत्कृष्ट",
+    "similar": "최고",
+    "opposite": ""
+  },
+  {
+    "ko": "째려보다",
+    "np": "छड्के आँखाले हेर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "찌다",
+    "np": "तताउनु/ स्टिम गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "찜질을 하다",
+    "np": "सेक्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "차갑다",
+    "np": "चिसो हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "차량",
+    "np": "हेवी गाडी",
+    "similar": "중장비",
+    "opposite": ""
+  },
+  {
+    "ko": "차리다",
+    "np": "खानाको TABLE सेट गर्नु",
+    "similar": "장만하다",
+    "opposite": ""
+  },
+  {
+    "ko": "차지하다",
+    "np": "ओगट्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "착용하다",
+    "np": "प्रयोग गर्नु (मात्र 보호구मा)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "착하다",
+    "np": "बानी असल हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "찰과상을 입다",
+    "np": "SCRATCH हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "참",
+    "np": "निन्द्रा",
+    "similar": "수면",
+    "opposite": ""
+  },
+  {
+    "ko": "참가비",
+    "np": "सहभागी शुल्क",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "참가하다",
+    "np": "भाग लिनु",
+    "similar": "참석하다 / 참여하다",
+    "opposite": ""
+  },
+  {
+    "ko": "참고하다",
+    "np": "सन्दर्भ लिनु/उल्लेख गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "참다",
+    "np": "सहनु",
+    "similar": "견디다",
+    "opposite": ""
+  },
+  {
+    "ko": "참석하다",
+    "np": "सम्मिलित हुनु",
+    "similar": "참여하다  / 참가하다",
+    "opposite": ""
+  },
+  {
+    "ko": "참여하다",
+    "np": "सहभागी हुनु",
+    "similar": "참석하다 / 참가하다",
+    "opposite": ""
+  },
+  {
+    "ko": "창립일",
+    "np": "स्थापना दिवस",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "창문",
+    "np": "झ्याल",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "창제하다",
+    "np": "सृजना गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "찾다",
+    "np": "खोज्नु , फेला पर्नु , भेट्टाउनु , लिन जानु",
+    "similar": "검색하다 / 탐색하다",
+    "opposite": ""
+  },
+  {
+    "ko": "찾아보다",
+    "np": "खोजि हेर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "찾으신 금액",
+    "np": "निकालेको पैसा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "채소",
+    "np": "सागसब्जी",
+    "similar": "야채",
+    "opposite": ""
+  },
+  {
+    "ko": "책상",
+    "np": "डेस्क",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "책임",
+    "np": "RESPONSIBILTY",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "챙기다",
+    "np": "तयार गर्नु",
+    "similar": "준비하다 / 조제하다 / 마련하다",
+    "opposite": ""
+  },
+  {
+    "ko": "처럼",
+    "np": "जस्तै",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "처리하다",
+    "np": "व्यवस्थापन गर्नु / समाधान गर्नु / प्रक्रिया पूरा गर्नु",
+    "similar": "정리하다 / 정돈하다",
+    "opposite": ""
+  },
+  {
+    "ko": "처치하다",
+    "np": "FIRST AID",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "천장",
+    "np": "सिलिंग",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "천천히",
+    "np": "बिस्तारै",
+    "similar": "서행",
+    "opposite": ""
+  },
+  {
+    "ko": "철도",
+    "np": "RAILWAY",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "첨부하다",
+    "np": "संलग्न गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "청각",
+    "np": "कान",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "청결하다",
+    "np": "सफा गर्नु",
+    "similar": "깨끗하다 / 청소하다",
+    "opposite": ""
+  },
+  {
+    "ko": "청구",
+    "np": "दावा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "청력",
+    "np": "सुन्ने क्षमाता",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "청소년",
+    "np": "YOUNG PEOPLE, ठिटो मानिस",
+    "similar": "어린 / 젊은 사람",
+    "opposite": "늙은/노인 / 노년층/성인"
+  },
+  {
+    "ko": "청소하다",
+    "np": "सफा गर्नु",
+    "similar": "청결하다 / 깨끗하다",
+    "opposite": ""
+  },
+  {
+    "ko": "체계적",
+    "np": "SYSTEMATIC",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "체험",
+    "np": "अनुभव ( EXPERIENCE)",
+    "similar": "경험",
+    "opposite": ""
+  },
+  {
+    "ko": "체형",
+    "np": "STRUCTURE, सरिरको बनावोट",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "초급",
+    "np": "प्रारम्भिक तह",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "초보자",
+    "np": "सिकारु",
+    "similar": "학습자",
+    "opposite": ""
+  },
+  {
+    "ko": "최고",
+    "np": "उत्कृष्ट",
+    "similar": "짱",
+    "opposite": "최소"
+  },
+  {
+    "ko": "최근",
+    "np": "आजभोली",
+    "similar": "요즘 / 요새",
+    "opposite": ""
+  },
+  {
+    "ko": "최남단",
+    "np": "SOUTHERNMOST POINT",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "최대하다",
+    "np": "MAXIMUM",
+    "similar": "",
+    "opposite": "최소하다"
+  },
+  {
+    "ko": "최소하다",
+    "np": "न्युनतम",
+    "similar": "",
+    "opposite": "최대하다"
+  },
+  {
+    "ko": "추가하다",
+    "np": "थप गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "추천",
+    "np": "सिफारिस / सुझाव",
+    "similar": "제안",
+    "opposite": ""
+  },
+  {
+    "ko": "추측",
+    "np": "अनुमान",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "축소되다",
+    "np": "घट्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "축제",
+    "np": "FESTIVAL",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "출간되다",
+    "np": "प्रकाशन गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "출근하다",
+    "np": "काममा प्रस्थान गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "출금하다",
+    "np": "पैसा निकाल्नु",
+    "similar": "돈을 찾다",
+    "opposite": ""
+  },
+  {
+    "ko": "출력되다",
+    "np": "PRINT गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "출발하다",
+    "np": "प्रस्थान गर्नु",
+    "similar": "떠나다",
+    "opposite": ""
+  },
+  {
+    "ko": "출장",
+    "np": "कामको लागि बाहिर जानु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "출장비",
+    "np": "BUSINESS TRIP खर्च",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "춥다",
+    "np": "जाडो हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "충전",
+    "np": "RECHARGE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "취급하다",
+    "np": "HANDLE गर्नु, (चिजलाई) चलाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "취미",
+    "np": "रुची",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "취소하다",
+    "np": "रद्ध गर्नु",
+    "similar": "탈퇴하다",
+    "opposite": "가입"
+  },
+  {
+    "ko": "취침 시간",
+    "np": "सुत्ने समय",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "측정하다/재다",
+    "np": "नाप्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "치다",
+    "np": "छर्कनु",
+    "similar": "분사하다 / 뿌리다",
+    "opposite": ""
+  },
+  {
+    "ko": "치료하다",
+    "np": "उपचार",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "치수",
+    "np": "साइज",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "치우다",
+    "np": "हटाउनु",
+    "similar": "빼다, 삭체하다, 제거하다",
+    "opposite": ""
+  },
+  {
+    "ko": "치치다",
+    "np": "थाक्नु / थकित हुनु",
+    "similar": "피곤 / 피로",
+    "opposite": ""
+  },
+  {
+    "ko": "치킨",
+    "np": "CHICKEN",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "친구",
+    "np": "साथी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "친목",
+    "np": "आत्मियता",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "친밀감",
+    "np": "आत्मियता , SENSE OF INTEMACY",
+    "similar": "유대감",
+    "opposite": ""
+  },
+  {
+    "ko": "친절하다",
+    "np": "दयालु हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "친하다",
+    "np": "घनिष्ट हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "침대",
+    "np": "खाट , बिस्तरा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "카드",
+    "np": "CARD",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "카트",
+    "np": "CART / TROLLEY",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "콘도",
+    "np": "रिसोर्ट",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "크다",
+    "np": "ठुलो हुनु",
+    "similar": "",
+    "opposite": "작다"
+  },
+  {
+    "ko": "키",
+    "np": "HEIGHT",
+    "similar": "신장",
+    "opposite": ""
+  },
+  {
+    "ko": "키오스크",
+    "np": "SELLER मेसिन , स्वचालित मेसिन",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "타다",
+    "np": "सवारी गर्नु , पाउनु , डढ्नु , घोल्नु",
+    "similar": "승치하다 / 탑승하다",
+    "opposite": "내리다 / 하차하다"
+  },
+  {
+    "ko": "탈락",
+    "np": "हटाउने , सामबेश नहुने",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "탈퇴하다",
+    "np": "रद्ध गर्नु",
+    "similar": "취소하다",
+    "opposite": "가입"
+  },
+  {
+    "ko": "탐색하다",
+    "np": "खोजि गर्नु , नया ठाउँ EXPLORE गर्नु",
+    "similar": "검색하다 / 찾다",
+    "opposite": ""
+  },
+  {
+    "ko": "탑승하다",
+    "np": "चढ्नु (PLANE , SHIP ,TRAIN )",
+    "similar": "승치하다 / 타다",
+    "opposite": "내리다 / 하차하다"
+  },
+  {
+    "ko": "탕수육",
+    "np": "गुलियो स्वादको बंगुरको ITEM",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "태국",
+    "np": "THAILAND",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "태우다",
+    "np": "जल्नु , लगिदिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "태풍",
+    "np": "आधि बेरी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "턱을 내다",
+    "np": "PARTY दिनु",
+    "similar": "한턱을 내다",
+    "opposite": ""
+  },
+  {
+    "ko": "털다",
+    "np": "टक्टकाउनु",
+    "similar": "떨다",
+    "opposite": ""
+  },
+  {
+    "ko": "토목 장비",
+    "np": "CIVIL ENGINEERING",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "토시",
+    "np": "हातको बाउला (GLOVES)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "통과하다",
+    "np": "पास हुनु",
+    "similar": "합격하다",
+    "opposite": "떨어지다"
+  },
+  {
+    "ko": "통상",
+    "np": "सामान्य",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "통장",
+    "np": "खाता",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "통증",
+    "np": "पिडा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "통하여",
+    "np": "मार्फत",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "통해",
+    "np": "मार्फत",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "퇴근하다",
+    "np": "कामबाट छुट्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "퇴사하다",
+    "np": "COMPANY छोड्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "퇴직하다",
+    "np": "TERMINATE हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "튀기다",
+    "np": "तार्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "특정 상품",
+    "np": "बिशेष सामान",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "튼튼하다",
+    "np": "कडा हुनु , बलियो हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "틀리다",
+    "np": "गलत हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "팀",
+    "np": "GROUP, ORGANIZATION,",
+    "similar": "단체 / 반 / 조",
+    "opposite": ""
+  },
+  {
+    "ko": "파손되다",
+    "np": "फुट्नु, टुट्नु",
+    "similar": "깨지다",
+    "opposite": ""
+  },
+  {
+    "ko": "파악하다",
+    "np": "IDENTIFY गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "파티",
+    "np": "सानो पार्टी, EVENT",
+    "similar": "잔치",
+    "opposite": ""
+  },
+  {
+    "ko": "판단",
+    "np": "निर्णय , JUDGEMENT",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "판매점",
+    "np": "बिक्रि कक्ष",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "판매하다",
+    "np": "बेच्नु , बिक्रि गर्नु",
+    "similar": "팔다",
+    "opposite": "구입하다 / 사다"
+  },
+  {
+    "ko": "팔다",
+    "np": "बेच्नु , बिक्रि गर्नु",
+    "similar": "판매하다",
+    "opposite": "구입하다 / 사다 / 구하다"
+  },
+  {
+    "ko": "펴기하다",
+    "np": "फाल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "펴다",
+    "np": "फैलाउनु, FOLD गरेको चिज खोल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "편리하다",
+    "np": "सिस्टम/सेवा सुविधाजनक हुनु",
+    "similar": "간편하다 / 편하다",
+    "opposite": ""
+  },
+  {
+    "ko": "편의",
+    "np": "सुबिधा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "편찮다",
+    "np": "बिरामी हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "편하다",
+    "np": "सहज हुनु , आरामदायी हुनु",
+    "similar": "편리하다",
+    "opposite": ""
+  },
+  {
+    "ko": "평가",
+    "np": "मुल्यांकन",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "평상복을 입다",
+    "np": "सामान्य कपडा लागउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "평점을 보다",
+    "np": "RATING हेर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "평평하다",
+    "np": "समतल हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "폐기물",
+    "np": "फालिने बस्तु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "폐기하다",
+    "np": "फाल्नु , नष्ट गर्नु, प्रयोगबाट हटाउनु",
+    "similar": "버리다 , 제거하다",
+    "opposite": ""
+  },
+  {
+    "ko": "포기하다",
+    "np": "हार मान्नु , त्याग्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "포옹하다",
+    "np": "अंकमाल गर्नु",
+    "similar": "껴안다",
+    "opposite": ""
+  },
+  {
+    "ko": "포장하다",
+    "np": "PACKING गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "포함",
+    "np": "समावेश",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "포함하다",
+    "np": "समाबेश गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "폭발성 물질",
+    "np": "विस्फोटक पदार्थ",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "표시하다",
+    "np": "देखाउनु , संकेत गर्नु, चिन्ह लगाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "표지하다",
+    "np": "संकेत गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "표함하다",
+    "np": "MARK गर्नु, चिन्ह लगाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "표현하다",
+    "np": "TO EXPRESS FEELINGS OR EMOTIONS",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "풀다",
+    "np": "फुकाउनु , समाधान गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "풍경",
+    "np": "दृश्य , SCENE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "풍부하다",
+    "np": "RICH , सम्पन्न हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "풍성한 실루엣",
+    "np": "भब्य (फुलको) आकृति",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "풍습",
+    "np": "रिवाज , चलन",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "피곤",
+    "np": "थाक्नु / थकित हुनु",
+    "similar": "치치다  / 피로",
+    "opposite": ""
+  },
+  {
+    "ko": "피다",
+    "np": "फुल फुल्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "피로",
+    "np": "थाक्नु / थकित हुनु",
+    "similar": "치치다  / 피곤",
+    "opposite": ""
+  },
+  {
+    "ko": "피서를 가다",
+    "np": "गर्मि छल्न जानु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "필수적인",
+    "np": "अत्यावश्यक",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "필요하다",
+    "np": "आवश्यक हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "학과",
+    "np": "पाठ, LESSON",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "학습자",
+    "np": "सिकारु",
+    "similar": "초보자",
+    "opposite": ""
+  },
+  {
+    "ko": "한가하다",
+    "np": "फुर्सदिलो हुनु",
+    "similar": "",
+    "opposite": "바쁘다"
+  },
+  {
+    "ko": "한국산업인역공단",
+    "np": "KOREAN मानव संसाधन विकास केन्द्र",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "한식",
+    "np": "KOREAN खाना",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "한옥",
+    "np": "कोरीयाको परम्परागत घर",
+    "similar": "가옥",
+    "opposite": ""
+  },
+  {
+    "ko": "한턱을 내다",
+    "np": "PARTY दिनु",
+    "similar": "턱을 내다",
+    "opposite": ""
+  },
+  {
+    "ko": "한편",
+    "np": "अर्को पट्टी , तेसै गरि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "할인",
+    "np": "छुट",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "할인 행사",
+    "np": "छुट कार्यक्रम",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "함",
+    "np": "BOX , टोकरी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "함께",
+    "np": "संगै",
+    "similar": "같이",
+    "opposite": ""
+  },
+  {
+    "ko": "합격하다",
+    "np": "पास हुनु",
+    "similar": "통과하다",
+    "opposite": "떨어지다"
+  },
+  {
+    "ko": "해 먹다",
+    "np": "आफै पकाएर खानु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "해결하다",
+    "np": "समाधान गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "해넘이",
+    "np": "SUNSET",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "해당하다",
+    "np": "सम्बन्धित हुनु, REPRESENT, CONNECT हुनु",
+    "similar": "관한 / 관련",
+    "opposite": ""
+  },
+  {
+    "ko": "해돋이",
+    "np": "SUNRISE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "해변",
+    "np": "BEACH, समुन्द्र किनार",
+    "similar": "바닷가 / 해수욕장",
+    "opposite": ""
+  },
+  {
+    "ko": "해수욕장",
+    "np": "BEACH, समुन्द्र किनार",
+    "similar": "해변 / 바닷가",
+    "opposite": ""
+  },
+  {
+    "ko": "해열제",
+    "np": "जोरोको औषधि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "행위",
+    "np": "गतिबिधि",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "행정",
+    "np": "प्रसासन",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "허가",
+    "np": "अनुमति",
+    "similar": "허락",
+    "opposite": ""
+  },
+  {
+    "ko": "허락",
+    "np": "अनुमति",
+    "similar": "허가",
+    "opposite": ""
+  },
+  {
+    "ko": "헌옷",
+    "np": "पुरानो कपडा / USED कपडा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "헷갈리다",
+    "np": "झुक्किनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "현관",
+    "np": "ENTRANCE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "현금",
+    "np": "नगद",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "현상",
+    "np": "वर्तमान अवस्था",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "현상이 나타나다",
+    "np": "स्थिति वा घटना देखा पर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "현장",
+    "np": "SITE , SPOT ,ठाउँ",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "현황",
+    "np": "वर्तमान अवस्था",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "형성하다",
+    "np": "BONDING गर्नु/बनाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "형수",
+    "np": "भाउजु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "형제",
+    "np": "दाजुभाई",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "형형색색",
+    "np": "विभिन्न रंग",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "혜택",
+    "np": "फाइदा, MERIT",
+    "similar": "이익",
+    "opposite": "손해 / 불이익"
+  },
+  {
+    "ko": "호칭",
+    "np": "साइनो",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "혹시",
+    "np": "सायद",
+    "similar": "아마",
+    "opposite": ""
+  },
+  {
+    "ko": "혼잡하다",
+    "np": "CROWDED (भिडभाड)",
+    "similar": "복잡하다",
+    "opposite": ""
+  },
+  {
+    "ko": "홀수",
+    "np": "बिजोड अंक,  ODD NUMBER",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "홍차",
+    "np": "कालो चिया",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "화려하다",
+    "np": "आकर्षक/ रंगीबिरंगी हुनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "화분",
+    "np": "गमला",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "화폐",
+    "np": "मुद्रा",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "확대로",
+    "np": "बिस्तार गर्नु, फैलिनु/प्रसार गर्नु",
+    "similar": "확산하다 / 증설되다",
+    "opposite": ""
+  },
+  {
+    "ko": "확대하다",
+    "np": "व्यापक गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "확보하다",
+    "np": "सुनिश्चित गर्नु/ SECURE गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "확산하다",
+    "np": "बिस्तार गर्नु, फैलिनु/प्रसार गर्नु",
+    "similar": "증설되다 / 확대로",
+    "opposite": ""
+  },
+  {
+    "ko": "확신하다",
+    "np": "आस्वासन, ASSURANCE",
+    "similar": "확실하다",
+    "opposite": ""
+  },
+  {
+    "ko": "확실하다",
+    "np": "SURE गर्नु/निश्चित गर्नु",
+    "similar": "확신하다",
+    "opposite": ""
+  },
+  {
+    "ko": "확인하다",
+    "np": "CONFIRM गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "환급하다",
+    "np": "फिर्ता गर्नु (कर)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "환기 시키다",
+    "np": "हावाको संचार गराउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "환불하다",
+    "np": "फिर्ता गर्नु (बस्तु)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "환송하다",
+    "np": "बिदाई गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "환승하다",
+    "np": "सवारी परिवर्तन गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "환율",
+    "np": "विनिमय दर/ EXCHANGE RATE",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "환의원",
+    "np": "ORIENTAL MEDICINE CLINIC",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "환전하다",
+    "np": "सटही गर्नु (पैसा)",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "환하다",
+    "np": "CLEAR हुनु",
+    "similar": "",
+    "opposite": "어둡다"
+  },
+  {
+    "ko": "활기차다",
+    "np": "जिबन्त, LIVELY",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "활발하다",
+    "np": "सक्रिय हुनु",
+    "similar": "",
+    "opposite": "얌전하다"
+  },
+  {
+    "ko": "활용하다",
+    "np": "UTILIZE (प्रयोग) गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "황사",
+    "np": "आंधीको धुलो",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "회사원",
+    "np": "कम्पनीको कर्मचारी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "회원 가입",
+    "np": "सदस्य दर्ता",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "회원 탈퇴",
+    "np": "सदस्य रद्ध",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "횐떡",
+    "np": "सेतो तक",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "횟수",
+    "np": "पटक",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "효율적으로",
+    "np": "EFFICIENTLY (कुसल्तापुर्बक)/प्रभावकारी",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "후배",
+    "np": "JUNIOR",
+    "similar": "부아",
+    "opposite": "선배"
+  },
+  {
+    "ko": "후회하다",
+    "np": "पछुताउनु / पश्चात्ताप गर्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "훈련",
+    "np": "व्यवसायिक तालिम",
+    "similar": "교육",
+    "opposite": ""
+  },
+  {
+    "ko": "훨씬",
+    "np": "MORE , धेरै",
+    "similar": "더욱 / 무척",
+    "opposite": ""
+  },
+  {
+    "ko": "흐르다",
+    "np": "बग्नु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "흐리다",
+    "np": "मौसम गडबड हुनु",
+    "similar": "",
+    "opposite": "맑다"
+  },
+  {
+    "ko": "흔들다",
+    "np": "हात हल्लाउनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "힘쓰다",
+    "np": "जोड दिनु",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "힘이",
+    "np": "तागत",
+    "similar": "",
+    "opposite": ""
+  },
+  {
+    "ko": "힘이 나다",
+    "np": "तागत आउनु",
+    "similar": "",
+    "opposite": ""
+  }
+]
