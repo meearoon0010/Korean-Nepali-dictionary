@@ -2,551 +2,105 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Korean-Nepali Dictionary by Arun Ale · 한-네 사전</title>
-
-<meta name="description"
-      content="Korean–Nepali Dictionary with pronunciation, favorites, search, and personal words.">
-
-<link rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23163832%22/><text x=%2250%22 y=%2266%22 font-size=%2255%22 text-anchor=%22middle%22 fill=%22%23E3A73A%22>가</text></svg>">
-
+<meta name="description" content="A two-way Korean–Nepali dictionary with pronunciation, favorites, and your own added words.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%23163832%22/><text x=%2250%22 y=%2266%22 font-size=%2255%22 text-anchor=%22middle%22 fill=%22%23E3A73A%22>가</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+Devanagari:wght@400;600&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Sans+Devanagari:wght@400;600&family=Work+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<!-- =====================================================
-     LOGIN / CREATE ACCOUNT
-===================================================== -->
+<div class="stampfield" aria-hidden="true"></div>
 
-<div id="auth-section">
-
-    <div class="auth-box">
-
-        <div class="auth-logo">가</div>
-
-        <h2 id="auth-title">Login</h2>
-
-        <p class="auth-subtitle">
-            Korean–Nepali Dictionary
-        </p>
-
-        <input
-            type="email"
-            id="auth-email"
-            placeholder="Email address"
-            autocomplete="email"
-        >
-
-        <input
-            type="password"
-            id="auth-password"
-            placeholder="Password"
-            autocomplete="current-password"
-        >
-
-        <button
-            id="auth-submit"
-            type="button">
-            Login
-        </button>
-
-        <p id="auth-message"></p>
-
-        <button
-            id="toggle-auth"
-            class="auth-link"
-            type="button">
-            Create an account
-        </button>
-
-        <button
-            id="forgot-password"
-            class="auth-link"
-            type="button">
-            Forgot password?
-        </button>
-
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">가</span>
+    <div class="brand-text">
+      <h1>한-네 사전</h1>
+      <p class="brand-sub">कोरियाली&nbsp;↔&nbsp;नेपाली शब्दकोश &middot; Korean–Nepali Dictionary</p>
+      <p class="brand-credit">by Arun Ale</p>
     </div>
+  </div>
+  <div class="header-right">
+    <div class="stats" id="stats" aria-live="polite"></div>
+    <button id="themeToggle" class="icon-btn theme-toggle" type="button" title="Toggle dark mode" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</header>
 
+<main>
+  <div class="sticky-controls">
+    <section class="searchbar-wrap">
+      <div class="searchbar">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="searchInput" type="text" placeholder="Type in 한국어 or नेपाली / English…  ex: 가게 · pasal · to teach" autocomplete="off" spellcheck="false">
+        <button id="clearSearch" class="clear-btn" title="Clear" aria-label="Clear search">&times;</button>
+      </div>
+      <p class="search-hint">Searches both directions at once — Korean, Nepali, and any similar/opposite words on file.</p>
+    </section>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="all" role="tab" aria-selected="true">All words <span class="count" id="countAll"></span></button>
+      <button class="tab" data-tab="fav" role="tab" aria-selected="false">★ Favorites <span class="count" id="countFav"></span></button>
+      <button class="tab" data-tab="mine" role="tab" aria-selected="false">Mine <span class="count" id="countMine"></span></button>
+      <button class="tab" data-tab="trash" role="tab" aria-selected="false">🗑 Deleted <span class="count" id="countTrash"></span></button>
+      <button id="addWordBtn" class="tab add-tab">+ Add word</button>
+    </nav>
+  </div>
+
+  <section id="resultsWrap">
+    <div id="results" class="results"></div>
+    <p id="emptyState" class="empty-state" hidden>No entries match yet. Try a different spelling, or add it yourself.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Data: <span id="footCount"></span> Korean–Nepali entries, plus anything you add or edit on this device. Favorites, added words, and edits are stored locally in your browser (no server, no account) — they don't change the shared word list for other visitors.</p>
+</footer>
+
+<!-- Add word modal -->
+<div id="modalOverlay" class="modal-overlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-head">
+      <h2 id="modalTitle">Add a word</h2>
+      <button id="modalClose" class="icon-btn" aria-label="Close">&times;</button>
+    </div>
+    <form id="addWordForm">
+      <label>
+        <span>Korean <em>(required)</em></span>
+        <input type="text" id="fKo" required placeholder="가게">
+      </label>
+      <label>
+        <span>Nepali / English meaning <em>(required)</em></span>
+        <input type="text" id="fNp" required placeholder="पसल">
+      </label>
+      <label>
+        <span>Similar words <em>(optional)</em></span>
+        <input type="text" id="fSimilar" placeholder="가족">
+      </label>
+      <label>
+        <span>Opposite words <em>(optional)</em></span>
+        <input type="text" id="fOpposite" placeholder="불가능하다">
+      </label>
+      <div class="modal-actions">
+        <button type="button" id="resetEdit" class="btn ghost" hidden>Reset to original</button>
+        <button type="button" id="cancelAdd" class="btn ghost">Cancel</button>
+        <button type="submit" class="btn primary" id="saveWordBtn">Save word</button>
+      </div>
+    </form>
+  </div>
 </div>
 
-
-<!-- =====================================================
-     DICTIONARY APPLICATION
-===================================================== -->
-
-<div id="dictionary-app" hidden>
-
-    <div class="stampfield" aria-hidden="true"></div>
-
-
-    <!-- HEADER -->
-
-    <header class="topbar">
-
-        <div class="brand">
-
-            <span class="brand-mark">가</span>
-
-            <div class="brand-text">
-
-                <h1>한-네 사전</h1>
-
-                <p class="brand-sub">
-                    कोरियाली&nbsp;↔&nbsp;नेपाली शब्दकोश
-                    &middot;
-                    Korean–Nepali Dictionary
-                </p>
-
-                <p class="brand-credit">
-                    by Arun Ale
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div class="header-right">
-
-            <div
-                class="stats"
-                id="stats"
-                aria-live="polite">
-            </div>
-
-            <button
-                id="logoutBtn"
-                class="icon-btn logout-btn"
-                type="button"
-                title="Log out"
-                aria-label="Log out">
-
-                <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-
-                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                    <polyline points="16 17 21 12 16 7"/>
-                    <line x1="21" y1="12" x2="9" y2="12"/>
-
-                </svg>
-
-            </button>
-
-            <button
-                id="themeToggle"
-                class="icon-btn theme-toggle"
-                type="button"
-                title="Toggle dark mode"
-                aria-label="Toggle dark mode">
-
-                <svg
-                    class="icon-sun"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-
-                    <circle cx="12" cy="12" r="4"/>
-                    <line x1="12" y1="2" x2="12" y2="4"/>
-                    <line x1="12" y1="20" x2="12" y2="22"/>
-                    <line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/>
-                    <line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/>
-                    <line x1="2" y1="12" x2="4" y2="12"/>
-                    <line x1="20" y1="12" x2="22" y2="12"/>
-                    <line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/>
-                    <line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/>
-
-                </svg>
-
-
-                <svg
-                    class="icon-moon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3
-                             7 7 0 0 0 21 12.79z"/>
-
-                </svg>
-
-            </button>
-
-        </div>
-
-    </header>
-
-
-    <!-- MAIN -->
-
-    <main>
-
-        <div class="sticky-controls">
-
-
-            <!-- SEARCH -->
-
-            <section class="searchbar-wrap">
-
-                <div class="searchbar">
-
-                    <svg
-                        class="search-icon"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2">
-
-                        <circle cx="11" cy="11" r="7"/>
-                        <line
-                            x1="21"
-                            y1="21"
-                            x2="16.65"
-                            y2="16.65"/>
-
-                    </svg>
-
-
-                    <input
-                        id="searchInput"
-                        type="text"
-                        placeholder="Type in 한국어 or नेपाली / English… ex: 가게 · pasal · to teach"
-                        autocomplete="off"
-                        spellcheck="false"
-                    >
-
-
-                    <button
-                        id="clearSearch"
-                        class="clear-btn"
-                        type="button"
-                        title="Clear"
-                        aria-label="Clear search">
-
-                        &times;
-
-                    </button>
-
-                </div>
-
-
-                <p class="search-hint">
-
-                    Searches both directions at once —
-                    Korean, Nepali, English,
-                    similar and opposite words.
-
-                </p>
-
-            </section>
-
-
-            <!-- TABS -->
-
-            <nav
-                class="tabs"
-                role="tablist">
-
-                <button
-                    class="tab active"
-                    data-tab="all"
-                    role="tab"
-                    aria-selected="true">
-
-                    All words
-
-                    <span
-                        class="count"
-                        id="countAll">
-                    </span>
-
-                </button>
-
-
-                <button
-                    class="tab"
-                    data-tab="fav"
-                    role="tab"
-                    aria-selected="false">
-
-                    ★ Favorites
-
-                    <span
-                        class="count"
-                        id="countFav">
-                    </span>
-
-                </button>
-
-
-                <button
-                    class="tab"
-                    data-tab="mine"
-                    role="tab"
-                    aria-selected="false">
-
-                    Mine
-
-                    <span
-                        class="count"
-                        id="countMine">
-                    </span>
-
-                </button>
-
-
-                <button
-                    class="tab"
-                    data-tab="trash"
-                    role="tab"
-                    aria-selected="false">
-
-                    🗑 Deleted
-
-                    <span
-                        class="count"
-                        id="countTrash">
-                    </span>
-
-                </button>
-
-
-                <button
-                    id="addWordBtn"
-                    class="tab add-tab"
-                    type="button">
-
-                    + Add word
-
-                </button>
-
-            </nav>
-
-        </div>
-
-
-        <!-- RESULTS -->
-
-        <section id="resultsWrap">
-
-            <div
-                id="results"
-                class="results">
-            </div>
-
-
-            <p
-                id="emptyState"
-                class="empty-state"
-                hidden>
-
-                No entries match yet.
-                Try a different spelling,
-                or add it yourself.
-
-            </p>
-
-        </section>
-
-    </main>
-
-
-    <!-- FOOTER -->
-
-    <footer class="foot">
-
-        <p>
-
-            Data:
-            <span id="footCount"></span>
-            Korean–Nepali entries,
-            plus anything you add or edit.
-
-        </p>
-
-    </footer>
-
-
-    <!-- =================================================
-         ADD / EDIT WORD MODAL
-    ================================================= -->
-
-    <div
-        id="modalOverlay"
-        class="modal-overlay"
-        hidden>
-
-        <div
-            class="modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="modalTitle">
-
-
-            <div class="modal-head">
-
-                <h2 id="modalTitle">
-                    Add a word
-                </h2>
-
-                <button
-                    id="modalClose"
-                    class="icon-btn"
-                    type="button"
-                    aria-label="Close">
-
-                    &times;
-
-                </button>
-
-            </div>
-
-
-            <form id="addWordForm">
-
-                <label>
-
-                    <span>
-                        Korean <em>(required)</em>
-                    </span>
-
-                    <input
-                        type="text"
-                        id="fKo"
-                        required
-                        placeholder="가게">
-
-                </label>
-
-
-                <label>
-
-                    <span>
-                        Nepali / English meaning
-                        <em>(required)</em>
-                    </span>
-
-                    <input
-                        type="text"
-                        id="fNp"
-                        required
-                        placeholder="पसल">
-
-                </label>
-
-
-                <label>
-
-                    <span>
-                        Similar words
-                        <em>(optional)</em>
-                    </span>
-
-                    <input
-                        type="text"
-                        id="fSimilar"
-                        placeholder="가족">
-
-                </label>
-
-
-                <label>
-
-                    <span>
-                        Opposite words
-                        <em>(optional)</em>
-                    </span>
-
-                    <input
-                        type="text"
-                        id="fOpposite"
-                        placeholder="불가능하다">
-
-                </label>
-
-
-                <div class="modal-actions">
-
-                    <button
-                        type="button"
-                        id="resetEdit"
-                        class="btn ghost"
-                        hidden>
-
-                        Reset to original
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        id="cancelAdd"
-                        class="btn ghost">
-
-                        Cancel
-
-                    </button>
-
-
-                    <button
-                        type="submit"
-                        class="btn primary"
-                        id="saveWordBtn">
-
-                        Save word
-
-                    </button>
-
-                </div>
-
-            </form>
-
-        </div>
-
-    </div>
-
-
-    <div
-        id="toast"
-        class="toast"
-        hidden>
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     SUPABASE
-===================================================== -->
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<div id="toast" class="toast" hidden></div>
 
 <script src="script.js"></script>
-
 </body>
 </html>
