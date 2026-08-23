@@ -383,6 +383,18 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
 
 
+                    if (
+                        message
+                            .toLowerCase()
+                            .includes("rate limit")
+                    ) {
+
+                        message =
+                            "Too many emails sent recently. Please wait a bit and try again, or contact the site owner.";
+
+                    }
+
+
                     showAuthMessage(
                         message,
                         "error"
