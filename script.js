@@ -4,12 +4,14 @@
   var LS_FAV = "kndict_favorites_v1";
   var LS_MINE = "kndict_mine_v1";
   var LS_EDITS = "kndict_edits_v1";
+  var LS_DELETED = "kndict_deleted_v1";
   var DATA_URL = "words.json";
 
   var rawBaseData = [];
   var favorites = loadJSON(LS_FAV, []);
   var mine = loadJSON(LS_MINE, []);
   var edits = loadJSON(LS_EDITS, {});
+  var deleted = loadJSON(LS_DELETED, []);
 
   var currentTab = "all";
   var currentQuery = "";
@@ -24,6 +26,7 @@
     countAll: document.getElementById("countAll"),
     countFav: document.getElementById("countFav"),
     countMine: document.getElementById("countMine"),
+    countTrash: document.getElementById("countTrash"),
     stats: document.getElementById("stats"),
     footCount: document.getElementById("footCount"),
     addWordBtn: document.getElementById("addWordBtn"),
@@ -53,24 +56,35 @@
     }
   }
 
-  // Merge base data with any local edits, plus user-added words
+  // Merge base data with any local edits, plus user-added words, minus deleted ones
   function allData() {
-    var base = rawBaseData.map(function (entry) {
-      var ed = edits[entry.id];
-      if (ed) {
-        return {
-          id: entry.id,
-          ko: ed.ko,
-          np: ed.np,
-          similar: ed.similar,
-          opposite: ed.opposite,
-          mine: false,
-          edited: true
-        };
-      }
-      return entry;
-    });
+    var base = rawBaseData
+      .filter(function (entry) {
+        return deleted.indexOf(entry.id) === -1;
+      })
+      .map(function (entry) {
+        var ed = edits[entry.id];
+        if (ed) {
+          return {
+            id: entry.id,
+            ko: ed.ko,
+            np: ed.np,
+            similar: ed.similar,
+            opposite: ed.opposite,
+            mine: false,
+            edited: true
+          };
+        }
+        return entry;
+      });
     return base.concat(mine);
+  }
+
+  // Deleted base entries, for the Trash tab (so they can be restored)
+  function deletedData() {
+    return rawBaseData.filter(function (entry) {
+      return deleted.indexOf(entry.id) !== -1;
+    });
   }
 
   function isFav(id) {
@@ -83,6 +97,37 @@
     else favorites.splice(idx, 1);
     saveJSON(LS_FAV, favorites);
     render();
+  }
+
+  function deleteWord(id) {
+    var entry = allData().find(function (e) {
+      return e.id === id;
+    });
+    if (!entry) return;
+    if (entry.mine) {
+      removeMine(id);
+      return;
+    }
+    if (deleted.indexOf(id) === -1) {
+      deleted.push(id);
+      saveJSON(LS_DELETED, deleted);
+    }
+    var favIdx = favorites.indexOf(id);
+    if (favIdx !== -1) {
+      favorites.splice(favIdx, 1);
+      saveJSON(LS_FAV, favorites);
+    }
+    render();
+    showToast("Word deleted. Restore it anytime from the Deleted tab.");
+  }
+
+  function restoreWord(id) {
+    deleted = deleted.filter(function (d) {
+      return d !== id;
+    });
+    saveJSON(LS_DELETED, deleted);
+    render();
+    showToast("Word restored.");
   }
 
   function removeMine(id) {
@@ -122,6 +167,15 @@
   }
 
   function getFiltered() {
+    if (currentTab === "trash") {
+      var trashed = deletedData();
+      if (currentQuery) {
+        trashed = trashed.filter(function (e) {
+          return matches(e, currentQuery);
+        });
+      }
+      return trashed;
+    }
     var data = allData();
     if (currentTab === "fav") {
       data = data.filter(function (e) {
@@ -150,8 +204,12 @@
     '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 12c0-1.5-.7-2.8-1.8-3.7l1-1.5c1.5 1.2 2.4 3 2.4 5.2s-.9 4-2.4 5.2l-1-1.5c1.1-.9 1.8-2.2 1.8-3.7z" opacity=".85"/></svg>';
   var editIcon =
     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>';
+  var trashIcon =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><line x1="10" y1="11" x2="10" y2="17"/><line x1="14" y1="11" x2="14" y2="17"/></svg>';
+  var restoreIcon =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><polyline points="3 4 3 9 8 9"/></svg>';
 
-  function cardHtml(entry) {
+  function cardHtml(entry, trashed) {
     var favOn = isFav(entry.id);
     var meta = "";
     if (entry.similar) {
@@ -167,18 +225,53 @@
         "</span></div>";
     }
     var badge = "";
-    if (entry.mine) {
-      badge =
-        '<span class="mine-tag">yours</span><button class="remove-mine" data-remove="' +
-        entry.id +
-        '" title="Delete this word">delete</button>';
+    if (trashed) {
+      badge = '<span class="mine-tag deleted-tag">deleted</span>';
+    } else if (entry.mine) {
+      badge = '<span class="mine-tag">yours</span>';
     } else if (entry.edited) {
       badge = '<span class="mine-tag edited-tag">edited</span>';
     }
+
+    var actions;
+    if (trashed) {
+      actions =
+        '<button class="icon-btn restore-btn" data-restore="' +
+        entry.id +
+        '" title="Restore this word" aria-label="Restore">' +
+        restoreIcon +
+        "</button>";
+    } else {
+      actions =
+        '<button class="icon-btn speak-btn" data-speak="' +
+        entry.id +
+        '" title="Hear Korean pronunciation" aria-label="Pronounce">' +
+        speakIcon +
+        "</button>" +
+        '<button class="icon-btn edit-btn" data-edit="' +
+        entry.id +
+        '" title="Edit this entry" aria-label="Edit">' +
+        editIcon +
+        "</button>" +
+        '<button class="icon-btn fav-btn' +
+        (favOn ? " fav-on" : "") +
+        '" data-fav="' +
+        entry.id +
+        '" title="Toggle favorite" aria-label="Toggle favorite">' +
+        (favOn ? "★" : "☆") +
+        "</button>" +
+        '<button class="icon-btn delete-btn" data-delete="' +
+        entry.id +
+        '" title="Delete this word" aria-label="Delete">' +
+        trashIcon +
+        "</button>";
+    }
+
     return (
       '<div class="card' +
       (entry.mine ? " mine" : "") +
       (entry.edited ? " edited" : "") +
+      (trashed ? " trashed" : "") +
       '" data-id="' +
       entry.id +
       '">' +
@@ -188,23 +281,7 @@
       escapeHtml(entry.ko) +
       "</p>" +
       '<div class="card-actions">' +
-      '<button class="icon-btn speak-btn" data-speak="' +
-      entry.id +
-      '" title="Hear Korean pronunciation" aria-label="Pronounce">' +
-      speakIcon +
-      "</button>" +
-      '<button class="icon-btn edit-btn" data-edit="' +
-      entry.id +
-      '" title="Edit this entry" aria-label="Edit">' +
-      editIcon +
-      "</button>" +
-      '<button class="icon-btn fav-btn' +
-      (favOn ? " fav-on" : "") +
-      '" data-fav="' +
-      entry.id +
-      '" title="Toggle favorite" aria-label="Toggle favorite">' +
-      (favOn ? "★" : "☆") +
-      "</button>" +
+      actions +
       "</div>" +
       "</div>" +
       '<p class="np-word">' +
@@ -216,14 +293,20 @@
   }
 
   function render() {
+    var trashedView = currentTab === "trash";
     var data = getFiltered();
-    els.results.innerHTML = data.map(cardHtml).join("");
+    els.results.innerHTML = data
+      .map(function (e) {
+        return cardHtml(e, trashedView);
+      })
+      .join("");
     els.empty.hidden = data.length !== 0;
 
     var all = allData();
     els.countAll.textContent = all.length;
     els.countFav.textContent = favorites.length;
     els.countMine.textContent = mine.length;
+    els.countTrash.textContent = deleted.length;
     els.stats.textContent = all.length + " entries";
     els.footCount.textContent = rawBaseData.length;
   }
@@ -285,8 +368,9 @@
   els.results.addEventListener("click", function (e) {
     var favBtn = e.target.closest("[data-fav]");
     var speakBtn = e.target.closest("[data-speak]");
-    var removeBtn = e.target.closest("[data-remove]");
     var editBtn = e.target.closest("[data-edit]");
+    var deleteBtn = e.target.closest("[data-delete]");
+    var restoreBtn = e.target.closest("[data-restore]");
     if (favBtn) {
       toggleFav(favBtn.getAttribute("data-fav"));
       return;
@@ -307,9 +391,15 @@
       if (eentry) openEditModal(eentry);
       return;
     }
-    if (removeBtn) {
-      var rid = removeBtn.getAttribute("data-remove");
-      if (confirm("Delete this word you added?")) removeMine(rid);
+    if (deleteBtn) {
+      var did = deleteBtn.getAttribute("data-delete");
+      if (confirm("Delete this word? You can restore it later from the Deleted tab.")) {
+        deleteWord(did);
+      }
+      return;
+    }
+    if (restoreBtn) {
+      restoreWord(restoreBtn.getAttribute("data-restore"));
     }
   });
 
