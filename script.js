@@ -1628,7 +1628,7 @@ document.addEventListener("DOMContentLoaded", function () {
         else if (entry.edited) {
 
             badge =
-                '<span class="mine-tag edited-tag">edited</span>";
+                '<span class="mine-tag edited-tag">edited</span>';
 
         }
 
