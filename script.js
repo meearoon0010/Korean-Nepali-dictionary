@@ -61,6 +61,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const authMessage =
         document.getElementById("auth-message");
 
+    const logoutBtn =
+        document.getElementById("logoutBtn");
+
 
     let isSignupMode = false;
 
@@ -225,7 +228,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
                                 email: email,
 
-                                password: password
+                                password: password,
+
+                                options: {
+
+                                    emailRedirectTo:
+                                        window.location.origin +
+                                        window.location.pathname
+
+                                }
 
                             });
 
@@ -272,7 +283,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         } else {
 
                             showAuthMessage(
-                                "Account created! Please check your email to verify your account.",
+                                "Account created! Check your email and click the verification link — you'll be brought straight into the dictionary.",
                                 "success"
                             );
 
@@ -658,6 +669,53 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     );
+
+
+    /* =====================================================
+       LOGOUT
+       ===================================================== */
+
+    if (logoutBtn) {
+
+        logoutBtn.addEventListener(
+            "click",
+            async function () {
+
+                logoutBtn.disabled = true;
+
+                try {
+
+                    const { error } =
+                        await supabaseClient.auth.signOut();
+
+                    if (error) {
+                        throw error;
+                    }
+
+                    authEmail.value = "";
+                    authPassword.value = "";
+
+                    showAuthMessage("");
+
+                    showLogin();
+
+                } catch (error) {
+
+                    console.error(
+                        "Logout error:",
+                        error
+                    );
+
+                } finally {
+
+                    logoutBtn.disabled = false;
+
+                }
+
+            }
+        );
+
+    }
 
 
     /* =====================================================
