@@ -1,3 +1,10 @@
+const SUPABASE_URL = "https://fcwmksetmdeuzrxwofce.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Ren_76mp55gNH_U2vZsGAg_XZB4jNyF";
+
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
 (function () {
   "use strict";
 
