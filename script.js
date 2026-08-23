@@ -593,3 +593,150 @@ const supabaseClient = supabase.createClient(
 
   init();
 })();
+// ========================================
+// SUPABASE AUTHENTICATION
+// ========================================
+
+let isSignupMode = false;
+
+const authSection = document.getElementById("auth-section");
+const authTitle = document.getElementById("auth-title");
+const authEmail = document.getElementById("auth-email");
+const authPassword = document.getElementById("auth-password");
+const authSubmit = document.getElementById("auth-submit");
+const toggleAuth = document.getElementById("toggle-auth");
+const forgotPassword = document.getElementById("forgot-password");
+const authMessage = document.getElementById("auth-message");
+
+
+// Login / Sign Up
+authSubmit.addEventListener("click", async () => {
+
+    const email = authEmail.value.trim();
+    const password = authPassword.value;
+
+    if (!email || !password) {
+        authMessage.textContent = "Please enter email and password.";
+        return;
+    }
+
+    authMessage.textContent = "Please wait...";
+
+    if (isSignupMode) {
+
+        const { data, error } =
+            await supabaseClient.auth.signUp({
+                email: email,
+                password: password
+            });
+
+        if (error) {
+            authMessage.textContent = error.message;
+            return;
+        }
+
+        authMessage.textContent =
+            "Account created! Please check your email to verify your account.";
+
+    } else {
+
+        const { data, error } =
+            await supabaseClient.auth.signInWithPassword({
+                email: email,
+                password: password
+            });
+
+        if (error) {
+            authMessage.textContent = error.message;
+            return;
+        }
+
+        authSection.style.display = "none";
+
+        updateUserInterface(data.user);
+    }
+});
+
+
+// Switch Login / Sign Up
+toggleAuth.addEventListener("click", () => {
+
+    isSignupMode = !isSignupMode;
+
+    if (isSignupMode) {
+
+        authTitle.textContent = "Create Account";
+        authSubmit.textContent = "Create Account";
+        toggleAuth.textContent = "Already have an account? Login";
+        forgotPassword.style.display = "none";
+
+    } else {
+
+        authTitle.textContent = "Login";
+        authSubmit.textContent = "Login";
+        toggleAuth.textContent = "Create an account";
+        forgotPassword.style.display = "block";
+    }
+
+    authMessage.textContent = "";
+});
+
+
+// Forgot Password
+forgotPassword.addEventListener("click", async () => {
+
+    const email = authEmail.value.trim();
+
+    if (!email) {
+        authMessage.textContent =
+            "Enter your email address first.";
+        return;
+    }
+
+    const { error } =
+        await supabaseClient.auth.resetPasswordForEmail(email, {
+            redirectTo: window.location.origin + window.location.pathname
+        });
+
+    if (error) {
+        authMessage.textContent = error.message;
+        return;
+    }
+
+    authMessage.textContent =
+        "Password reset email sent. Check your inbox.";
+});
+
+
+// Check existing login
+async function checkUser() {
+
+    const {
+        data: { session }
+    } = await supabaseClient.auth.getSession();
+
+    if (session && session.user) {
+
+        authSection.style.display = "none";
+
+        updateUserInterface(session.user);
+
+    } else {
+
+        authSection.style.display = "flex";
+    }
+}
+
+
+// User interface
+function updateUserInterface(user) {
+
+    console.log("Logged in:", user.email);
+
+    // You can connect this to your existing
+    // dictionary header later.
+}
+
+
+// Start authentication
+checkUser();
