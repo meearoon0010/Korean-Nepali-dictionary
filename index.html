@@ -102,5 +102,36 @@
 <div id="toast" class="toast" hidden></div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="script.js"></script>
-</body>
+</body
+  <div id="auth-section">
+    <div class="auth-box">
+        <h2 id="auth-title">Login</h2>
+
+        <input
+            type="email"
+            id="auth-email"
+            placeholder="Email address"
+            autocomplete="email"
+        >
+
+        <input
+            type="password"
+            id="auth-password"
+            placeholder="Password"
+            autocomplete="current-password"
+        >
+
+        <button id="auth-submit">Login</button>
+
+        <p id="auth-message"></p>
+
+        <button id="toggle-auth" class="auth-link">
+            Create an account
+        </button>
+
+        <button id="forgot-password" class="auth-link">
+            Forgot password?
+        </button>
+    </div>
+</div>
 </html>
