@@ -17,7 +17,23 @@ const SUPABASE_PUBLISHABLE_KEY =
 const supabaseClient =
     supabase.createClient(
         SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
+        SUPABASE_PUBLISHABLE_KEY,
+        {
+
+            auth: {
+
+                /*
+                 * Always require a fresh login on
+                 * every visit — don't auto-restore
+                 * a saved session, so the login
+                 * screen shows before the dictionary.
+                 */
+
+                persistSession: false
+
+            }
+
+        }
     );
 
 
