@@ -5,7 +5,29 @@
   var LS_MINE = "kndict_mine_v1";
   var LS_EDITS = "kndict_edits_v1";
   var LS_DELETED = "kndict_deleted_v1";
+  var LS_THEME = "kndict_theme_v1";
   var DATA_URL = "words.json";
+
+  // ---- Theme (light/dark) ----
+  (function initTheme() {
+    var saved = null;
+    try {
+      saved = localStorage.getItem(LS_THEME);
+    } catch (e) {}
+    if (!saved) {
+      saved = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    document.documentElement.setAttribute("data-theme", saved);
+  })();
+
+  function toggleTheme() {
+    var current = document.documentElement.getAttribute("data-theme");
+    var next = current === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    try {
+      localStorage.setItem(LS_THEME, next);
+    } catch (e) {}
+  }
 
   var rawBaseData = [];
   var favorites = loadJSON(LS_FAV, []);
@@ -37,8 +59,11 @@
     resetEdit: document.getElementById("resetEdit"),
     saveWordBtn: document.getElementById("saveWordBtn"),
     addWordForm: document.getElementById("addWordForm"),
-    toast: document.getElementById("toast")
+    toast: document.getElementById("toast"),
+    themeToggle: document.getElementById("themeToggle")
   };
+
+  els.themeToggle.addEventListener("click", toggleTheme);
 
   function loadJSON(key, fallback) {
     try {
@@ -324,12 +349,16 @@
   }
 
   function pickVoice(langPrefix) {
-    for (var i = 0; i < voices.length; i++) {
-      if (voices[i].lang && voices[i].lang.toLowerCase().indexOf(langPrefix) === 0) {
-        return voices[i];
-      }
-    }
-    return null;
+    var candidates = voices.filter(function (v) {
+      return v.lang && v.lang.toLowerCase().indexOf(langPrefix) === 0;
+    });
+    if (candidates.length === 0) return null;
+    // Prefer higher-quality voices when a browser offers several
+    // (Google/Microsoft neural voices tend to sound clearer than compact/eSpeak ones)
+    var preferred = candidates.find(function (v) {
+      return /google|microsoft|natural|neural|premium|enhanced/i.test(v.name);
+    });
+    return preferred || candidates[0];
   }
 
   function speak(text, langPrefix, fallbackLang) {
@@ -346,6 +375,8 @@
     } else {
       utter.lang = fallbackLang || langPrefix;
     }
+    utter.rate = 0.78; // a bit slower than default for clearer pronunciation
+    utter.pitch = 1;
     window.speechSynthesis.speak(utter);
   }
 
