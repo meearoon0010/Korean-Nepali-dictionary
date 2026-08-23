@@ -265,3 +265,64 @@ main{position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:8px 
 }
 
 :focus-visible{outline:2px solid var(--gold); outline-offset:2px;}
+/* ================================
+   SUPABASE AUTHENTICATION
+================================ */
+
+#auth-section {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 9999;
+}
+
+.auth-box {
+    width: min(90%, 380px);
+    padding: 30px;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.auth-box h2 {
+    margin-bottom: 20px;
+}
+
+.auth-box input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.auth-box button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#auth-submit {
+    background: #b00020;
+    color: white;
+}
+
+.auth-link {
+    background: transparent;
+    color: #b00020;
+}
+
+#auth-message {
+    margin-top: 15px;
+    font-size: 14px;
+}
