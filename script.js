@@ -3236,104 +3236,116 @@ document.addEventListener("DOMContentLoaded", function () {
        LOAD WORDS
        ===================================================== */
 
-  async function loadDictionary() {
+    function loadDictionary() {
 
-    if (!els.results) {
-        return;
-    }
-
-    els.results.innerHTML =
-        '<p class="empty-state" style="grid-column:1/-1;">' +
-        "Loading dictionary…" +
-        "</p>";
-
-    try {
-
-        const pageSize = 1000;
-        let allRows = [];
-        let from = 0;
-
-        while (true) {
-
-            const to = from + pageSize - 1;
-
-            const { data, error } = await supabaseClient
-                .from("words")
-                .select("*")
-                .order("id", { ascending: true })
-                .range(from, to);
-
-            if (error) {
-                throw error;
-            }
-
-            if (data && data.length > 0) {
-                allRows = allRows.concat(data);
-            }
-
-            if (!data || data.length < pageSize) {
-                break;
-            }
-
-            from += pageSize;
+        if (!els.results) {
+            return;
         }
 
-        console.log(
-            "Dictionary loaded:",
-            allRows.length,
-            "words"
-        );
-
-        rawBaseData = allRows.map(function (item) {
-
-            return {
-                id: String(item.id),
-
-                ko:
-                    item.ko ||
-                    "",
-
-                np:
-                    item.np ||
-                    "",
-
-                similar:
-                    item.similar ||
-                    "",
-
-                opposite:
-                    item.opposite ||
-                    "",
-
-                mine: false
-            };
-
-        });
-
-        render();
-
-        showToast(
-            rawBaseData.length +
-            " words loaded successfully."
-        );
-
-    } catch (error) {
-
-        console.error(
-            "Dictionary loading error:",
-            error
-        );
 
         els.results.innerHTML =
+
             '<p class="empty-state" style="grid-column:1/-1;">' +
-            "Couldn't load the dictionary from the database. " +
-            "(" +
-            escapeHtml(
-                error.message ||
-                "unknown error"
-            ) +
-            ")" +
+
+            "Loading dictionary…" +
+
             "</p>";
 
+
+        supabaseClient
+
+            .from("words")
+
+            .select("*")
+
+            .order("ko", { ascending: true })
+
+            .then(
+                function (response) {
+
+                    if (response.error) {
+
+                        throw response.error;
+
+                    }
+
+
+                    rawBaseData =
+                        (response.data || []).map(
+                            function (item) {
+
+                                return {
+
+                                    id:
+                                        String(item.id),
+
+                                    ko:
+                                        item.ko ||
+                                        "",
+
+                                    np:
+                                        item.np ||
+                                        "",
+
+                                    similar:
+                                        item.similar ||
+                                        "",
+
+                                    opposite:
+                                        item.opposite ||
+                                        "",
+
+                                    mine:
+                                        false
+
+                                };
+
+                            }
+                        );
+
+
+                    render();
+
+                }
+            )
+
+
+            .catch(
+                function (error) {
+
+                    console.error(
+                        error
+                    );
+
+
+                    els.results.innerHTML =
+
+                        '<p class="empty-state" style="grid-column:1/-1;">' +
+
+                        "Couldn't load the dictionary from the database. " +
+
+                        "(" + escapeHtml(error.message || "unknown error") + ")" +
+
+                        "</p>";
+
+                }
+            );
+
     }
-}
+
+
+    /* =====================================================
+       START DICTIONARY
+       ===================================================== */
+
+    loadDictionary();
+
+
+    /* =====================================================
+       START AUTHENTICATION
+       ===================================================== */
+
+    checkUser();
+
+
+});
