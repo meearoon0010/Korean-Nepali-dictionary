@@ -17,23 +17,7 @@ const SUPABASE_PUBLISHABLE_KEY =
 const supabaseClient =
     supabase.createClient(
         SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY,
-        {
-
-            auth: {
-
-                /*
-                 * Always require a fresh login on
-                 * every visit — don't auto-restore
-                 * a saved session, so the login
-                 * screen shows before the dictionary.
-                 */
-
-                persistSession: false
-
-            }
-
-        }
+        SUPABASE_PUBLISHABLE_KEY
     );
 
 
@@ -579,9 +563,37 @@ document.addEventListener("DOMContentLoaded", function () {
                     console.error(error);
 
 
-                    showAuthMessage(
+                    let message =
                         error.message ||
-                        "Could not send password reset email.",
+                        "Could not send password reset email.";
+
+
+                    if (
+                        message
+                            .toLowerCase()
+                            .includes("rate limit")
+                    ) {
+
+                        message =
+                            "Too many emails sent recently. Please wait a bit and try again.";
+
+                    }
+
+
+                    if (
+                        message
+                            .toLowerCase()
+                            .includes("error sending")
+                    ) {
+
+                        message =
+                            "Couldn't send the reset email right now. This usually means the site's email service needs attention — please contact the site owner.";
+
+                    }
+
+
+                    showAuthMessage(
+                        message,
                         "error"
                     );
 
@@ -1832,7 +1844,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        return
+        return (
 
             '<div class="card' +
 
@@ -1903,7 +1915,9 @@ document.addEventListener("DOMContentLoaded", function () {
             ) +
 
 
-            "</div>";
+            "</div>"
+
+        );
 
     }
 
