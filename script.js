@@ -14,19 +14,6 @@ const SUPABASE_URL =
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_Ren_76mp55gNH_U2vZsGAg_XZB4jNyF";
 
-
-/*
- * Whoever logs in with this email gets
- * admin powers: editing or deleting any
- * word applies for everyone (writes to
- * the database), and adding a word adds
- * it to the shared dictionary instead of
- * a personal local-only list.
- */
-
-const ADMIN_EMAIL =
-    "whitewalkerofnorth@gmail.com";
-
 const supabaseClient =
     supabase.createClient(
         SUPABASE_URL,
@@ -150,32 +137,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "Logged in:",
             user.email
         );
-
-
-        isAdminUser =
-            !!user.email &&
-            user.email.toLowerCase() ===
-                ADMIN_EMAIL.toLowerCase();
-
-
-        const adminBadge =
-            document.getElementById(
-                "adminBadge"
-            );
-
-        if (adminBadge) {
-
-            adminBadge.hidden =
-                !isAdminUser;
-
-        }
-
-
-        if (typeof render === "function") {
-
-            render();
-
-        }
 
     }
 
@@ -778,17 +739,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     authEmail.value = "";
                     authPassword.value = "";
 
-                    isAdminUser = false;
-
-                    const adminBadge =
-                        document.getElementById(
-                            "adminBadge"
-                        );
-
-                    if (adminBadge) {
-                        adminBadge.hidden = true;
-                    }
-
                     showAuthMessage("");
 
                     showLogin();
@@ -830,6 +780,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const LS_THEME =
         "kndict_theme_v1";
+
+    const DATA_URL =
+        "words.json";
 
 
     /* =====================================================
@@ -948,9 +901,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let editingId =
         null;
-
-    let isAdminUser =
-        false;
 
 
     /* =====================================================
@@ -1296,65 +1246,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (entry.mine) {
 
             removeMine(id);
-
-            return;
-
-        }
-
-
-        if (isAdminUser) {
-
-            supabaseClient
-
-                .from("words")
-
-                .delete()
-
-                .eq("id", Number(id))
-
-                .then(
-                    function (response) {
-
-                        if (response.error) {
-
-                            throw response.error;
-
-                        }
-
-
-                        rawBaseData =
-                            rawBaseData.filter(
-                                function (e) {
-
-                                    return e.id !== id;
-
-                                }
-                            );
-
-
-                        render();
-
-
-                        showToast(
-                            "Word permanently deleted from the dictionary."
-                        );
-
-                    }
-                )
-
-                .catch(
-                    function (error) {
-
-                        console.error(error);
-
-                        showToast(
-                            "Couldn't delete: " +
-                            (error.message || "unknown error")
-                        );
-
-                    }
-                );
-
 
             return;
 
@@ -2467,30 +2358,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         );
 
 
-                    const targetEntry =
-                        allData().find(
-                            function (e) {
-
-                                return e.id === id;
-
-                            }
-                        );
-
-
-                    const isPermanent =
-                        isAdminUser &&
-                        !(targetEntry && targetEntry.mine);
-
-
-                    const confirmMessage =
-                        isPermanent
-                            ? "Permanently delete this word for everyone? This cannot be undone."
-                            : "Delete this word? You can restore it later from the Deleted tab.";
-
-
                     if (
                         confirm(
-                            confirmMessage
+                            "Delete this word? You can restore it later from the Deleted tab."
                         )
                     ) {
 
@@ -2662,9 +2532,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         els.modalTitle.textContent =
-            isAdminUser
-                ? "Add a word (visible to everyone)"
-                : "Add a word";
+            "Add a word";
 
 
         els.saveWordBtn.textContent =
@@ -2698,9 +2566,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         els.modalTitle.textContent =
-            (isAdminUser && !entry.mine)
-                ? "Edit word (visible to everyone)"
-                : "Edit word";
+            "Edit word";
 
 
         els.saveWordBtn.textContent =
@@ -2733,7 +2599,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         els.resetEdit.hidden =
             entry.mine ||
-            isAdminUser ||
             !edits[entry.id];
 
 
@@ -2923,144 +2788,35 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
-                    closeModal();
+                }
 
 
-                    showToast(
-                        "Changes saved."
+                else {
+
+
+                    edits[editingId] = {
+
+                        ko:
+                            ko,
+
+                        np:
+                            np,
+
+                        similar:
+                            similar,
+
+                        opposite:
+                            opposite
+
+                    };
+
+
+                    saveJSON(
+                        LS_EDITS,
+                        edits
                     );
 
-
-                    render();
-
-
-                    return;
-
                 }
-
-
-                if (isAdminUser) {
-
-
-                    supabaseClient
-
-                        .from("words")
-
-                        .update({
-
-                            ko: ko,
-
-                            np: np,
-
-                            similar: similar,
-
-                            opposite: opposite,
-
-                            updated_at:
-                                new Date().toISOString()
-
-                        })
-
-                        .eq("id", Number(editingId))
-
-                        .then(
-                            function (response) {
-
-                                if (response.error) {
-
-                                    throw response.error;
-
-                                }
-
-
-                                const base =
-                                    rawBaseData.find(
-                                        function (e) {
-
-                                            return (
-                                                e.id ===
-                                                editingId
-                                            );
-
-                                        }
-                                    );
-
-
-                                if (base) {
-
-                                    base.ko = ko;
-                                    base.np = np;
-                                    base.similar = similar;
-                                    base.opposite = opposite;
-
-                                }
-
-
-                                if (edits[editingId]) {
-
-                                    delete edits[editingId];
-
-                                    saveJSON(
-                                        LS_EDITS,
-                                        edits
-                                    );
-
-                                }
-
-
-                                closeModal();
-
-
-                                showToast(
-                                    "Word updated for everyone."
-                                );
-
-
-                                render();
-
-                            }
-                        )
-
-                        .catch(
-                            function (error) {
-
-                                console.error(error);
-
-                                showToast(
-                                    "Couldn't save: " +
-                                    (error.message || "unknown error")
-                                );
-
-                            }
-                        );
-
-
-                    return;
-
-                }
-
-
-                edits[editingId] = {
-
-                    ko:
-                        ko,
-
-                    np:
-                        np,
-
-                    similar:
-                        similar,
-
-                    opposite:
-                        opposite
-
-                };
-
-
-                saveJSON(
-                    LS_EDITS,
-                    edits
-                );
 
 
                 closeModal();
@@ -3080,95 +2836,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             /* ADD NEW WORD */
-
-            if (isAdminUser) {
-
-
-                supabaseClient
-
-                    .from("words")
-
-                    .insert({
-
-                        ko: ko,
-
-                        np: np,
-
-                        similar: similar,
-
-                        opposite: opposite
-
-                    })
-
-                    .select()
-
-                    .then(
-                        function (response) {
-
-                            if (response.error) {
-
-                                throw response.error;
-
-                            }
-
-
-                            const row =
-                                response.data &&
-                                response.data[0];
-
-
-                            if (row) {
-
-                                rawBaseData.unshift({
-
-                                    id: String(row.id),
-
-                                    ko: row.ko || "",
-
-                                    np: row.np || "",
-
-                                    similar: row.similar || "",
-
-                                    opposite: row.opposite || "",
-
-                                    mine: false
-
-                                });
-
-                            }
-
-
-                            closeModal();
-
-
-                            showToast(
-                                "Word added to the dictionary."
-                            );
-
-
-                            render();
-
-                        }
-                    )
-
-                    .catch(
-                        function (error) {
-
-                            console.error(error);
-
-                            showToast(
-                                "Couldn't add word: " +
-                                (error.message || "unknown error")
-                            );
-
-                        }
-                    );
-
-
-                return;
-
-            }
-
 
             const id =
                 "m" +
@@ -3252,32 +2919,52 @@ document.addEventListener("DOMContentLoaded", function () {
             "</p>";
 
 
-        supabaseClient
+        fetch(
+            DATA_URL +
+            "?v=" +
+            Date.now(),
+            {
+                cache:
+                    "no-store"
+            }
+        )
 
-            .from("words")
-
-            .select("*")
-
-            .order("ko", { ascending: true })
 
             .then(
                 function (response) {
 
-                    if (response.error) {
+                    if (!response.ok) {
 
-                        throw response.error;
+                        throw new Error(
+                            "HTTP " +
+                            response.status
+                        );
 
                     }
 
 
+                    return response.json();
+
+                }
+            )
+
+
+            .then(
+                function (data) {
+
+
                     rawBaseData =
-                        (response.data || []).map(
-                            function (item) {
+                        (data || []).map(
+                            function (
+                                item,
+                                index
+                            ) {
 
                                 return {
 
                                     id:
-                                        String(item.id),
+                                        "b" +
+                                        index,
 
                                     ko:
                                         item.ko ||
@@ -3322,9 +3009,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         '<p class="empty-state" style="grid-column:1/-1;">' +
 
-                        "Couldn't load the dictionary from the database. " +
+                        "Couldn't load words.json. " +
 
-                        "(" + escapeHtml(error.message || "unknown error") + ")" +
+                        "Please check that words.json is in the same GitHub repository." +
 
                         "</p>";
 

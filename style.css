@@ -175,19 +175,6 @@ h1 {
   white-space: nowrap;
 }
 
-.admin-badge {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--accent-ink, #163832);
-  background: var(--accent, #E3A73A);
-  padding: 4px 10px;
-  border-radius: 999px;
-  white-space: nowrap;
-}
-
 .header-right {
   display: flex;
   align-items: center;
