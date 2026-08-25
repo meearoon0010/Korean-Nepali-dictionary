@@ -2788,35 +2788,42 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
-                }
+                    closeModal();
 
 
-                else {
-
-
-                    edits[editingId] = {
-
-                        ko:
-                            ko,
-
-                        np:
-                            np,
-
-                        similar:
-                            similar,
-
-                        opposite:
-                            opposite
-
-                    };
-
-
-                    saveJSON(
-                        LS_EDITS,
-                        edits
+                    showToast(
+                        "Changes saved."
                     );
 
+
+                    render();
+
+
+                    return;
+
                 }
+
+
+                edits[editingId] = {
+                    ko:
+                        ko,
+
+                    np:
+                        np,
+
+                    similar:
+                        similar,
+
+                    opposite:
+                        opposite
+
+                };
+
+
+                saveJSON(
+                    LS_EDITS,
+                    edits
+                );
 
 
                 closeModal();
