@@ -100,7 +100,7 @@ body {
 
 header.topbar {
   position: relative;
-  z-index: 1;
+  z-index: 30;
 
   display: flex;
   align-items: center;
@@ -1035,10 +1035,6 @@ main {
   color: var(--on-surface-dim);
 
   font-family: var(--font-mono);
-}
-
-.signup-only {
-  display: block;
 }
 
 /* Login inputs */
