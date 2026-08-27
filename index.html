@@ -44,6 +44,31 @@
             Korean–Nepali Dictionary
         </p>
 
+        <p class="auth-credit">
+            by Arun Ale
+        </p>
+
+        <div
+            id="signupExtraTop"
+            class="signup-only"
+            hidden>
+
+            <input
+                type="text"
+                id="auth-name"
+                placeholder="Full name"
+                autocomplete="name"
+            >
+
+            <input
+                type="date"
+                id="auth-dob"
+                placeholder="Date of birth"
+                autocomplete="bday"
+            >
+
+        </div>
+
         <input
             type="email"
             id="auth-email"
@@ -57,6 +82,20 @@
             placeholder="Password"
             autocomplete="current-password"
         >
+
+        <div
+            id="signupExtraBottom"
+            class="signup-only"
+            hidden>
+
+            <input
+                type="password"
+                id="auth-confirm-password"
+                placeholder="Confirm password"
+                autocomplete="new-password"
+            >
+
+        </div>
 
         <button
             id="auth-submit"
@@ -129,28 +168,78 @@
                 aria-live="polite">
             </div>
 
-            <button
-                id="logoutBtn"
-                class="icon-btn logout-btn"
-                type="button"
-                title="Log out"
-                aria-label="Log out">
+            <div class="profile-wrap">
 
-                <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
+                <button
+                    id="profileBtn"
+                    class="icon-btn profile-btn"
+                    type="button"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                    title="Profile"
+                    aria-label="Profile">
 
-                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
-                    <polyline points="16 17 21 12 16 7"/>
-                    <line x1="21" y1="12" x2="9" y2="12"/>
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round">
 
-                </svg>
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
 
-            </button>
+                    </svg>
+
+                </button>
+
+                <div
+                    id="profileMenu"
+                    class="profile-menu"
+                    hidden>
+
+                    <p
+                        id="profileName"
+                        class="profile-name">
+                    </p>
+
+                    <p
+                        id="profileEmail"
+                        class="profile-email">
+                    </p>
+
+                    <p
+                        id="profileDob"
+                        class="profile-dob">
+                    </p>
+
+                    <button
+                        id="logoutBtn"
+                        class="btn ghost profile-logout"
+                        type="button">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round">
+
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                            <polyline points="16 17 21 12 16 7"/>
+                            <line x1="21" y1="12" x2="9" y2="12"/>
+
+                        </svg>
+
+                        Log out
+
+                    </button>
+
+                </div>
+
+            </div>
 
             <button
                 id="themeToggle"

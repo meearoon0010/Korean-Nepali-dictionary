@@ -64,6 +64,36 @@ document.addEventListener("DOMContentLoaded", function () {
     const logoutBtn =
         document.getElementById("logoutBtn");
 
+    const authName =
+        document.getElementById("auth-name");
+
+    const authDob =
+        document.getElementById("auth-dob");
+
+    const authConfirmPassword =
+        document.getElementById("auth-confirm-password");
+
+    const signupExtraTop =
+        document.getElementById("signupExtraTop");
+
+    const signupExtraBottom =
+        document.getElementById("signupExtraBottom");
+
+    const profileBtn =
+        document.getElementById("profileBtn");
+
+    const profileMenu =
+        document.getElementById("profileMenu");
+
+    const profileName =
+        document.getElementById("profileName");
+
+    const profileEmail =
+        document.getElementById("profileEmail");
+
+    const profileDob =
+        document.getElementById("profileDob");
+
 
     let isSignupMode = false;
 
@@ -138,6 +168,50 @@ document.addEventListener("DOMContentLoaded", function () {
             user.email
         );
 
+
+        const metadata =
+            user.user_metadata ||
+            {};
+
+
+        if (profileName) {
+
+            profileName.textContent =
+                metadata.full_name ||
+                "Dictionary user";
+
+        }
+
+
+        if (profileEmail) {
+
+            profileEmail.textContent =
+                user.email ||
+                "";
+
+        }
+
+
+        if (profileDob) {
+
+            if (metadata.date_of_birth) {
+
+                profileDob.textContent =
+                    "Born: " +
+                    metadata.date_of_birth;
+
+                profileDob.hidden = false;
+
+            } else {
+
+                profileDob.textContent = "";
+
+                profileDob.hidden = true;
+
+            }
+
+        }
+
     }
 
 
@@ -157,8 +231,53 @@ document.addEventListener("DOMContentLoaded", function () {
                 const password =
                     authPassword.value;
 
+                const name =
+                    authName ?
+                        authName.value.trim() :
+                        "";
+
+                const dob =
+                    authDob ?
+                        authDob.value :
+                        "";
+
+                const confirmPassword =
+                    authConfirmPassword ?
+                        authConfirmPassword.value :
+                        "";
+
 
                 /* VALIDATION */
+
+                if (isSignupMode && !name) {
+
+                    showAuthMessage(
+                        "Please enter your full name.",
+                        "error"
+                    );
+
+                    if (authName) {
+                        authName.focus();
+                    }
+
+                    return;
+                }
+
+
+                if (isSignupMode && !dob) {
+
+                    showAuthMessage(
+                        "Please enter your date of birth.",
+                        "error"
+                    );
+
+                    if (authDob) {
+                        authDob.focus();
+                    }
+
+                    return;
+                }
+
 
                 if (!email) {
 
@@ -194,6 +313,36 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
                     authPassword.focus();
+
+                    return;
+                }
+
+
+                if (isSignupMode && !confirmPassword) {
+
+                    showAuthMessage(
+                        "Please confirm your password.",
+                        "error"
+                    );
+
+                    if (authConfirmPassword) {
+                        authConfirmPassword.focus();
+                    }
+
+                    return;
+                }
+
+
+                if (isSignupMode && confirmPassword !== password) {
+
+                    showAuthMessage(
+                        "Passwords do not match.",
+                        "error"
+                    );
+
+                    if (authConfirmPassword) {
+                        authConfirmPassword.focus();
+                    }
 
                     return;
                 }
@@ -238,7 +387,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
                                     emailRedirectTo:
                                         window.location.origin +
-                                        window.location.pathname
+                                        window.location.pathname,
+
+                                    data: {
+
+                                        full_name:
+                                            name,
+
+                                        date_of_birth:
+                                            dob
+
+                                    }
 
                                 }
 
@@ -467,6 +626,18 @@ document.addEventListener("DOMContentLoaded", function () {
                         "none";
 
 
+                    if (signupExtraTop) {
+                        signupExtraTop.hidden = false;
+                    }
+
+                    if (signupExtraBottom) {
+                        signupExtraBottom.hidden = false;
+                    }
+
+                    authPassword.autocomplete =
+                        "new-password";
+
+
                 } else {
 
 
@@ -484,6 +655,30 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     forgotPassword.style.display =
                         "block";
+
+
+                    if (signupExtraTop) {
+                        signupExtraTop.hidden = true;
+                    }
+
+                    if (signupExtraBottom) {
+                        signupExtraBottom.hidden = true;
+                    }
+
+                    if (authName) {
+                        authName.value = "";
+                    }
+
+                    if (authDob) {
+                        authDob.value = "";
+                    }
+
+                    if (authConfirmPassword) {
+                        authConfirmPassword.value = "";
+                    }
+
+                    authPassword.autocomplete =
+                        "current-password";
 
                 }
 
@@ -716,6 +911,61 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
+       PROFILE MENU
+       ===================================================== */
+
+    if (profileBtn && profileMenu) {
+
+        profileBtn.addEventListener(
+            "click",
+            function (event) {
+
+                event.stopPropagation();
+
+                const isOpen =
+                    !profileMenu.hidden;
+
+                profileMenu.hidden =
+                    isOpen;
+
+                profileBtn.setAttribute(
+                    "aria-expanded",
+                    isOpen ? "false" : "true"
+                );
+
+            }
+        );
+
+
+        document.addEventListener(
+            "click",
+            function (event) {
+
+                if (profileMenu.hidden) {
+                    return;
+                }
+
+                if (
+                    profileMenu.contains(event.target) ||
+                    profileBtn.contains(event.target)
+                ) {
+                    return;
+                }
+
+                profileMenu.hidden = true;
+
+                profileBtn.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
        LOGOUT
        ===================================================== */
 
@@ -738,6 +988,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     authEmail.value = "";
                     authPassword.value = "";
+
+                    if (profileMenu) {
+                        profileMenu.hidden = true;
+                    }
+
+                    if (profileBtn) {
+                        profileBtn.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+                    }
 
                     showAuthMessage("");
 
