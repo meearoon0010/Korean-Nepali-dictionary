@@ -14,6 +14,18 @@ const SUPABASE_URL =
 const SUPABASE_PUBLISHABLE_KEY =
     "sb_publishable_Ren_76mp55gNH_U2vZsGAg_XZB4jNyF";
 
+
+/*
+ * Whoever logs in with this email gets admin
+ * powers: editing/deleting any word applies for
+ * everyone (writes to the database), adding a
+ * word adds it to the shared dictionary, and a
+ * "Users" panel appears for managing accounts.
+ */
+
+const ADMIN_EMAIL =
+    "whitewalkerofnorth@gmail.com";
+
 const supabaseClient =
     supabase.createClient(
         SUPABASE_URL,
@@ -96,6 +108,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     let isSignupMode = false;
+
+    let isAdminUser = false;
 
 
     /* =====================================================
@@ -209,6 +223,45 @@ document.addEventListener("DOMContentLoaded", function () {
                 profileDob.hidden = true;
 
             }
+
+        }
+
+
+        isAdminUser =
+            !!user.email &&
+            user.email.toLowerCase() ===
+                ADMIN_EMAIL.toLowerCase();
+
+
+        const usersTab =
+            document.querySelector(
+                '.tab[data-tab="users"]'
+            );
+
+        if (usersTab) {
+
+            usersTab.hidden =
+                !isAdminUser;
+
+        }
+
+
+        const profileAdminNote =
+            document.getElementById(
+                "profileAdminNote"
+            );
+
+        if (profileAdminNote) {
+
+            profileAdminNote.hidden =
+                !isAdminUser;
+
+        }
+
+
+        if (typeof render === "function") {
+
+            render();
 
         }
 
@@ -1000,6 +1053,17 @@ document.addEventListener("DOMContentLoaded", function () {
                         );
                     }
 
+                    isAdminUser = false;
+
+                    const usersTab =
+                        document.querySelector(
+                            '.tab[data-tab="users"]'
+                        );
+
+                    if (usersTab) {
+                        usersTab.hidden = true;
+                    }
+
                     showAuthMessage("");
 
                     showLogin();
@@ -1041,9 +1105,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const LS_THEME =
         "kndict_theme_v1";
-
-    const DATA_URL =
-        "words.json";
 
 
     /* =====================================================
@@ -1507,6 +1568,65 @@ document.addEventListener("DOMContentLoaded", function () {
         if (entry.mine) {
 
             removeMine(id);
+
+            return;
+
+        }
+
+
+        if (isAdminUser) {
+
+            supabaseClient
+
+                .from("words")
+
+                .delete()
+
+                .eq("id", Number(id))
+
+                .then(
+                    function (response) {
+
+                        if (response.error) {
+
+                            throw response.error;
+
+                        }
+
+
+                        rawBaseData =
+                            rawBaseData.filter(
+                                function (e) {
+
+                                    return e.id !== id;
+
+                                }
+                            );
+
+
+                        render();
+
+
+                        showToast(
+                            "Word permanently deleted from the dictionary."
+                        );
+
+                    }
+                )
+
+                .catch(
+                    function (error) {
+
+                        console.error(error);
+
+                        showToast(
+                            "Couldn't delete: " +
+                            (error.message || "unknown error")
+                        );
+
+                    }
+                );
+
 
             return;
 
@@ -2192,6 +2312,15 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!els.results) return;
 
 
+        if (currentTab === "users") {
+
+            renderUsersTab();
+
+            return;
+
+        }
+
+
         let data = [];
 
 
@@ -2272,6 +2401,420 @@ document.addEventListener("DOMContentLoaded", function () {
 
         els.footCount.textContent =
             rawBaseData.length;
+
+    }
+
+
+    /* =====================================================
+       USERS (ADMIN ONLY)
+       ===================================================== */
+
+    let usersCache =
+        null;
+
+
+    async function callAdminUsersFunction(body) {
+
+        const {
+            data:
+                sessionData
+        } =
+            await supabaseClient.auth.getSession();
+
+
+        const token =
+            sessionData &&
+            sessionData.session &&
+            sessionData.session.access_token;
+
+
+        if (!token) {
+
+            throw new Error(
+                "Not signed in."
+            );
+
+        }
+
+
+        const response =
+            await fetch(
+                SUPABASE_URL +
+                "/functions/v1/admin-users",
+                {
+
+                    method:
+                        "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json",
+
+                        "Authorization":
+                            "Bearer " +
+                            token
+
+                    },
+
+                    body:
+                        JSON.stringify(body)
+
+                }
+            );
+
+
+        const result =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                result.error ||
+                ("HTTP " + response.status)
+            );
+
+        }
+
+
+        return result;
+
+    }
+
+
+    function userRowHtml(user) {
+
+        const joined =
+            user.created_at
+                ? new Date(user.created_at)
+                    .toLocaleDateString()
+                : "";
+
+
+        return (
+
+            '<div class="user-row" data-user-id="' +
+            escapeHtml(user.id) +
+            '">' +
+
+            '<div class="user-row-info">' +
+
+            '<p class="user-row-name">' +
+            escapeHtml(user.full_name || "(no name)") +
+            (
+                user.banned
+                    ? ' <span class="user-badge-banned">Banned</span>'
+                    : ""
+            ) +
+            "</p>" +
+
+            '<p class="user-row-email">' +
+            escapeHtml(user.email || "") +
+            "</p>" +
+
+            '<p class="user-row-meta">' +
+            (
+                user.date_of_birth
+                    ? "Born " + escapeHtml(user.date_of_birth) + " · "
+                    : ""
+            ) +
+            "Joined " + escapeHtml(joined) +
+            "</p>" +
+
+            "</div>" +
+
+            '<div class="user-row-actions">' +
+
+            '<button class="btn ghost" data-user-toggle-ban="' +
+            escapeHtml(user.id) +
+            '" data-currently-banned="' +
+            (user.banned ? "true" : "false") +
+            '">' +
+            (user.banned ? "Unban" : "Ban") +
+            "</button>" +
+
+            '<button class="btn ghost" data-user-delete="' +
+            escapeHtml(user.id) +
+            '">Delete</button>' +
+
+            "</div>" +
+
+            "</div>"
+
+        );
+
+    }
+
+
+    function renderUsersTab() {
+
+        els.empty.hidden = true;
+
+        els.countAll.textContent =
+            allData().length;
+
+        els.countFav.textContent =
+            favorites.length;
+
+        els.countMine.textContent =
+            mine.length;
+
+        els.countTrash.textContent =
+            deleted.length;
+
+
+        const countUsers =
+            document.getElementById(
+                "countUsers"
+            );
+
+
+        if (usersCache === null) {
+
+            els.results.innerHTML =
+
+                '<p class="empty-state" style="grid-column:1/-1;">' +
+
+                "Loading users…" +
+
+                "</p>";
+
+
+            callAdminUsersFunction(
+                { action: "list" }
+            )
+
+                .then(
+                    function (result) {
+
+                        usersCache =
+                            result.users || [];
+
+                        renderUsersTab();
+
+                    }
+                )
+
+                .catch(
+                    function (error) {
+
+                        console.error(error);
+
+                        els.results.innerHTML =
+
+                            '<p class="empty-state" style="grid-column:1/-1;">' +
+
+                            "Couldn't load users (" +
+
+                            escapeHtml(error.message || "unknown error") +
+
+                            "). Make sure the admin-users Edge Function is deployed." +
+
+                            "</p>";
+
+                    }
+                );
+
+
+            return;
+
+        }
+
+
+        if (countUsers) {
+
+            countUsers.textContent =
+                usersCache.length;
+
+        }
+
+
+        if (usersCache.length === 0) {
+
+            els.results.innerHTML =
+
+                '<p class="empty-state" style="grid-column:1/-1;">' +
+
+                "No other users yet." +
+
+                "</p>";
+
+            return;
+
+        }
+
+
+        els.results.innerHTML =
+
+            usersCache
+
+                .map(userRowHtml)
+
+                .join("");
+
+    }
+
+
+    function refreshUsersCache() {
+
+        usersCache = null;
+
+        if (currentTab === "users") {
+
+            render();
+
+        }
+
+    }
+
+
+    if (els.results) {
+
+        els.results.addEventListener(
+            "click",
+            function (event) {
+
+                const banBtn =
+                    event.target.closest(
+                        "[data-user-toggle-ban]"
+                    );
+
+
+                if (banBtn) {
+
+                    const userId =
+                        banBtn.getAttribute(
+                            "data-user-toggle-ban"
+                        );
+
+                    const currentlyBanned =
+                        banBtn.getAttribute(
+                            "data-currently-banned"
+                        ) === "true";
+
+                    const action =
+                        currentlyBanned
+                            ? "unban"
+                            : "ban";
+
+                    const confirmMsg =
+                        currentlyBanned
+                            ? "Unban this user? They'll be able to log in again."
+                            : "Ban this user? They won't be able to log in until unbanned.";
+
+
+                    if (!confirm(confirmMsg)) {
+                        return;
+                    }
+
+
+                    banBtn.disabled = true;
+
+
+                    callAdminUsersFunction(
+                        { action: action, userId: userId }
+                    )
+
+                        .then(
+                            function () {
+
+                                showToast(
+                                    currentlyBanned
+                                        ? "User unbanned."
+                                        : "User banned."
+                                );
+
+                                refreshUsersCache();
+
+                            }
+                        )
+
+                        .catch(
+                            function (error) {
+
+                                console.error(error);
+
+                                showToast(
+                                    "Couldn't update user: " +
+                                    (error.message || "unknown error")
+                                );
+
+                                banBtn.disabled = false;
+
+                            }
+                        );
+
+
+                    return;
+
+                }
+
+
+                const deleteBtn =
+                    event.target.closest(
+                        "[data-user-delete]"
+                    );
+
+
+                if (deleteBtn) {
+
+                    const userId =
+                        deleteBtn.getAttribute(
+                            "data-user-delete"
+                        );
+
+
+                    if (
+                        !confirm(
+                            "Permanently delete this user's account? This cannot be undone."
+                        )
+                    ) {
+                        return;
+                    }
+
+
+                    deleteBtn.disabled = true;
+
+
+                    callAdminUsersFunction(
+                        { action: "delete", userId: userId }
+                    )
+
+                        .then(
+                            function () {
+
+                                showToast(
+                                    "User account deleted."
+                                );
+
+                                refreshUsersCache();
+
+                            }
+                        )
+
+                        .catch(
+                            function (error) {
+
+                                console.error(error);
+
+                                showToast(
+                                    "Couldn't delete user: " +
+                                    (error.message || "unknown error")
+                                );
+
+                                deleteBtn.disabled = false;
+
+                            }
+                        );
+
+
+                    return;
+
+                }
+
+            }
+        );
 
     }
 
@@ -2619,9 +3162,30 @@ document.addEventListener("DOMContentLoaded", function () {
                         );
 
 
+                    const targetEntry =
+                        allData().find(
+                            function (e) {
+
+                                return e.id === id;
+
+                            }
+                        );
+
+
+                    const isPermanent =
+                        isAdminUser &&
+                        !(targetEntry && targetEntry.mine);
+
+
+                    const confirmMessage =
+                        isPermanent
+                            ? "Permanently delete this word for everyone? This cannot be undone."
+                            : "Delete this word? You can restore it later from the Deleted tab.";
+
+
                     if (
                         confirm(
-                            "Delete this word? You can restore it later from the Deleted tab."
+                            confirmMessage
                         )
                     ) {
 
@@ -2793,7 +3357,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         els.modalTitle.textContent =
-            "Add a word";
+            isAdminUser
+                ? "Add a word (visible to everyone)"
+                : "Add a word";
 
 
         els.saveWordBtn.textContent =
@@ -2827,7 +3393,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         els.modalTitle.textContent =
-            "Edit word";
+            (isAdminUser && !entry.mine)
+                ? "Edit word (visible to everyone)"
+                : "Edit word";
 
 
         els.saveWordBtn.textContent =
@@ -2860,6 +3428,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         els.resetEdit.hidden =
             entry.mine ||
+            isAdminUser ||
             !edits[entry.id];
 
 
@@ -3065,6 +3634,107 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
+                if (isAdminUser) {
+
+
+                    supabaseClient
+
+                        .from("words")
+
+                        .update({
+
+                            ko: ko,
+
+                            np: np,
+
+                            similar: similar,
+
+                            opposite: opposite,
+
+                            updated_at:
+                                new Date().toISOString()
+
+                        })
+
+                        .eq("id", Number(editingId))
+
+                        .then(
+                            function (response) {
+
+                                if (response.error) {
+
+                                    throw response.error;
+
+                                }
+
+
+                                const base =
+                                    rawBaseData.find(
+                                        function (e) {
+
+                                            return (
+                                                e.id ===
+                                                editingId
+                                            );
+
+                                        }
+                                    );
+
+
+                                if (base) {
+
+                                    base.ko = ko;
+                                    base.np = np;
+                                    base.similar = similar;
+                                    base.opposite = opposite;
+
+                                }
+
+
+                                if (edits[editingId]) {
+
+                                    delete edits[editingId];
+
+                                    saveJSON(
+                                        LS_EDITS,
+                                        edits
+                                    );
+
+                                }
+
+
+                                closeModal();
+
+
+                                showToast(
+                                    "Word updated for everyone."
+                                );
+
+
+                                render();
+
+                            }
+                        )
+
+                        .catch(
+                            function (error) {
+
+                                console.error(error);
+
+                                showToast(
+                                    "Couldn't save: " +
+                                    (error.message || "unknown error")
+                                );
+
+                            }
+                        );
+
+
+                    return;
+
+                }
+
+
                 edits[editingId] = {
                     ko:
                         ko,
@@ -3104,6 +3774,95 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
             /* ADD NEW WORD */
+
+            if (isAdminUser) {
+
+
+                supabaseClient
+
+                    .from("words")
+
+                    .insert({
+
+                        ko: ko,
+
+                        np: np,
+
+                        similar: similar,
+
+                        opposite: opposite
+
+                    })
+
+                    .select()
+
+                    .then(
+                        function (response) {
+
+                            if (response.error) {
+
+                                throw response.error;
+
+                            }
+
+
+                            const row =
+                                response.data &&
+                                response.data[0];
+
+
+                            if (row) {
+
+                                rawBaseData.unshift({
+
+                                    id: String(row.id),
+
+                                    ko: row.ko || "",
+
+                                    np: row.np || "",
+
+                                    similar: row.similar || "",
+
+                                    opposite: row.opposite || "",
+
+                                    mine: false
+
+                                });
+
+                            }
+
+
+                            closeModal();
+
+
+                            showToast(
+                                "Word added to the dictionary."
+                            );
+
+
+                            render();
+
+                        }
+                    )
+
+                    .catch(
+                        function (error) {
+
+                            console.error(error);
+
+                            showToast(
+                                "Couldn't add word: " +
+                                (error.message || "unknown error")
+                            );
+
+                        }
+                    );
+
+
+                return;
+
+            }
+
 
             const id =
                 "m" +
@@ -3187,52 +3946,32 @@ document.addEventListener("DOMContentLoaded", function () {
             "</p>";
 
 
-        fetch(
-            DATA_URL +
-            "?v=" +
-            Date.now(),
-            {
-                cache:
-                    "no-store"
-            }
-        )
+        supabaseClient
 
+            .from("words")
+
+            .select("*")
+
+            .order("ko", { ascending: true })
 
             .then(
                 function (response) {
 
-                    if (!response.ok) {
+                    if (response.error) {
 
-                        throw new Error(
-                            "HTTP " +
-                            response.status
-                        );
+                        throw response.error;
 
                     }
 
 
-                    return response.json();
-
-                }
-            )
-
-
-            .then(
-                function (data) {
-
-
                     rawBaseData =
-                        (data || []).map(
-                            function (
-                                item,
-                                index
-                            ) {
+                        (response.data || []).map(
+                            function (item) {
 
                                 return {
 
                                     id:
-                                        "b" +
-                                        index,
+                                        String(item.id),
 
                                     ko:
                                         item.ko ||
@@ -3277,9 +4016,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         '<p class="empty-state" style="grid-column:1/-1;">' +
 
-                        "Couldn't load words.json. " +
+                        "Couldn't load the dictionary. " +
 
-                        "Please check that words.json is in the same GitHub repository." +
+                        "(" + escapeHtml(error.message || "unknown error") + ")" +
 
                         "</p>";
 

@@ -287,6 +287,14 @@ h1 {
   font-family: var(--font-mono);
 }
 
+.profile-admin-note {
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold);
+  font-family: var(--font-mono);
+}
+
 .profile-logout {
   width: 100%;
   display: flex;
@@ -540,6 +548,67 @@ main {
   box-shadow: 0 10px 24px rgba(0,0,0,0.28);
 
   border-color: var(--gold-2);
+}
+
+/* Users panel (admin only) */
+
+.user-row {
+  grid-column: 1 / -1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+
+  background: var(--surface);
+  color: var(--on-surface);
+
+  border-radius: var(--radius-stamp);
+
+  padding: 14px 18px;
+
+  border: 1.5px dashed rgba(23,57,51,0.28);
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+.user-row-name {
+  margin: 0 0 2px;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.user-row-email {
+  margin: 0 0 2px;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.user-row-meta {
+  margin: 0;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  opacity: 0.7;
+}
+
+.user-row-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.user-badge-banned {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: #C0392B;
+  padding: 2px 8px;
+  border-radius: 999px;
+  vertical-align: middle;
 }
 
 .card-top {
