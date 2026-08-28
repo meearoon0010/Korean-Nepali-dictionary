@@ -3947,10 +3947,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         const PAGE_SIZE =
-            1000;
+            500;
 
 
-        function fetchPage(offset, accumulated) {
+        const MAX_PAGES =
+            50;
+
+
+        function fetchPage(offset, accumulated, pageCount) {
+
+            if (pageCount >= MAX_PAGES) {
+
+                return Promise.resolve(
+                    accumulated
+                );
+
+            }
+
 
             return supabaseClient
 
@@ -3987,14 +4000,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                         if (
-                            pageRows.length ===
-                            PAGE_SIZE
+                            pageRows.length > 0
                         ) {
 
                             return fetchPage(
                                 offset +
-                                PAGE_SIZE,
-                                combined
+                                pageRows.length,
+                                combined,
+                                pageCount + 1
                             );
 
                         }
@@ -4008,7 +4021,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        fetchPage(0, [])
+        fetchPage(0, [], 0)
 
             .then(
                 function (allRows) {
