@@ -173,6 +173,89 @@ document.addEventListener("DOMContentLoaded", function () {
        UPDATE USER
        ===================================================== */
 
+    /* =====================================================
+       PRESENCE HEARTBEAT
+       ===================================================== */
+
+    let presenceIntervalId =
+        null;
+
+
+    function sendHeartbeat(userId) {
+
+        supabaseClient
+
+            .from("profiles")
+
+            .upsert({
+
+                user_id:
+                    userId,
+
+                last_seen_at:
+                    new Date().toISOString()
+
+            })
+
+            .then(
+                function (response) {
+
+                    if (response.error) {
+
+                        console.error(
+                            "Presence heartbeat failed:",
+                            response.error
+                        );
+
+                    }
+
+                }
+            );
+
+    }
+
+
+    function startPresenceHeartbeat(userId) {
+
+        stopPresenceHeartbeat();
+
+
+        sendHeartbeat(
+            userId
+        );
+
+
+        presenceIntervalId =
+            setInterval(
+                function () {
+
+                    sendHeartbeat(
+                        userId
+                    );
+
+                },
+                60000
+            );
+
+    }
+
+
+    function stopPresenceHeartbeat() {
+
+        if (presenceIntervalId) {
+
+            clearInterval(
+                presenceIntervalId
+            );
+
+            presenceIntervalId =
+                null;
+
+        }
+
+    }
+
+
     function updateUserInterface(user) {
 
         if (!user) return;
@@ -180,6 +263,11 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(
             "Logged in:",
             user.email
+        );
+
+
+        startPresenceHeartbeat(
+            user.id
         );
 
 
@@ -1054,6 +1142,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
 
                     isAdminUser = false;
+
+                    stopPresenceHeartbeat();
 
                     const usersTab =
                         document.querySelector(
@@ -2483,6 +2573,73 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    function formatLastSeen(lastSeenAt) {
+
+        if (!lastSeenAt) {
+
+            return "never";
+
+        }
+
+
+        const diffMs =
+            Date.now() -
+            new Date(lastSeenAt).getTime();
+
+
+        const diffMinutes =
+            Math.floor(
+                diffMs / 60000
+            );
+
+
+        if (diffMinutes < 1) {
+
+            return "just now";
+
+        }
+
+
+        if (diffMinutes < 60) {
+
+            return (
+                diffMinutes +
+                (diffMinutes === 1 ? " minute ago" : " minutes ago")
+            );
+
+        }
+
+
+        const diffHours =
+            Math.floor(
+                diffMinutes / 60
+            );
+
+
+        if (diffHours < 24) {
+
+            return (
+                diffHours +
+                (diffHours === 1 ? " hour ago" : " hours ago")
+            );
+
+        }
+
+
+        const diffDays =
+            Math.floor(
+                diffHours / 24
+            );
+
+
+        return (
+            diffDays +
+            (diffDays === 1 ? " day ago" : " days ago")
+        );
+
+    }
+
+
     function userRowHtml(user) {
 
         const joined =
@@ -2490,6 +2647,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 ? new Date(user.created_at)
                     .toLocaleDateString()
                 : "";
+
+
+        const lastLogin =
+            user.last_sign_in_at
+                ? new Date(user.last_sign_in_at)
+                    .toLocaleString()
+                : "Never logged in";
 
 
         return (
@@ -2501,6 +2665,17 @@ document.addEventListener("DOMContentLoaded", function () {
             '<div class="user-row-info">' +
 
             '<p class="user-row-name">' +
+
+            '<span class="presence-dot ' +
+            (user.online ? "presence-online" : "presence-offline") +
+            '" title="' +
+            (
+                user.online
+                    ? "Online now"
+                    : "Last active " + escapeHtml(formatLastSeen(user.last_seen_at))
+            ) +
+            '"></span> ' +
+
             escapeHtml(user.full_name || "(no name)") +
             (
                 user.banned
@@ -2520,6 +2695,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     : ""
             ) +
             "Joined " + escapeHtml(joined) +
+            "</p>" +
+
+            '<p class="user-row-meta">' +
+            (
+                user.online
+                    ? "Online now"
+                    : "Last active " + escapeHtml(formatLastSeen(user.last_seen_at))
+            ) +
+            " · Last login: " +
+            escapeHtml(lastLogin) +
             "</p>" +
 
             "</div>" +
@@ -3946,26 +4131,89 @@ document.addEventListener("DOMContentLoaded", function () {
             "</p>";
 
 
-        supabaseClient
+        const PAGE_SIZE =
+            500;
 
-            .from("words")
 
-            .select("*")
+        const MAX_PAGES =
+            50;
 
-            .order("ko", { ascending: true })
 
-            .then(
-                function (response) {
+        function fetchPage(offset, accumulated, pageCount) {
 
-                    if (response.error) {
+            if (pageCount >= MAX_PAGES) {
 
-                        throw response.error;
+                return Promise.resolve(
+                    accumulated
+                );
+
+            }
+
+
+            return supabaseClient
+
+                .from("words")
+
+                .select("*")
+
+                .order("ko", { ascending: true })
+
+                .range(
+                    offset,
+                    offset + PAGE_SIZE - 1
+                )
+
+                .then(
+                    function (response) {
+
+                        if (response.error) {
+
+                            throw response.error;
+
+                        }
+
+
+                        const pageRows =
+                            response.data ||
+                            [];
+
+
+                        const combined =
+                            accumulated.concat(
+                                pageRows
+                            );
+
+
+                        if (
+                            pageRows.length > 0
+                        ) {
+
+                            return fetchPage(
+                                offset +
+                                pageRows.length,
+                                combined,
+                                pageCount + 1
+                            );
+
+                        }
+
+
+                        return combined;
 
                     }
+                );
+
+        }
+
+
+        fetchPage(0, [], 0)
+
+            .then(
+                function (allRows) {
 
 
                     rawBaseData =
-                        (response.data || []).map(
+                        allRows.map(
                             function (item) {
 
                                 return {

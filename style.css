@@ -611,6 +611,24 @@ main {
   vertical-align: middle;
 }
 
+.presence-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-bottom: 2px;
+}
+
+.presence-online {
+  background: #2ECC71;
+  box-shadow: 0 0 0 3px rgba(46,204,113,0.25);
+}
+
+.presence-offline {
+  background: #8a8a8a;
+}
+
 .card-top {
   display: flex;
 
