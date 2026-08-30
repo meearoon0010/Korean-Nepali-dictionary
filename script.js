@@ -177,6 +177,131 @@ document.addEventListener("DOMContentLoaded", function () {
        PRESENCE HEARTBEAT
        ===================================================== */
 
+    function getDeviceId() {
+
+        let deviceId =
+            localStorage.getItem(
+                LS_DEVICE_ID
+            );
+
+
+        if (!deviceId) {
+
+            deviceId =
+                (
+                    window.crypto &&
+                    window.crypto.randomUUID
+                )
+                    ? window.crypto.randomUUID()
+                    : (
+                        "dev-" +
+                        Date.now() +
+                        "-" +
+                        Math.random()
+                            .toString(36)
+                            .slice(2)
+                    );
+
+
+            localStorage.setItem(
+                LS_DEVICE_ID,
+                deviceId
+            );
+
+        }
+
+
+        return deviceId;
+
+    }
+
+
+    function claimDeviceSession(userId) {
+
+        return supabaseClient
+
+            .from("active_sessions")
+
+            .upsert({
+
+                user_id:
+                    userId,
+
+                device_id:
+                    getDeviceId(),
+
+                updated_at:
+                    new Date().toISOString()
+
+            })
+
+            .then(
+                function (response) {
+
+                    if (response.error) {
+
+                        console.error(
+                            "Couldn't claim session:",
+                            response.error
+                        );
+
+                    }
+
+                }
+            );
+
+    }
+
+
+    function checkDeviceSession(userId) {
+
+        supabaseClient
+
+            .from("active_sessions")
+
+            .select("device_id")
+
+            .eq("user_id", userId)
+
+            .maybeSingle()
+
+            .then(
+                function (response) {
+
+                    if (response.error) {
+
+                        console.error(
+                            "Couldn't check session:",
+                            response.error
+                        );
+
+                        return;
+
+                    }
+
+
+                    const activeDeviceId =
+                        response.data &&
+                        response.data.device_id;
+
+
+                    if (
+                        activeDeviceId &&
+                        activeDeviceId !== getDeviceId()
+                    ) {
+
+                        performLogout(
+                            "You've been logged out because your account was used on another device."
+                        );
+
+                    }
+
+                }
+            );
+
+    }
+
+
     let presenceIntervalId =
         null;
 
@@ -212,6 +337,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             );
 
+
+        checkDeviceSession(
+            userId
+        );
+
     }
 
 
@@ -220,9 +350,19 @@ document.addEventListener("DOMContentLoaded", function () {
         stopPresenceHeartbeat();
 
 
-        sendHeartbeat(
+        claimDeviceSession(
             userId
-        );
+        )
+
+            .then(
+                function () {
+
+                    sendHeartbeat(
+                        userId
+                    );
+
+                }
+            );
 
 
         presenceIntervalId =
@@ -1110,6 +1250,63 @@ document.addEventListener("DOMContentLoaded", function () {
        LOGOUT
        ===================================================== */
 
+    async function performLogout(message) {
+
+        try {
+
+            const { error } =
+                await supabaseClient.auth.signOut();
+
+            if (error) {
+                throw error;
+            }
+
+        } catch (error) {
+
+            console.error(
+                "Logout error:",
+                error
+            );
+
+        }
+
+
+        authEmail.value = "";
+        authPassword.value = "";
+
+        if (profileMenu) {
+            profileMenu.hidden = true;
+        }
+
+        if (profileBtn) {
+            profileBtn.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+        }
+
+        isAdminUser = false;
+
+        stopPresenceHeartbeat();
+
+        const usersTab =
+            document.querySelector(
+                '.tab[data-tab="users"]'
+            );
+
+        if (usersTab) {
+            usersTab.hidden = true;
+        }
+
+        showAuthMessage(
+            message || ""
+        );
+
+        showLogin();
+
+    }
+
+
     if (logoutBtn) {
 
         logoutBtn.addEventListener(
@@ -1118,58 +1315,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 logoutBtn.disabled = true;
 
-                try {
+                await performLogout();
 
-                    const { error } =
-                        await supabaseClient.auth.signOut();
-
-                    if (error) {
-                        throw error;
-                    }
-
-                    authEmail.value = "";
-                    authPassword.value = "";
-
-                    if (profileMenu) {
-                        profileMenu.hidden = true;
-                    }
-
-                    if (profileBtn) {
-                        profileBtn.setAttribute(
-                            "aria-expanded",
-                            "false"
-                        );
-                    }
-
-                    isAdminUser = false;
-
-                    stopPresenceHeartbeat();
-
-                    const usersTab =
-                        document.querySelector(
-                            '.tab[data-tab="users"]'
-                        );
-
-                    if (usersTab) {
-                        usersTab.hidden = true;
-                    }
-
-                    showAuthMessage("");
-
-                    showLogin();
-
-                } catch (error) {
-
-                    console.error(
-                        "Logout error:",
-                        error
-                    );
-
-                } finally {
-
-                    logoutBtn.disabled = false;
-
-                }
+                logoutBtn.disabled = false;
 
             }
         );
@@ -1195,6 +1343,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const LS_THEME =
         "kndict_theme_v1";
+
+    const LS_DEVICE_ID =
+        "kndict_device_id_v1";
 
 
     /* =====================================================
