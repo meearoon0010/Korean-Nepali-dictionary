@@ -1344,6 +1344,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const LS_THEME =
         "kndict_theme_v1";
 
+    const LS_HISTORY =
+        "kndict_search_history_v1";
+
     const LS_DEVICE_ID =
         "kndict_device_id_v1";
 
@@ -1452,6 +1455,12 @@ document.addEventListener("DOMContentLoaded", function () {
     let deleted =
         loadJSON(
             LS_DELETED,
+            []
+        );
+
+    let searchHistory =
+        loadJSON(
+            LS_HISTORY,
             []
         );
 
@@ -2282,6 +2291,138 @@ document.addEventListener("DOMContentLoaded", function () {
        CARD
        ===================================================== */
 
+    function performSearch(word) {
+
+        if (!word) {
+            return;
+        }
+
+
+        if (els.search) {
+
+            els.search.value =
+                word;
+
+        }
+
+
+        currentQuery =
+            word;
+
+
+        currentTab =
+            "all";
+
+
+        els.tabs.forEach(
+            function (tabEl) {
+
+                const isActive =
+                    tabEl.getAttribute(
+                        "data-tab"
+                    ) === "all";
+
+                tabEl.classList.toggle(
+                    "active",
+                    isActive
+                );
+
+                tabEl.setAttribute(
+                    "aria-selected",
+                    isActive ? "true" : "false"
+                );
+
+            }
+        );
+
+
+        if (els.clear) {
+
+            els.clear.style.display =
+                "flex";
+
+        }
+
+
+        recordSearchHistory(
+            word
+        );
+
+
+        hideSearchHistoryDropdown();
+
+
+        render();
+
+
+        window.scrollTo(
+            {
+                top: 0,
+                behavior: "smooth"
+            }
+        );
+
+    }
+
+
+    function tagWordsHtml(text) {
+
+        if (!text) {
+            return "";
+        }
+
+
+        const tokens =
+            text
+
+                .split(/[,\/]/)
+
+                .map(
+                    function (part) {
+
+                        return part.trim();
+
+                    }
+                )
+
+                .filter(
+                    function (part) {
+
+                        return part.length > 0;
+
+                    }
+                );
+
+
+        return tokens
+
+            .map(
+                function (word) {
+
+                    return (
+
+                        '<span class="tagword-item" data-search-word="' +
+
+                        escapeHtml(word) +
+
+                        '">' +
+
+                        escapeHtml(word) +
+
+                        "</span>"
+
+                    );
+
+                }
+            )
+
+            .join(
+                '<span class="tagword-sep">, </span>'
+            );
+
+    }
+
+
     function cardHtml(
         entry,
         trashed
@@ -2304,7 +2445,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 '<span class="tagword">' +
 
-                escapeHtml(
+                tagWordsHtml(
                     entry.similar
                 ) +
 
@@ -2323,7 +2464,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 '<span class="tagword">' +
 
-                escapeHtml(
+                tagWordsHtml(
                     entry.opposite
                 ) +
 
@@ -3385,6 +3526,30 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
+                const searchWordEl =
+                    event.target.closest(
+                        "[data-search-word]"
+                    );
+
+
+                if (searchWordEl) {
+
+                    const word =
+                        searchWordEl.getAttribute(
+                            "data-search-word"
+                        );
+
+
+                    performSearch(
+                        word
+                    );
+
+
+                    return;
+
+                }
+
+
                 const speakButton =
                     event.target.closest(
                         "[data-speak]"
@@ -3555,11 +3720,302 @@ document.addEventListener("DOMContentLoaded", function () {
        SEARCH
        ===================================================== */
 
+    const MAX_HISTORY_ITEMS =
+        15;
+
+
+    function recordSearchHistory(term) {
+
+        const clean =
+            (term || "")
+                .trim();
+
+
+        if (!clean) {
+            return;
+        }
+
+
+        searchHistory =
+            searchHistory.filter(
+                function (item) {
+
+                    return (
+                        item.toLowerCase() !==
+                        clean.toLowerCase()
+                    );
+
+                }
+            );
+
+
+        searchHistory.unshift(
+            clean
+        );
+
+
+        if (
+            searchHistory.length >
+            MAX_HISTORY_ITEMS
+        ) {
+
+            searchHistory =
+                searchHistory.slice(
+                    0,
+                    MAX_HISTORY_ITEMS
+                );
+
+        }
+
+
+        saveJSON(
+            LS_HISTORY,
+            searchHistory
+        );
+
+    }
+
+
+    function renderSearchHistoryDropdown() {
+
+        const dropdown =
+            document.getElementById(
+                "searchHistoryDropdown"
+            );
+
+
+        if (!dropdown) {
+            return;
+        }
+
+
+        if (searchHistory.length === 0) {
+
+            dropdown.innerHTML =
+
+                '<p class="search-history-empty">No recent searches yet.</p>';
+
+            return;
+
+        }
+
+
+        const itemsHtml =
+            searchHistory
+
+                .map(
+                    function (term) {
+
+                        return (
+
+                            '<button type="button" class="search-history-item" data-history-word="' +
+
+                            escapeHtml(term) +
+
+                            '">🕑 ' +
+
+                            escapeHtml(term) +
+
+                            "</button>"
+
+                        );
+
+                    }
+                )
+
+                .join("");
+
+
+        dropdown.innerHTML =
+
+            '<div class="search-history-title">' +
+
+            "<span>Recent searches</span>" +
+
+            '<button type="button" class="search-history-clear" id="clearHistoryBtn">Clear</button>' +
+
+            "</div>" +
+
+            itemsHtml;
+
+    }
+
+
+    function showSearchHistoryDropdown() {
+
+        const dropdown =
+            document.getElementById(
+                "searchHistoryDropdown"
+            );
+
+
+        if (!dropdown) {
+            return;
+        }
+
+
+        renderSearchHistoryDropdown();
+
+
+        dropdown.hidden =
+            false;
+
+    }
+
+
+    function hideSearchHistoryDropdown() {
+
+        const dropdown =
+            document.getElementById(
+                "searchHistoryDropdown"
+            );
+
+
+        if (dropdown) {
+
+            dropdown.hidden =
+                true;
+
+        }
+
+    }
+
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            const dropdown =
+                document.getElementById(
+                    "searchHistoryDropdown"
+                );
+
+
+            if (
+                !dropdown ||
+                dropdown.hidden
+            ) {
+                return;
+            }
+
+
+            const clickedHistoryItem =
+                event.target.closest(
+                    "[data-history-word]"
+                );
+
+
+            if (clickedHistoryItem) {
+
+                performSearch(
+                    clickedHistoryItem.getAttribute(
+                        "data-history-word"
+                    )
+                );
+
+                return;
+
+            }
+
+
+            const clickedClearBtn =
+                event.target.closest(
+                    "#clearHistoryBtn"
+                );
+
+
+            if (clickedClearBtn) {
+
+                searchHistory = [];
+
+                saveJSON(
+                    LS_HISTORY,
+                    searchHistory
+                );
+
+                renderSearchHistoryDropdown();
+
+                return;
+
+            }
+
+
+            const clickedInsideSearchbar =
+                event.target.closest(
+                    ".searchbar-wrap"
+                );
+
+
+            if (!clickedInsideSearchbar) {
+
+                hideSearchHistoryDropdown();
+
+            }
+
+        }
+    );
+
+
     let searchDebounce =
+        null;
+
+    let historyDebounce =
         null;
 
 
     if (els.search) {
+
+        els.search.addEventListener(
+            "focus",
+            function () {
+
+                if (!els.search.value) {
+
+                    showSearchHistoryDropdown();
+
+                }
+
+            }
+        );
+
+
+        els.search.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "Enter") {
+
+                    clearTimeout(
+                        searchDebounce
+                    );
+
+                    clearTimeout(
+                        historyDebounce
+                    );
+
+
+                    currentQuery =
+                        els.search.value;
+
+
+                    recordSearchHistory(
+                        els.search.value
+                    );
+
+
+                    hideSearchHistoryDropdown();
+
+
+                    render();
+
+
+                    els.search.blur();
+
+                }
+
+            }
+        );
+
 
         els.search.addEventListener(
             "input",
@@ -3569,9 +4025,24 @@ document.addEventListener("DOMContentLoaded", function () {
                     searchDebounce
                 );
 
+                clearTimeout(
+                    historyDebounce
+                );
+
 
                 const value =
                     els.search.value;
+
+
+                if (value) {
+
+                    hideSearchHistoryDropdown();
+
+                } else {
+
+                    showSearchHistoryDropdown();
+
+                }
 
 
                 searchDebounce =
@@ -3585,6 +4056,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         },
                         80
+                    );
+
+
+                historyDebounce =
+                    setTimeout(
+                        function () {
+
+                            recordSearchHistory(
+                                value
+                            );
+
+                        },
+                        1200
                     );
 
 
@@ -3621,6 +4105,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 render();
 
                 els.search.focus();
+
+                showSearchHistoryDropdown();
 
             }
         );
