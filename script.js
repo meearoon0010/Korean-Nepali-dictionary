@@ -2689,6 +2689,189 @@ document.addEventListener("DOMContentLoaded", function () {
        RENDER
        ===================================================== */
 
+    const RENDER_BATCH_SIZE =
+        80;
+
+    let currentFilteredData =
+        [];
+
+    let renderedCount =
+        0;
+
+    let resultsObserver =
+        null;
+
+
+    function cardsHtmlForSlice(data, startIndex, endIndex, trashedView) {
+
+        let html = "";
+
+
+        for (
+            let i = startIndex;
+            i < endIndex && i < data.length;
+            i++
+        ) {
+
+            html +=
+                cardHtml(
+                    data[i],
+                    trashedView
+                );
+
+        }
+
+
+        return html;
+
+    }
+
+
+    function attachLoadMoreSentinel() {
+
+        const existingSentinel =
+            document.getElementById(
+                "loadMoreSentinel"
+            );
+
+
+        if (existingSentinel) {
+
+            existingSentinel.remove();
+
+        }
+
+
+        if (
+            renderedCount >=
+            currentFilteredData.length
+        ) {
+
+            return;
+
+        }
+
+
+        const sentinel =
+            document.createElement(
+                "div"
+            );
+
+        sentinel.id =
+            "loadMoreSentinel";
+
+        sentinel.style.gridColumn =
+            "1 / -1";
+
+        sentinel.style.height =
+            "1px";
+
+
+        els.results.appendChild(
+            sentinel
+        );
+
+
+        if (!resultsObserver) {
+
+            resultsObserver =
+                new IntersectionObserver(
+                    function (entries) {
+
+                        entries.forEach(
+                            function (entry) {
+
+                                if (entry.isIntersecting) {
+
+                                    loadNextBatch();
+
+                                }
+
+                            }
+                        );
+
+                    },
+                    {
+                        rootMargin:
+                            "600px"
+                    }
+                );
+
+        }
+
+
+        resultsObserver.disconnect();
+
+        resultsObserver.observe(
+            sentinel
+        );
+
+    }
+
+
+    function loadNextBatch() {
+
+        if (
+            renderedCount >=
+            currentFilteredData.length
+        ) {
+            return;
+        }
+
+
+        const trashedView =
+            currentTab === "trash";
+
+
+        const nextEnd =
+            Math.min(
+                renderedCount +
+                RENDER_BATCH_SIZE,
+                currentFilteredData.length
+            );
+
+
+        const html =
+            cardsHtmlForSlice(
+                currentFilteredData,
+                renderedCount,
+                nextEnd,
+                trashedView
+            );
+
+
+        const sentinel =
+            document.getElementById(
+                "loadMoreSentinel"
+            );
+
+
+        if (sentinel) {
+
+            sentinel.insertAdjacentHTML(
+                "beforebegin",
+                html
+            );
+
+        } else {
+
+            els.results.insertAdjacentHTML(
+                "beforeend",
+                html
+            );
+
+        }
+
+
+        renderedCount =
+            nextEnd;
+
+
+        attachLoadMoreSentinel();
+
+    }
+
+
     function render() {
 
         if (!els.results) return;
@@ -2716,17 +2899,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 getFiltered();
 
 
+            currentFilteredData =
+                data;
+
+            renderedCount =
+                Math.min(
+                    RENDER_BATCH_SIZE,
+                    data.length
+                );
+
+
             els.results.innerHTML =
-                data.map(
-                    function (entry) {
+                cardsHtmlForSlice(
+                    data,
+                    0,
+                    renderedCount,
+                    trashedView
+                );
 
-                        return cardHtml(
-                            entry,
-                            trashedView
-                        );
 
-                    }
-                ).join("");
+            attachLoadMoreSentinel();
 
         } catch (renderError) {
 
@@ -3933,20 +4125,20 @@ document.addEventListener("DOMContentLoaded", function () {
                     searchHistory
                 );
 
-                renderSearchHistoryDropdown();
+                hideSearchHistoryDropdown();
 
                 return;
 
             }
 
 
-            const clickedInsideSearchbar =
+            const clickedSearchInput =
                 event.target.closest(
-                    ".searchbar-wrap"
+                    ".searchbar"
                 );
 
 
-            if (!clickedInsideSearchbar) {
+            if (!clickedSearchInput) {
 
                 hideSearchHistoryDropdown();
 
@@ -3954,6 +4146,47 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     );
+
+
+    if (els.search) {
+
+        els.search.addEventListener(
+            "blur",
+            function () {
+
+                setTimeout(
+                    function () {
+
+                        const active =
+                            document.activeElement;
+
+
+                        const dropdown =
+                            document.getElementById(
+                                "searchHistoryDropdown"
+                            );
+
+
+                        const focusMovedIntoDropdown =
+                            dropdown &&
+                            active &&
+                            dropdown.contains(active);
+
+
+                        if (!focusMovedIntoDropdown) {
+
+                            hideSearchHistoryDropdown();
+
+                        }
+
+                    },
+                    150
+                );
+
+            }
+        );
+
+    }
 
 
     let searchDebounce =

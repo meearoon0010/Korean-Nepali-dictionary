@@ -542,6 +542,9 @@ main {
   padding-bottom: 0;
 
   margin-bottom: 20px;
+
+  position: relative;
+  z-index: 45;
 }
 
 .tab {
