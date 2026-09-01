@@ -1566,6 +1566,31 @@ document.addEventListener("DOMContentLoaded", function () {
                 "resetEdit"
             ),
 
+        imageFieldWrap:
+            document.getElementById(
+                "imageFieldWrap"
+            ),
+
+        fImage:
+            document.getElementById(
+                "fImage"
+            ),
+
+        imagePreviewWrap:
+            document.getElementById(
+                "imagePreviewWrap"
+            ),
+
+        imagePreview:
+            document.getElementById(
+                "imagePreview"
+            ),
+
+        removeImageBtn:
+            document.getElementById(
+                "removeImageBtn"
+            ),
+
         saveWordBtn:
             document.getElementById(
                 "saveWordBtn"
@@ -2423,6 +2448,98 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    function uploadWordImage(file) {
+
+        const ext =
+            (
+                file.name.split(".").pop() ||
+                "jpg"
+            ).toLowerCase();
+
+
+        const path =
+            "word-" +
+            Date.now() +
+            "-" +
+            Math.floor(
+                Math.random() * 100000
+            ) +
+            "." +
+            ext;
+
+
+        return supabaseClient
+
+            .storage
+
+            .from("word-images")
+
+            .upload(
+                path,
+                file,
+                {
+                    cacheControl: "3600",
+                    upsert: false
+                }
+            )
+
+            .then(
+                function (response) {
+
+                    if (response.error) {
+
+                        throw response.error;
+
+                    }
+
+
+                    const { data } =
+                        supabaseClient
+
+                            .storage
+
+                            .from("word-images")
+
+                            .getPublicUrl(
+                                path
+                            );
+
+
+                    return data.publicUrl;
+
+                }
+            );
+
+    }
+
+
+    function resolveImageUrl(existingUrl) {
+
+        if (pendingImageRemoval) {
+
+            return Promise.resolve(
+                null
+            );
+
+        }
+
+
+        if (pendingImageFile) {
+
+            return uploadWordImage(
+                pendingImageFile
+            );
+
+        }
+
+
+        return Promise.resolve(
+            existingUrl || null
+        );
+
+    }
+
+
     function cardHtml(
         entry,
         trashed
@@ -2667,6 +2784,19 @@ document.addEventListener("DOMContentLoaded", function () {
             ) +
 
             "</p>" +
+
+
+            (
+                entry.image_url
+                    ? '<img class="word-image" src="' +
+                      escapeHtml(entry.image_url) +
+                      '" alt="' +
+                      escapeHtml(entry.ko) +
+                      '" loading="lazy" data-view-image="' +
+                      escapeHtml(entry.image_url) +
+                      '">'
+                    : ""
+            ) +
 
 
             (
@@ -3718,6 +3848,26 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
+                const imageEl =
+                    event.target.closest(
+                        "[data-view-image]"
+                    );
+
+
+                if (imageEl) {
+
+                    window.open(
+                        imageEl.getAttribute(
+                            "data-view-image"
+                        ),
+                        "_blank"
+                    );
+
+                    return;
+
+                }
+
+
                 const searchWordEl =
                     event.target.closest(
                         "[data-search-word]"
@@ -4405,6 +4555,66 @@ document.addEventListener("DOMContentLoaded", function () {
        ADD / EDIT MODAL
        ===================================================== */
 
+    let pendingImageFile =
+        null;
+
+    let pendingImageRemoval =
+        false;
+
+
+    function resetImageField(existingUrl, allowImage) {
+
+        pendingImageFile =
+            null;
+
+        pendingImageRemoval =
+            false;
+
+
+        if (els.fImage) {
+
+            els.fImage.value =
+                "";
+
+        }
+
+
+        if (els.imageFieldWrap) {
+
+            els.imageFieldWrap.hidden =
+                !allowImage;
+
+        }
+
+
+        if (
+            els.imagePreviewWrap &&
+            els.imagePreview
+        ) {
+
+            if (existingUrl) {
+
+                els.imagePreview.src =
+                    existingUrl;
+
+                els.imagePreviewWrap.hidden =
+                    false;
+
+            } else {
+
+                els.imagePreview.src =
+                    "";
+
+                els.imagePreviewWrap.hidden =
+                    true;
+
+            }
+
+        }
+
+    }
+
+
     function openAddModal() {
 
         editingId =
@@ -4426,6 +4636,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         els.addWordForm.reset();
+
+
+        resetImageField(
+            null,
+            isAdminUser
+        );
 
 
         els.modalOverlay.hidden =
@@ -4485,6 +4701,12 @@ document.addEventListener("DOMContentLoaded", function () {
             entry.mine ||
             isAdminUser ||
             !edits[entry.id];
+
+
+        resetImageField(
+            entry.mine ? null : (entry.image_url || null),
+            isAdminUser && !entry.mine
+        );
 
 
         els.modalOverlay.hidden =
@@ -4587,6 +4809,102 @@ document.addEventListener("DOMContentLoaded", function () {
     /* =====================================================
        SAVE WORD
        ===================================================== */
+
+    if (els.fImage) {
+
+        els.fImage.addEventListener(
+            "change",
+            function () {
+
+                const file =
+                    els.fImage.files &&
+                    els.fImage.files[0];
+
+
+                if (!file) {
+                    return;
+                }
+
+
+                pendingImageFile =
+                    file;
+
+                pendingImageRemoval =
+                    false;
+
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    function (event) {
+
+                        if (
+                            els.imagePreview &&
+                            els.imagePreviewWrap
+                        ) {
+
+                            els.imagePreview.src =
+                                event.target.result;
+
+                            els.imagePreviewWrap.hidden =
+                                false;
+
+                        }
+
+                    };
+
+
+                reader.readAsDataURL(
+                    file
+                );
+
+            }
+        );
+
+    }
+
+
+    if (els.removeImageBtn) {
+
+        els.removeImageBtn.addEventListener(
+            "click",
+            function () {
+
+                pendingImageFile =
+                    null;
+
+                pendingImageRemoval =
+                    true;
+
+
+                if (els.fImage) {
+
+                    els.fImage.value =
+                        "";
+
+                }
+
+
+                if (
+                    els.imagePreview &&
+                    els.imagePreviewWrap
+                ) {
+
+                    els.imagePreview.src =
+                        "";
+
+                    els.imagePreviewWrap.hidden =
+                        true;
+
+                }
+
+            }
+        );
+
+    }
+
 
     els.addWordForm.addEventListener(
         "submit",
@@ -4692,81 +5010,108 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (isAdminUser) {
 
 
-                    supabaseClient
+                    const baseForImage =
+                        rawBaseData.find(
+                            function (e) {
 
-                        .from("words")
+                                return (
+                                    e.id ===
+                                    editingId
+                                );
 
-                        .update({
+                            }
+                        );
 
-                            ko: ko,
 
-                            np: np,
-
-                            similar: similar,
-
-                            opposite: opposite,
-
-                            updated_at:
-                                new Date().toISOString()
-
-                        })
-
-                        .eq("id", Number(editingId))
+                    resolveImageUrl(
+                        baseForImage &&
+                        baseForImage.image_url
+                    )
 
                         .then(
-                            function (response) {
+                            function (resolvedImageUrl) {
 
-                                if (response.error) {
+                                return supabaseClient
 
-                                    throw response.error;
+                                    .from("words")
 
-                                }
+                                    .update({
+
+                                        ko: ko,
+
+                                        np: np,
+
+                                        similar: similar,
+
+                                        opposite: opposite,
+
+                                        image_url: resolvedImageUrl,
+
+                                        updated_at:
+                                            new Date().toISOString()
+
+                                    })
+
+                                    .eq("id", Number(editingId))
+
+                                    .then(
+                                        function (response) {
+
+                                            if (response.error) {
+
+                                                throw response.error;
+
+                                            }
 
 
-                                const base =
-                                    rawBaseData.find(
-                                        function (e) {
+                                            const base =
+                                                rawBaseData.find(
+                                                    function (e) {
 
-                                            return (
-                                                e.id ===
-                                                editingId
+                                                        return (
+                                                            e.id ===
+                                                            editingId
+                                                        );
+
+                                                    }
+                                                );
+
+
+                                            if (base) {
+
+                                                base.ko = ko;
+                                                base.np = np;
+                                                base.similar = similar;
+                                                base.opposite = opposite;
+                                                base.image_url = resolvedImageUrl;
+
+                                            }
+
+
+                                            if (edits[editingId]) {
+
+                                                delete edits[editingId];
+
+                                                saveJSON(
+                                                    LS_EDITS,
+                                                    edits
+                                                );
+
+                                            }
+
+
+                                            closeModal();
+
+
+                                            showToast(
+                                                "Word updated for everyone."
                                             );
+
+
+                                            render();
 
                                         }
                                     );
-
-
-                                if (base) {
-
-                                    base.ko = ko;
-                                    base.np = np;
-                                    base.similar = similar;
-                                    base.opposite = opposite;
-
-                                }
-
-
-                                if (edits[editingId]) {
-
-                                    delete edits[editingId];
-
-                                    saveJSON(
-                                        LS_EDITS,
-                                        edits
-                                    );
-
-                                }
-
-
-                                closeModal();
-
-
-                                showToast(
-                                    "Word updated for everyone."
-                                );
-
-
-                                render();
 
                             }
                         )
@@ -4833,69 +5178,83 @@ document.addEventListener("DOMContentLoaded", function () {
             if (isAdminUser) {
 
 
-                supabaseClient
-
-                    .from("words")
-
-                    .insert({
-
-                        ko: ko,
-
-                        np: np,
-
-                        similar: similar,
-
-                        opposite: opposite
-
-                    })
-
-                    .select()
+                resolveImageUrl(
+                    null
+                )
 
                     .then(
-                        function (response) {
+                        function (resolvedImageUrl) {
 
-                            if (response.error) {
+                            return supabaseClient
 
-                                throw response.error;
+                                .from("words")
 
-                            }
+                                .insert({
 
+                                    ko: ko,
 
-                            const row =
-                                response.data &&
-                                response.data[0];
+                                    np: np,
 
+                                    similar: similar,
 
-                            if (row) {
+                                    opposite: opposite,
 
-                                rawBaseData.unshift({
+                                    image_url: resolvedImageUrl
 
-                                    id: String(row.id),
+                                })
 
-                                    ko: row.ko || "",
+                                .select()
 
-                                    np: row.np || "",
+                                .then(
+                                    function (response) {
 
-                                    similar: row.similar || "",
+                                        if (response.error) {
 
-                                    opposite: row.opposite || "",
+                                            throw response.error;
 
-                                    mine: false
-
-                                });
-
-                            }
+                                        }
 
 
-                            closeModal();
+                                        const row =
+                                            response.data &&
+                                            response.data[0];
 
 
-                            showToast(
-                                "Word added to the dictionary."
-                            );
+                                        if (row) {
+
+                                            rawBaseData.unshift({
+
+                                                id: String(row.id),
+
+                                                ko: row.ko || "",
+
+                                                np: row.np || "",
+
+                                                similar: row.similar || "",
+
+                                                opposite: row.opposite || "",
+
+                                                image_url: row.image_url || "",
+
+                                                mine: false
+
+                                            });
+
+                                        }
 
 
-                            render();
+                                        closeModal();
+
+
+                                        showToast(
+                                            "Word added to the dictionary."
+                                        );
+
+
+                                        render();
+
+                                    }
+                                );
 
                         }
                     )
@@ -5105,6 +5464,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                                     opposite:
                                         item.opposite ||
+                                        "",
+
+                                    image_url:
+                                        item.image_url ||
                                         "",
 
                                     mine:
