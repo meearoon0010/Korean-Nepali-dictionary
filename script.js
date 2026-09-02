@@ -2799,6 +2799,7 @@ document.addEventListener("DOMContentLoaded", function () {
             (
                 entry.description
                     ? '<p class="word-description">' +
+                      "<b>어휘</b>" +
                       escapeHtml(entry.description) +
                       "</p>"
                     : ""

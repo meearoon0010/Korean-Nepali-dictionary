@@ -552,9 +552,6 @@ main {
   padding-bottom: 0;
 
   margin-bottom: 20px;
-
-  position: relative;
-  z-index: 45;
 }
 
 .tab {
@@ -1121,11 +1118,21 @@ main {
 }
 
 .word-description {
-  margin: 6px 0 0;
-  font-size: 13px;
-  font-style: italic;
-  color: var(--on-surface-dim);
-  line-height: 1.4;
+  margin: 8px 0 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--on-surface);
+  line-height: 1.5;
+}
+
+.word-description b {
+  color: var(--gold-2, var(--gold));
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-right: 6px;
+  vertical-align: middle;
 }
 
 /* Toast */
