@@ -1566,6 +1566,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 "resetEdit"
             ),
 
+        descriptionFieldWrap:
+            document.getElementById(
+                "descriptionFieldWrap"
+            ),
+
+        fDescription:
+            document.getElementById(
+                "fDescription"
+            ),
+
         imageFieldWrap:
             document.getElementById(
                 "imageFieldWrap"
@@ -2784,6 +2794,15 @@ document.addEventListener("DOMContentLoaded", function () {
             ) +
 
             "</p>" +
+
+
+            (
+                entry.description
+                    ? '<p class="word-description">' +
+                      escapeHtml(entry.description) +
+                      "</p>"
+                    : ""
+            ) +
 
 
             (
@@ -4615,6 +4634,26 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    function resetDescriptionField(existingValue, allowField) {
+
+        if (els.descriptionFieldWrap) {
+
+            els.descriptionFieldWrap.hidden =
+                !allowField;
+
+        }
+
+
+        if (els.fDescription) {
+
+            els.fDescription.value =
+                existingValue || "";
+
+        }
+
+    }
+
+
     function openAddModal() {
 
         editingId =
@@ -4636,6 +4675,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         els.addWordForm.reset();
+
+
+        resetDescriptionField(
+            null,
+            isAdminUser
+        );
 
 
         resetImageField(
@@ -4701,6 +4746,12 @@ document.addEventListener("DOMContentLoaded", function () {
             entry.mine ||
             isAdminUser ||
             !edits[entry.id];
+
+
+        resetDescriptionField(
+            entry.mine ? null : (entry.description || null),
+            isAdminUser && !entry.mine
+        );
 
 
         resetImageField(
@@ -4941,6 +4992,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     .trim();
 
 
+            const description =
+                els.fDescription
+                    ? els.fDescription.value.trim()
+                    : "";
+
+
             if (!ko || !np) {
 
                 return;
@@ -5045,6 +5102,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                                         opposite: opposite,
 
+                                        description: description,
+
                                         image_url: resolvedImageUrl,
 
                                         updated_at:
@@ -5083,6 +5142,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                                 base.np = np;
                                                 base.similar = similar;
                                                 base.opposite = opposite;
+                                                base.description = description;
                                                 base.image_url = resolvedImageUrl;
 
                                             }
@@ -5199,6 +5259,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                                     opposite: opposite,
 
+                                    description: description,
+
                                     image_url: resolvedImageUrl
 
                                 })
@@ -5233,6 +5295,8 @@ document.addEventListener("DOMContentLoaded", function () {
                                                 similar: row.similar || "",
 
                                                 opposite: row.opposite || "",
+
+                                                description: row.description || "",
 
                                                 image_url: row.image_url || "",
 
@@ -5464,6 +5528,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                                     opposite:
                                         item.opposite ||
+                                        "",
+
+                                    description:
+                                        item.description ||
                                         "",
 
                                     image_url:
