@@ -1008,6 +1008,15 @@ main {
   font-weight: 600;
 }
 
+#addWordForm label[hidden] {
+  display: none;
+}
+
+.label-eohwi {
+  color: #38BDF8;
+  font-weight: 700;
+}
+
 #addWordForm label em {
   color: var(--crimson);
 
@@ -1126,7 +1135,7 @@ main {
 }
 
 .word-description b {
-  color: var(--gold-2, var(--gold));
+  color: #38BDF8;
   font-weight: 700;
   font-size: 11px;
   letter-spacing: 0.03em;

@@ -5236,6 +5236,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
             /* ADD NEW WORD */
 
+            const isDuplicateWord =
+                allData().some(
+                    function (existing) {
+
+                        return (
+                            existing.ko
+                                .trim()
+                                .toLowerCase() ===
+                            ko
+                                .trim()
+                                .toLowerCase()
+                        );
+
+                    }
+                );
+
+
+            if (isDuplicateWord) {
+
+                showToast(
+                    '"' +
+                    ko +
+                    '" already exists in the dictionary.'
+                );
+
+                return;
+
+            }
+
+
             if (isAdminUser) {
 
 
