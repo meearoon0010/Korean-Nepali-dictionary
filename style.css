@@ -830,8 +830,6 @@ main {
 
 .tagword-item {
   cursor: pointer;
-  text-decoration: underline dotted;
-  text-underline-offset: 3px;
   transition: opacity .12s ease;
 }
 
@@ -1130,7 +1128,7 @@ main {
   margin: 8px 0 0;
   font-size: 15px;
   font-weight: 500;
-  color: var(--on-surface);
+  color: #38BDF8;
   line-height: 1.5;
 }
 
