@@ -5011,6 +5011,38 @@ document.addEventListener("DOMContentLoaded", function () {
             if (editingId) {
 
 
+                const isDuplicateOnEdit =
+                    allData().some(
+                        function (existing) {
+
+                            return (
+                                existing.id !==
+                                    editingId &&
+                                existing.ko
+                                    .trim()
+                                    .toLowerCase() ===
+                                ko
+                                    .trim()
+                                    .toLowerCase()
+                            );
+
+                        }
+                    );
+
+
+                if (isDuplicateOnEdit) {
+
+                    showToast(
+                        '"' +
+                        ko +
+                        '" already exists in the dictionary.'
+                    );
+
+                    return;
+
+                }
+
+
                 const target =
                     mine.find(
                         function (word) {
