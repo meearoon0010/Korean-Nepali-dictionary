@@ -3908,7 +3908,10 @@ const GROUP_PICTURE = "picture";
                 (groups[key] = groups[key] || []).push(entry);
 
                 /* separate headings for words that carry 어휘 or a picture */
-                if ((entry.description || "").trim()) {
+                if (
+                    key !== GROUP_GRAMMAR &&
+                    (entry.description || "").trim()
+                ) {
                     (groups[GROUP_EOHWI] = groups[GROUP_EOHWI] || []).push(entry);
                 }
 
