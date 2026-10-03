@@ -3697,15 +3697,26 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-        const result =
-            await response.json();
+        /* Gateway errors (404, 502, timeouts) may not be JSON */
+        let result = {};
+
+        try {
+
+            result =
+                await response.json();
+
+        } catch (parseError) {
+
+            result = {};
+
+        }
 
 
         if (!response.ok) {
 
             throw new Error(
                 result.error ||
-                ("HTTP " + response.status)
+                ("Admin service error (HTTP " + response.status + ")")
             );
 
         }
