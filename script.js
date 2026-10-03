@@ -1905,8 +1905,13 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-    let currentTab =
-        "all";
+    let currentTab = "home";
+
+    let myView = "mine";
+
+    let homeGroup = null;
+
+    let homeLimit = 300;
 
     let currentQuery =
         "";
@@ -2576,102 +2581,59 @@ document.addEventListener("DOMContentLoaded", function () {
        FILTER
        ===================================================== */
 
-    function getFiltered() {
+    function isTrashView() {
 
-        if (
-            currentTab ===
-            "trash"
-        ) {
-
-            let trashed =
-                deletedData();
-
-
-            if (currentQuery) {
-
-                trashed =
-                    trashed.filter(
-                        function (entry) {
-
-                            return matches(
-                                entry,
-                                currentQuery
-                            );
-
-                        }
-                    );
-
-            }
-
-
-            return trashed;
-
-        }
-
-
-        let data =
-            allData();
-
-
-        if (
-            currentTab ===
-            "fav"
-        ) {
-
-            data =
-                data.filter(
-                    function (entry) {
-
-                        return isFav(
-                            entry.id
-                        );
-
-                    }
-                );
-
-        }
-
-
-        else if (
-            currentTab ===
-            "mine"
-        ) {
-
-            data =
-                data.filter(
-                    function (entry) {
-
-                        return entry.mine;
-
-                    }
-                );
-
-        }
-
-
-        if (currentQuery) {
-
-            data =
-                data.filter(
-                    function (entry) {
-
-                        return matches(
-                            entry,
-                            currentQuery
-                        );
-
-                    }
-                );
-
-        }
-
-
-        return data;
+        return (
+            currentTab === "mywords" &&
+            myView === "trash"
+        );
 
     }
 
 
-    /* =====================================================
+    function getFiltered() {
+
+        if (currentTab === "search") {
+
+            if (!normalize(currentQuery)) {
+                return [];
+            }
+
+            return allData().filter(
+                function (entry) {
+                    return matches(entry, currentQuery);
+                }
+            );
+
+        }
+
+        if (currentTab === "mywords") {
+
+            if (myView === "trash") {
+                return deletedData();
+            }
+
+            if (myView === "fav") {
+                return allData().filter(
+                    function (entry) {
+                        return isFav(entry.id);
+                    }
+                );
+            }
+
+            return allData().filter(
+                function (entry) {
+                    return entry.mine;
+                }
+            );
+
+        }
+
+        return [];
+
+    }
+
+/* =====================================================
        ESCAPE HTML
        ===================================================== */
 
@@ -2766,41 +2728,17 @@ document.addEventListener("DOMContentLoaded", function () {
        CARD
        ===================================================== */
 
-    function performSearch(word) {
+    function setTab(name) {
 
-        if (!word) {
-            return;
-        }
-
-
-        if (els.search) {
-
-            els.search.value =
-                word;
-
-        }
-
-
-        currentQuery =
-            word;
-
-
-        currentTab =
-            "all";
-
+        currentTab = name;
 
         els.tabs.forEach(
             function (tabEl) {
 
                 const isActive =
-                    tabEl.getAttribute(
-                        "data-tab"
-                    ) === "all";
+                    tabEl.getAttribute("data-tab") === name;
 
-                tabEl.classList.toggle(
-                    "active",
-                    isActive
-                );
+                tabEl.classList.toggle("active", isActive);
 
                 tabEl.setAttribute(
                     "aria-selected",
@@ -2810,472 +2748,45 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         );
 
+    }
 
-        if (els.clear) {
 
-            els.clear.style.display =
-                "flex";
+    function openWordInSearch(word, remember) {
 
+        if (!word) {
+            return;
         }
 
+        if (els.search) {
+            els.search.value = word;
+        }
 
-        recordSearchHistory(
-            word
-        );
+        currentQuery = word;
 
+        if (els.clear) {
+            els.clear.style.display = "flex";
+        }
 
-        hideSearchHistoryDropdown();
+        if (remember) {
+            recordSearchHistory(word);
+        }
 
+        setTab("search");
 
         render();
 
-
-        window.scrollTo(
-            {
-                top: 0,
-                behavior: "smooth"
-            }
-        );
+        window.scrollTo({ top: 0, behavior: "smooth" });
 
     }
 
 
-    function tagWordsHtml(text) {
+    function performSearch(word) {
 
-        if (!text) {
-            return "";
-        }
-
-
-        const tokens =
-            text
-
-                .split(/[,\/]/)
-
-                .map(
-                    function (part) {
-
-                        return part.trim();
-
-                    }
-                )
-
-                .filter(
-                    function (part) {
-
-                        return part.length > 0;
-
-                    }
-                );
-
-
-        return tokens
-
-            .map(
-                function (word) {
-
-                    return (
-
-                        '<span class="tagword-item" data-search-word="' +
-
-                        escapeHtml(word) +
-
-                        '">' +
-
-                        escapeHtml(word) +
-
-                        "</span>"
-
-                    );
-
-                }
-            )
-
-            .join(
-                '<span class="tagword-sep">, </span>'
-            );
+        openWordInSearch(word, true);
 
     }
 
-
-    function uploadWordImage(file) {
-
-        const ext =
-            (
-                file.name.split(".").pop() ||
-                "jpg"
-            ).toLowerCase();
-
-
-        const path =
-            "word-" +
-            Date.now() +
-            "-" +
-            Math.floor(
-                Math.random() * 100000
-            ) +
-            "." +
-            ext;
-
-
-        return supabaseClient
-
-            .storage
-
-            .from("word-images")
-
-            .upload(
-                path,
-                file,
-                {
-                    cacheControl: "3600",
-                    upsert: false
-                }
-            )
-
-            .then(
-                function (response) {
-
-                    if (response.error) {
-
-                        throw response.error;
-
-                    }
-
-
-                    const { data } =
-                        supabaseClient
-
-                            .storage
-
-                            .from("word-images")
-
-                            .getPublicUrl(
-                                path
-                            );
-
-
-                    return data.publicUrl;
-
-                }
-            );
-
-    }
-
-
-    function resolveImageUrl(existingUrl) {
-
-        if (pendingImageRemoval) {
-
-            return Promise.resolve(
-                null
-            );
-
-        }
-
-
-        if (pendingImageFile) {
-
-            return uploadWordImage(
-                pendingImageFile
-            );
-
-        }
-
-
-        return Promise.resolve(
-            existingUrl || null
-        );
-
-    }
-
-
-    function cardHtml(
-        entry,
-        trashed
-    ) {
-
-        const favOn =
-            isFav(entry.id);
-
-
-        let meta = "";
-
-
-        if (entry.similar) {
-
-            meta +=
-
-                '<div class="meta-line similar-line">' +
-
-                "<b>similar</b> " +
-
-                '<span class="tagword">' +
-
-                tagWordsHtml(
-                    entry.similar
-                ) +
-
-                "</span></div>";
-
-        }
-
-
-        if (entry.opposite) {
-
-            meta +=
-
-                '<div class="meta-line opposite-line">' +
-
-                "<b>opposite</b> " +
-
-                '<span class="tagword">' +
-
-                tagWordsHtml(
-                    entry.opposite
-                ) +
-
-                "</span></div>";
-
-        }
-
-
-        let badge = "";
-
-
-        if (trashed) {
-
-            badge =
-                '<span class="mine-tag deleted-tag">deleted</span>';
-
-        }
-
-        else if (entry.mine) {
-
-            badge =
-                '<span class="mine-tag">yours</span>';
-
-        }
-
-        else if (entry.edited) {
-
-            badge =
-                '<span class="mine-tag edited-tag">edited</span>';
-
-        }
-
-
-        let actions;
-
-
-        if (trashed) {
-
-            actions =
-
-                '<button class="icon-btn restore-btn" ' +
-
-                'data-restore="' +
-
-                entry.id +
-
-                '" ' +
-
-                'title="Restore this word" ' +
-
-                'aria-label="Restore">' +
-
-                restoreIcon +
-
-                "</button>";
-
-        }
-
-        else {
-
-            actions =
-
-                '<button class="icon-btn speak-btn" ' +
-
-                'data-speak="' +
-
-                entry.id +
-
-                '" ' +
-
-                'title="Hear Korean pronunciation" ' +
-
-                'aria-label="Pronounce">' +
-
-                speakIcon +
-
-                "</button>" +
-
-
-                '<button class="icon-btn edit-btn" ' +
-
-                'data-edit="' +
-
-                entry.id +
-
-                '" ' +
-
-                'title="Edit this entry" ' +
-
-                'aria-label="Edit">' +
-
-                editIcon +
-
-                "</button>" +
-
-
-                '<button class="icon-btn fav-btn' +
-
-                (
-                    favOn
-                        ? " fav-on"
-                        : ""
-                ) +
-
-                '" data-fav="' +
-
-                entry.id +
-
-                '" ' +
-
-                'title="Toggle favorite" ' +
-
-                'aria-label="Toggle favorite">' +
-
-                (
-                    favOn
-                        ? "★"
-                        : "☆"
-                ) +
-
-                "</button>" +
-
-
-                '<button class="icon-btn delete-btn" ' +
-
-                'data-delete="' +
-
-                entry.id +
-
-                '" ' +
-
-                'title="Delete this word" ' +
-
-                'aria-label="Delete">' +
-
-                trashIcon +
-
-                "</button>";
-
-        }
-
-
-        return (
-
-            '<div class="card' +
-
-            (
-                entry.mine
-                    ? " mine"
-                    : ""
-            ) +
-
-            (
-                entry.edited
-                    ? " edited"
-                    : ""
-            ) +
-
-            (
-                trashed
-                    ? " trashed"
-                    : ""
-            ) +
-
-            '" data-id="' +
-
-            entry.id +
-
-            '">' +
-
-
-            badge +
-
-
-            '<div class="card-top">' +
-
-            '<p class="ko-word">' +
-
-            escapeHtml(
-                entry.ko
-            ) +
-
-            "</p>" +
-
-
-            '<div class="card-actions">' +
-
-            actions +
-
-            "</div>" +
-
-
-            "</div>" +
-
-
-            '<p class="np-word">' +
-
-            escapeHtml(
-                entry.np
-            ) +
-
-            "</p>" +
-
-
-            (
-                entry.description
-                    ? '<p class="word-description">' +
-                      "<b>어휘</b>" +
-                      escapeHtml(entry.description) +
-                      "</p>"
-                    : ""
-            ) +
-
-
-            (
-                entry.image_url
-                    ? '<img class="word-image" src="' +
-                      escapeHtml(entry.image_url) +
-                      '" alt="' +
-                      escapeHtml(entry.ko) +
-                      '" loading="lazy" data-view-image="' +
-                      escapeHtml(entry.image_url) +
-                      '">'
-                    : ""
-            ) +
-
-
-            (
-                meta
-                    ? '<div class="meta-row">' +
-                      meta +
-                      "</div>"
-                    : ""
-            ) +
-
-
-            "</div>"
-
-        );
-
-    }
-
-
-    /* =====================================================
+/* =====================================================
        RENDER
        ===================================================== */
 
@@ -3410,7 +2921,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         const trashedView =
-            currentTab === "trash";
+            isTrashView();
 
 
         const nextEnd =
@@ -3467,7 +2978,31 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!els.results) return;
 
 
+        const all = allData();
+
+        if (els.stats) {
+            els.stats.textContent = all.length + " entries";
+        }
+
+        if (els.footCount) {
+            els.footCount.textContent = rawBaseData.length;
+        }
+
+        const searchPanel =
+            document.getElementById("searchPanel");
+
+        if (searchPanel) {
+            searchPanel.hidden = currentTab !== "search";
+        }
+
+        if (currentTab === "search") {
+            renderSearchHistoryDropdown();
+        }
+
+
         if (currentTab === "profile") {
+
+            els.empty.hidden = true;
 
             renderProfileTab();
 
@@ -3476,18 +3011,26 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        let data = [];
+        if (currentTab === "home") {
 
+            els.empty.hidden = true;
+
+            renderHomeTab(all);
+
+            return;
+
+        }
+
+
+        let data = [];
 
         try {
 
             const trashedView =
-                currentTab === "trash";
-
+                isTrashView();
 
             data =
                 getFiltered();
-
 
             currentFilteredData =
                 data;
@@ -3498,15 +3041,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     data.length
                 );
 
-
             els.results.innerHTML =
+                (currentTab === "mywords" ? mySubTabsHtml() : "") +
                 cardsHtmlForSlice(
                     data,
                     0,
                     renderedCount,
                     trashedView
                 );
-
 
             attachLoadMoreSentinel();
 
@@ -3534,42 +3076,208 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
+        let emptyText =
+            "No entries match yet. Try a different spelling, or add it yourself.";
+
+        if (currentTab === "search" && !normalize(currentQuery)) {
+            emptyText =
+                "Type a Korean, Nepali or English word above to search.";
+        } else if (currentTab === "mywords") {
+            emptyText =
+                myView === "fav"
+                    ? "No favourites yet. Tap the ★ on any word to save it here."
+                    : myView === "trash"
+                        ? "Nothing deleted."
+                        : "You haven't added any words yet. Tap + Add word.";
+        }
+
+        els.empty.textContent = emptyText;
+
         els.empty.hidden =
             data.length !== 0;
-
-
-        const all =
-            allData();
-
-
-        els.countAll.textContent =
-            all.length;
-
-
-        els.countFav.textContent =
-            favorites.length;
-
-
-        els.countMine.textContent =
-            mine.length;
-
-
-        els.countTrash.textContent =
-            deleted.length;
-
-
-        els.stats.textContent =
-            all.length +
-            " entries";
-
-
-        els.footCount.textContent =
-            rawBaseData.length;
 
     }
 
 
     /* =====================================================
+       MY WORDS SUB-TABS (Mine / Favourites / Deleted)
+       ===================================================== */
+
+    function mySubTabsHtml() {
+
+        function btn(view, label, count) {
+
+            return (
+                '<button type="button" class="subtab' +
+                (myView === view ? " active" : "") +
+                '" data-my-view="' + view + '">' +
+                label +
+                ' <span class="count">' + count + "</span>" +
+                "</button>"
+            );
+
+        }
+
+        return (
+            '<div class="subtabs">' +
+            btn("mine", "Mine", mine.length) +
+            btn("fav", "★ Favourites", favorites.length) +
+            btn("trash", "🗑 Deleted", deleted.length) +
+            "</div>"
+        );
+
+    }
+
+
+    /* =====================================================
+       HOME TAB (alphabetical by Korean initial consonant)
+       ===================================================== */
+
+    const HANGUL_INITIALS = [
+        "ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ",
+        "ㅆ", "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"
+    ];
+
+    const GROUP_GRAMMAR = "grammar";
+    const GROUP_OTHER = "other";
+
+    function homeGroupKey(ko) {
+
+        const text = (ko || "").trim();
+
+        if (!text) {
+            return GROUP_OTHER;
+        }
+
+        /* words starting with a dash are grammar endings/patterns */
+        if (/^[-\u2010-\u2015\u2212]/.test(text)) {
+            return GROUP_GRAMMAR;
+        }
+
+        const code = text.charCodeAt(0);
+
+        if (code >= 0xAC00 && code <= 0xD7A3) {
+            return HANGUL_INITIALS[
+                Math.floor((code - 0xAC00) / 588)
+            ];
+        }
+
+        /* a bare consonant letter typed on its own */
+        if (HANGUL_INITIALS.indexOf(text.charAt(0)) !== -1) {
+            return text.charAt(0);
+        }
+
+        return GROUP_OTHER;
+
+    }
+
+    function homeGroupLabel(key) {
+
+        if (key === GROUP_GRAMMAR) return "Grammar";
+        if (key === GROUP_OTHER) return "Other";
+
+        return key;
+
+    }
+
+    function renderHomeTab(all) {
+
+        const groups = {};
+
+        all.forEach(
+            function (entry) {
+
+                const key = homeGroupKey(entry.ko);
+
+                (groups[key] = groups[key] || []).push(entry);
+
+            }
+        );
+
+        const order =
+            HANGUL_INITIALS
+                .concat([GROUP_GRAMMAR, GROUP_OTHER])
+                .filter(
+                    function (key) {
+                        return !!groups[key];
+                    }
+                );
+
+        if (order.length === 0) {
+
+            els.results.innerHTML =
+                '<p class="empty-state" style="grid-column:1/-1;">Loading dictionary…</p>';
+
+            return;
+
+        }
+
+        if (!homeGroup || !groups[homeGroup]) {
+            homeGroup = order[0];
+        }
+
+        const list =
+            groups[homeGroup]
+                .slice()
+                .sort(
+                    function (a, b) {
+                        return (a.ko || "").localeCompare(b.ko || "", "ko");
+                    }
+                );
+
+        const shown = list.slice(0, homeLimit);
+
+        const tabsHtml =
+            order
+                .map(
+                    function (key) {
+                        return (
+                            '<button type="button" class="letter-tab' +
+                            (key === homeGroup ? " active" : "") +
+                            '" data-home-group="' + key + '">' +
+                            escapeHtml(homeGroupLabel(key)) +
+                            ' <span class="count">' + groups[key].length + "</span>" +
+                            "</button>"
+                        );
+                    }
+                )
+                .join("");
+
+        const wordsHtml =
+            shown
+                .map(
+                    function (entry) {
+                        return (
+                            '<button type="button" class="home-word" data-home-word="' +
+                            escapeHtml(entry.ko) + '">' +
+                            '<span class="hw-ko">' + escapeHtml(entry.ko) + "</span>" +
+                            '<span class="hw-np">' + escapeHtml(entry.np) + "</span>" +
+                            "</button>"
+                        );
+                    }
+                )
+                .join("");
+
+        els.results.innerHTML =
+            '<div class="home-view">' +
+            '<div class="letter-tabs" role="tablist">' + tabsHtml + "</div>" +
+            '<div class="home-head">' +
+            "<h2>" + escapeHtml(homeGroupLabel(homeGroup)) + "</h2>" +
+            "<span>" + list.length + " words</span>" +
+            "</div>" +
+            '<div class="home-columns">' + wordsHtml + "</div>" +
+            (
+                list.length > shown.length
+                    ? '<button type="button" class="btn ghost home-more" data-home-more>Show more (' +
+                      (list.length - shown.length) + " left)</button>"
+                    : ""
+            ) +
+            "</div>";
+
+    }
+
+
+/* =====================================================
        PROFILE TAB
        ===================================================== */
 
@@ -3579,15 +3287,12 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-
         const name =
             currentUserMetadata.full_name ||
             "Dictionary user";
 
-
-        const dob =
-            currentUserMetadata.date_of_birth;
-
+        const dark =
+            document.documentElement.getAttribute("data-theme") === "dark";
 
         els.results.innerHTML =
 
@@ -3602,20 +3307,26 @@ document.addEventListener("DOMContentLoaded", function () {
             "</p>" +
 
             (
-                dob
-                    ? '<p class="profile-dob">Born: ' +
-                      escapeHtml(dob) +
-                      "</p>"
-                    : ""
-            ) +
-
-            (
                 isAdminUser
                     ? '<span class="profile-admin-note">👑 Admin</span>'
                     : ""
             ) +
 
             '<div class="profile-view-actions">' +
+
+            '<button type="button" class="btn ghost" data-open-details>' +
+            "👤 My details" +
+            "</button>" +
+
+            '<button type="button" class="btn ghost" data-open-password>' +
+            "🔑 Change password" +
+            "</button>" +
+
+            '<button type="button" class="btn ghost theme-row" data-toggle-theme ' +
+            'role="switch" aria-checked="' + (dark ? "true" : "false") + '">' +
+            "<span>🌙 Dark mode</span>" +
+            '<span class="switch-state">' + (dark ? "On" : "Off") + "</span>" +
+            "</button>" +
 
             (
                 isAdminUser
@@ -3626,9 +3337,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ) +
 
             '<button type="button" class="btn ghost" data-logout>' +
-
             "Log out" +
-
             "</button>" +
 
             "</div>" +
@@ -3639,6 +3348,186 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
+       PROFILE OVERLAYS (My details / Change password)
+       ===================================================== */
+
+    const detailsOverlay =
+        document.getElementById("detailsOverlay");
+
+    const passwordOverlay =
+        document.getElementById("passwordOverlay");
+
+    const changePasswordForm =
+        document.getElementById("changePasswordForm");
+
+    const cpNew =
+        document.getElementById("cpNew");
+
+    const cpConfirm =
+        document.getElementById("cpConfirm");
+
+    const cpMessage =
+        document.getElementById("cpMessage");
+
+    const cpUpdate =
+        document.getElementById("cpUpdate");
+
+
+    function openDetailsOverlay() {
+
+        if (!detailsOverlay) return;
+
+        document.getElementById("detailsUsername").textContent =
+            currentUserEmail || "—";
+
+        document.getElementById("detailsDisplayName").textContent =
+            currentUserMetadata.full_name || "Not set";
+
+        detailsOverlay.hidden = false;
+
+    }
+
+    function closeDetailsOverlay() {
+
+        if (detailsOverlay) detailsOverlay.hidden = true;
+
+    }
+
+    function setPasswordMessage(text, type) {
+
+        if (!cpMessage) return;
+
+        cpMessage.textContent = text || "";
+
+        cpMessage.className = "pw-message" + (type ? " " + type : "");
+
+    }
+
+    function openPasswordOverlay() {
+
+        if (!passwordOverlay) return;
+
+        cpNew.value = "";
+        cpConfirm.value = "";
+
+        setPasswordMessage("");
+
+        passwordOverlay.hidden = false;
+
+        cpNew.focus();
+
+    }
+
+    function closePasswordOverlay() {
+
+        if (passwordOverlay) passwordOverlay.hidden = true;
+
+        if (cpNew) cpNew.value = "";
+        if (cpConfirm) cpConfirm.value = "";
+
+    }
+
+    [
+        ["detailsClose", closeDetailsOverlay],
+        ["detailsDone", closeDetailsOverlay],
+        ["passwordClose", closePasswordOverlay],
+        ["cpCancel", closePasswordOverlay]
+    ].forEach(
+        function (pair) {
+
+            const el = document.getElementById(pair[0]);
+
+            if (el) el.addEventListener("click", pair[1]);
+
+        }
+    );
+
+    [
+        [detailsOverlay, closeDetailsOverlay],
+        [passwordOverlay, closePasswordOverlay]
+    ].forEach(
+        function (pair) {
+
+            if (!pair[0]) return;
+
+            pair[0].addEventListener(
+                "click",
+                function (event) {
+                    if (event.target === pair[0]) pair[1]();
+                }
+            );
+
+        }
+    );
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key !== "Escape") return;
+
+            closeDetailsOverlay();
+            closePasswordOverlay();
+
+        }
+    );
+
+    if (changePasswordForm) {
+
+        changePasswordForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+                const pw = cpNew.value;
+                const confirmPw = cpConfirm.value;
+
+                if (pw.length < 6) {
+                    setPasswordMessage("Password must be at least 6 characters.", "error");
+                    return;
+                }
+
+                if (pw !== confirmPw) {
+                    setPasswordMessage("The two passwords don't match.", "error");
+                    return;
+                }
+
+                cpUpdate.disabled = true;
+
+                setPasswordMessage("Updating…");
+
+                try {
+
+                    const { error } =
+                        await supabaseClient.auth.updateUser({ password: pw });
+
+                    if (error) throw error;
+
+                    closePasswordOverlay();
+
+                    showToast("Password updated.");
+
+                } catch (err) {
+
+                    setPasswordMessage(
+                        (err && err.message) || "Could not update the password.",
+                        "error"
+                    );
+
+                } finally {
+
+                    cpUpdate.disabled = false;
+
+                }
+
+            }
+        );
+
+    }
+
+
+/* =====================================================
        USERS (ADMIN ONLY)
        ===================================================== */
 
@@ -4424,6 +4313,70 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
+                const detailsBtn =
+                    event.target.closest("[data-open-details]");
+
+                if (detailsBtn) {
+                    openDetailsOverlay();
+                    return;
+                }
+
+                const passwordBtn =
+                    event.target.closest("[data-open-password]");
+
+                if (passwordBtn) {
+                    openPasswordOverlay();
+                    return;
+                }
+
+                const themeBtn =
+                    event.target.closest("[data-toggle-theme]");
+
+                if (themeBtn) {
+                    toggleTheme();
+                    renderProfileTab();
+                    return;
+                }
+
+                const groupBtn =
+                    event.target.closest("[data-home-group]");
+
+                if (groupBtn) {
+                    homeGroup = groupBtn.getAttribute("data-home-group");
+                    homeLimit = 300;
+                    render();
+                    return;
+                }
+
+                const moreBtn =
+                    event.target.closest("[data-home-more]");
+
+                if (moreBtn) {
+                    homeLimit += 300;
+                    render();
+                    return;
+                }
+
+                const homeWordBtn =
+                    event.target.closest("[data-home-word]");
+
+                if (homeWordBtn) {
+                    openWordInSearch(
+                        homeWordBtn.getAttribute("data-home-word"),
+                        false
+                    );
+                    return;
+                }
+
+                const myViewBtn =
+                    event.target.closest("[data-my-view]");
+
+                if (myViewBtn) {
+                    myView = myViewBtn.getAttribute("data-my-view");
+                    render();
+                    return;
+                }
+
                 const openUsersButton =
                     event.target.closest(
                         "[data-open-users-overlay]"
@@ -4712,69 +4665,51 @@ document.addEventListener("DOMContentLoaded", function () {
             searchHistory
         );
 
+    
+        renderSearchHistoryDropdown();
+
     }
 
 
     function renderSearchHistoryDropdown() {
 
         const dropdown =
-            document.getElementById(
-                "searchHistoryDropdown"
-            );
-
+            document.getElementById("searchHistoryDropdown");
 
         if (!dropdown) {
             return;
         }
 
-
         if (searchHistory.length === 0) {
 
             dropdown.innerHTML =
-
-                '<p class="search-history-empty">No recent searches yet.</p>';
+                '<div class="search-history-title"><span>Search history</span></div>' +
+                '<p class="search-history-empty">No searches yet.</p>';
 
             return;
 
         }
 
-
         const itemsHtml =
             searchHistory
-
                 .map(
                     function (term) {
-
                         return (
-
                             '<button type="button" class="search-history-item" data-history-word="' +
-
                             escapeHtml(term) +
-
                             '">🕑 ' +
-
                             escapeHtml(term) +
-
                             "</button>"
-
                         );
-
                     }
                 )
-
                 .join("");
 
-
         dropdown.innerHTML =
-
             '<div class="search-history-title">' +
-
-            "<span>Recent searches</span>" +
-
+            "<span>Search history</span>" +
             '<button type="button" class="search-history-clear" id="clearHistoryBtn">Clear</button>' +
-
             "</div>" +
-
             itemsHtml;
 
     }
@@ -4782,45 +4717,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showSearchHistoryDropdown() {
 
-        const dropdown =
-            document.getElementById(
-                "searchHistoryDropdown"
-            );
-
-
-        if (!dropdown) {
-            return;
-        }
-
-
         renderSearchHistoryDropdown();
 
-
-        dropdown.hidden =
-            false;
-
     }
 
 
-    function hideSearchHistoryDropdown() {
+    /* history is always visible on the Search tab */
+    function hideSearchHistoryDropdown() {}
 
-        const dropdown =
-            document.getElementById(
-                "searchHistoryDropdown"
-            );
-
-
-        if (dropdown) {
-
-            dropdown.hidden =
-                true;
-
-        }
-
-    }
-
-
-    document.addEventListener(
+document.addEventListener(
         "click",
         function (event) {
 
@@ -4872,7 +4777,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     searchHistory
                 );
 
-                hideSearchHistoryDropdown();
+                renderSearchHistoryDropdown();
 
                 return;
 
@@ -5105,41 +5010,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 "click",
                 function () {
 
-                    els.tabs.forEach(
-                        function (item) {
-
-                            item.classList
-                                .remove(
-                                    "active"
-                                );
-
-                            item.setAttribute(
-                                "aria-selected",
-                                "false"
-                            );
-
-                        }
-                    );
-
-
-                    tab.classList.add(
-                        "active"
-                    );
-
-
-                    tab.setAttribute(
-                        "aria-selected",
-                        "true"
-                    );
-
-
-                    currentTab =
-                        tab.getAttribute(
-                            "data-tab"
-                        );
-
+                    setTab(tab.getAttribute("data-tab"));
 
                     render();
+
+                    if (currentTab === "search" && els.search) {
+                        els.search.focus();
+                    }
 
                 }
             );
@@ -5147,8 +5024,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     );
 
-
-    /* =====================================================
+/* =====================================================
        ADD / EDIT MODAL
        ===================================================== */
 
