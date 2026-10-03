@@ -2475,3 +2475,32 @@ html, body { overscroll-behavior-y: contain; }   /* no double native refresh */
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
+
+/* =========================================================
+   LETTER HEADINGS ON PHONES: wrap into rows so every one is
+   visible and tappable (no sideways scrolling)
+   ========================================================= */
+
+@media (max-width: 599px) {
+
+  .letter-tabs {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    overflow-y: auto;
+    max-height: 34vh;
+    max-height: 34dvh;
+    gap: 5px;
+    padding: 7px 0;
+    scrollbar-width: none;
+  }
+
+  .letter-tab {
+    flex: 0 0 auto;
+    min-width: 36px;
+    min-height: 38px;
+    padding: 4px 8px;
+    justify-content: center;
+  }
+
+  .letter-tab .count { display: none; }
+}
