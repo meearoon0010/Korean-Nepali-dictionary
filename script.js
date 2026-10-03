@@ -1948,7 +1948,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         tabs:
             document.querySelectorAll(
-                ".tab[data-tab]"
+                ".tab[data-tab], .profile-btn[data-tab]"
             ),
 
         countAll:
@@ -3291,8 +3291,33 @@ document.addEventListener("DOMContentLoaded", function () {
             currentUserMetadata.full_name ||
             "Dictionary user";
 
-        const dark =
-            document.documentElement.getAttribute("data-theme") === "dark";
+        const dob =
+            currentUserMetadata.date_of_birth;
+
+        const entryCount =
+            allData().length;
+
+        const darkOn =
+            document.documentElement
+                .getAttribute("data-theme") === "dark";
+
+        const profileSettingsHtml =
+            '<div class="profile-settings">' +
+            '<div class="profile-row">' +
+            "<span>Dictionary entries</span>" +
+            "<strong>" + entryCount + "</strong>" +
+            "</div>" +
+            '<div class="profile-row">' +
+            "<span>Dark mode</span>" +
+            '<button type="button" class="theme-switch" ' +
+            "data-theme-toggle " +
+            'role="switch" ' +
+            'aria-label="Dark mode" ' +
+            'aria-checked="' + (darkOn ? "true" : "false") + '">' +
+            '<span class="theme-switch-knob"></span>' +
+            "</button>" +
+            "</div>" +
+            "</div>";
 
         els.results.innerHTML =
 
@@ -3307,10 +3332,20 @@ document.addEventListener("DOMContentLoaded", function () {
             "</p>" +
 
             (
+                dob
+                    ? '<p class="profile-dob">Born: ' +
+                      escapeHtml(dob) +
+                      "</p>"
+                    : ""
+            ) +
+
+            (
                 isAdminUser
                     ? '<span class="profile-admin-note">👑 Admin</span>'
                     : ""
             ) +
+
+            profileSettingsHtml +
 
             '<div class="profile-view-actions">' +
 
@@ -3320,12 +3355,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             '<button type="button" class="btn ghost" data-open-password>' +
             "🔑 Change password" +
-            "</button>" +
-
-            '<button type="button" class="btn ghost theme-row" data-toggle-theme ' +
-            'role="switch" aria-checked="' + (dark ? "true" : "false") + '">' +
-            "<span>🌙 Dark mode</span>" +
-            '<span class="switch-state">' + (dark ? "On" : "Off") + "</span>" +
             "</button>" +
 
             (
@@ -3912,11 +3941,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    if (els.results) {
-
-        els.results.addEventListener(
-            "click",
-            function (event) {
+    function handleUsersPanelClick(event) {
 
                 const banBtn =
                     event.target.closest(
@@ -4057,8 +4082,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
             }
-        );
 
+
+    if (els.results) {
+        els.results.addEventListener(
+            "click",
+            handleUsersPanelClick
+        );
+    }
+
+    if (usersOverlayContent) {
+        usersOverlayContent.addEventListener(
+            "click",
+            handleUsersPanelClick
+        );
     }
 
 
@@ -4286,6 +4323,25 @@ document.addEventListener("DOMContentLoaded", function () {
             function (event) {
 
 
+                const themeSwitch =
+                    event.target.closest(
+                        "[data-theme-toggle]"
+                    );
+
+
+                if (themeSwitch) {
+
+                    toggleTheme();
+
+                    if (currentTab === "profile") {
+                        renderProfileTab();
+                    }
+
+                    return;
+
+                }
+
+
                 const logoutButton =
                     event.target.closest(
                         "[data-logout]"
@@ -4326,15 +4382,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (passwordBtn) {
                     openPasswordOverlay();
-                    return;
-                }
-
-                const themeBtn =
-                    event.target.closest("[data-toggle-theme]");
-
-                if (themeBtn) {
-                    toggleTheme();
-                    renderProfileTab();
                     return;
                 }
 
@@ -5904,9 +5951,11 @@ document.addEventListener(
             );
 
 
+            myView = "mine";
+
             const mineTab =
                 document.querySelector(
-                    '.tab[data-tab="mine"]'
+                    '.tab[data-tab="mywords"]'
                 );
 
 
