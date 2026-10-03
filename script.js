@@ -73,8 +73,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const authMessage =
         document.getElementById("auth-message");
 
-    const logoutBtn =
-        document.getElementById("logoutBtn");
+    const resetPasswordSection =
+        document.getElementById("reset-password-section");
+
+    const newPasswordInput =
+        document.getElementById("new-password-input");
+
+    const confirmNewPasswordInput =
+        document.getElementById("confirm-new-password-input");
+
+    const saveNewPasswordBtn =
+        document.getElementById("save-new-password-btn");
+
+    const resetPasswordMessage =
+        document.getElementById("reset-password-message");
 
     const authName =
         document.getElementById("auth-name");
@@ -91,20 +103,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const signupExtraBottom =
         document.getElementById("signupExtraBottom");
 
-    const profileBtn =
-        document.getElementById("profileBtn");
+    const usersOverlay =
+        document.getElementById("usersOverlay");
 
-    const profileMenu =
-        document.getElementById("profileMenu");
+    const usersOverlayContent =
+        document.getElementById("usersOverlayContent");
 
-    const profileName =
-        document.getElementById("profileName");
-
-    const profileEmail =
-        document.getElementById("profileEmail");
-
-    const profileDob =
-        document.getElementById("profileDob");
+    const closeUsersOverlay =
+        document.getElementById("closeUsersOverlay");
 
 
     let isSignupMode = false;
@@ -145,6 +151,10 @@ document.addEventListener("DOMContentLoaded", function () {
             dictionaryApp.hidden = true;
         }
 
+        if (resetPasswordSection) {
+            resetPasswordSection.style.display = "none";
+        }
+
     }
 
 
@@ -162,8 +172,45 @@ document.addEventListener("DOMContentLoaded", function () {
             dictionaryApp.hidden = false;
         }
 
+        if (resetPasswordSection) {
+            resetPasswordSection.style.display = "none";
+        }
+
         if (typeof render === "function") {
             render();
+        }
+
+    }
+
+
+    /* =====================================================
+       SHOW SET-NEW-PASSWORD FORM
+       ===================================================== */
+
+    function showResetPasswordForm() {
+
+        if (authSection) {
+            authSection.style.display = "none";
+        }
+
+        if (dictionaryApp) {
+            dictionaryApp.hidden = true;
+        }
+
+        if (resetPasswordSection) {
+            resetPasswordSection.style.display = "flex";
+        }
+
+        if (newPasswordInput) {
+            newPasswordInput.value = "";
+        }
+
+        if (confirmNewPasswordInput) {
+            confirmNewPasswordInput.value = "";
+        }
+
+        if (resetPasswordMessage) {
+            resetPasswordMessage.textContent = "";
         }
 
     }
@@ -396,6 +443,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    let currentUserEmail =
+        "";
+
+    let currentUserMetadata =
+        {};
+
+
     function updateUserInterface(user) {
 
         if (!user) return;
@@ -411,80 +465,19 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
 
-        const metadata =
+        currentUserEmail =
+            user.email ||
+            "";
+
+        currentUserMetadata =
             user.user_metadata ||
             {};
-
-
-        if (profileName) {
-
-            profileName.textContent =
-                metadata.full_name ||
-                "Dictionary user";
-
-        }
-
-
-        if (profileEmail) {
-
-            profileEmail.textContent =
-                user.email ||
-                "";
-
-        }
-
-
-        if (profileDob) {
-
-            if (metadata.date_of_birth) {
-
-                profileDob.textContent =
-                    "Born: " +
-                    metadata.date_of_birth;
-
-                profileDob.hidden = false;
-
-            } else {
-
-                profileDob.textContent = "";
-
-                profileDob.hidden = true;
-
-            }
-
-        }
 
 
         isAdminUser =
             !!user.email &&
             user.email.toLowerCase() ===
                 ADMIN_EMAIL.toLowerCase();
-
-
-        const usersTab =
-            document.querySelector(
-                '.tab[data-tab="users"]'
-            );
-
-        if (usersTab) {
-
-            usersTab.hidden =
-                !isAdminUser;
-
-        }
-
-
-        const profileAdminNote =
-            document.getElementById(
-                "profileAdminNote"
-            );
-
-        if (profileAdminNote) {
-
-            profileAdminNote.hidden =
-                !isAdminUser;
-
-        }
 
 
         if (typeof render === "function") {
@@ -1174,6 +1167,15 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
+            if (event === "PASSWORD_RECOVERY") {
+
+                showResetPasswordForm();
+
+                return;
+
+            }
+
+
             if (
                 session &&
                 session.user
@@ -1191,54 +1193,117 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    /* =====================================================
-       PROFILE MENU
-       ===================================================== */
+    if (saveNewPasswordBtn) {
 
-    if (profileBtn && profileMenu) {
-
-        profileBtn.addEventListener(
+        saveNewPasswordBtn.addEventListener(
             "click",
-            function (event) {
+            async function () {
 
-                event.stopPropagation();
+                const newPassword =
+                    newPasswordInput.value;
 
-                const isOpen =
-                    !profileMenu.hidden;
-
-                profileMenu.hidden =
-                    isOpen;
-
-                profileBtn.setAttribute(
-                    "aria-expanded",
-                    isOpen ? "false" : "true"
-                );
-
-            }
-        );
+                const confirmNewPassword =
+                    confirmNewPasswordInput.value;
 
 
-        document.addEventListener(
-            "click",
-            function (event) {
+                if (!newPassword) {
 
-                if (profileMenu.hidden) {
+                    resetPasswordMessage.textContent =
+                        "Please enter a new password.";
+
+                    newPasswordInput.focus();
+
                     return;
+
                 }
 
-                if (
-                    profileMenu.contains(event.target) ||
-                    profileBtn.contains(event.target)
-                ) {
+
+                if (newPassword.length < 6) {
+
+                    resetPasswordMessage.textContent =
+                        "Password must be at least 6 characters.";
+
+                    newPasswordInput.focus();
+
                     return;
+
                 }
 
-                profileMenu.hidden = true;
 
-                profileBtn.setAttribute(
-                    "aria-expanded",
-                    "false"
-                );
+                if (newPassword !== confirmNewPassword) {
+
+                    resetPasswordMessage.textContent =
+                        "Passwords do not match.";
+
+                    confirmNewPasswordInput.focus();
+
+                    return;
+
+                }
+
+
+                saveNewPasswordBtn.disabled =
+                    true;
+
+
+                try {
+
+                    const { data, error } =
+                        await supabaseClient.auth.updateUser({
+
+                            password:
+                                newPassword
+
+                        });
+
+
+                    if (error) {
+                        throw error;
+                    }
+
+
+                    resetPasswordMessage.textContent =
+                        "Password updated! Taking you to the dictionary…";
+
+
+                    setTimeout(
+                        function () {
+
+                            showDictionary();
+
+
+                            if (
+                                data &&
+                                data.user
+                            ) {
+
+                                updateUserInterface(
+                                    data.user
+                                );
+
+                            }
+
+                        },
+                        1200
+                    );
+
+                } catch (error) {
+
+                    console.error(
+                        error
+                    );
+
+
+                    resetPasswordMessage.textContent =
+                        error.message ||
+                        "Couldn't update password. Please try the reset link again.";
+
+                } finally {
+
+                    saveNewPasswordBtn.disabled =
+                        false;
+
+                }
 
             }
         );
@@ -1250,7 +1315,19 @@ document.addEventListener("DOMContentLoaded", function () {
        LOGOUT
        ===================================================== */
 
+    let loggingOut =
+        false;
+
+
     async function performLogout(message) {
+
+        if (loggingOut) {
+            return;
+        }
+
+        loggingOut =
+            true;
+
 
         try {
 
@@ -1274,28 +1351,14 @@ document.addEventListener("DOMContentLoaded", function () {
         authEmail.value = "";
         authPassword.value = "";
 
-        if (profileMenu) {
-            profileMenu.hidden = true;
-        }
-
-        if (profileBtn) {
-            profileBtn.setAttribute(
-                "aria-expanded",
-                "false"
-            );
-        }
-
         isAdminUser = false;
 
         stopPresenceHeartbeat();
 
-        const usersTab =
-            document.querySelector(
-                '.tab[data-tab="users"]'
-            );
+        if (typeof closeUsersOverlayFn === "function") {
 
-        if (usersTab) {
-            usersTab.hidden = true;
+            closeUsersOverlayFn();
+
         }
 
         showAuthMessage(
@@ -1304,23 +1367,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
         showLogin();
 
-    }
 
-
-    if (logoutBtn) {
-
-        logoutBtn.addEventListener(
-            "click",
-            async function () {
-
-                logoutBtn.disabled = true;
-
-                await performLogout();
-
-                logoutBtn.disabled = false;
-
-            }
-        );
+        loggingOut =
+            false;
 
     }
 
@@ -3027,9 +3076,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!els.results) return;
 
 
-        if (currentTab === "users") {
+        if (currentTab === "profile") {
 
-            renderUsersTab();
+            renderProfileTab();
 
             return;
 
@@ -3125,6 +3174,75 @@ document.addEventListener("DOMContentLoaded", function () {
 
         els.footCount.textContent =
             rawBaseData.length;
+
+    }
+
+
+    /* =====================================================
+       PROFILE TAB
+       ===================================================== */
+
+    function renderProfileTab() {
+
+        if (!els.results) {
+            return;
+        }
+
+
+        const name =
+            currentUserMetadata.full_name ||
+            "Dictionary user";
+
+
+        const dob =
+            currentUserMetadata.date_of_birth;
+
+
+        els.results.innerHTML =
+
+            '<div class="profile-view">' +
+
+            '<p class="profile-name">' +
+            escapeHtml(name) +
+            "</p>" +
+
+            '<p class="profile-email">' +
+            escapeHtml(currentUserEmail) +
+            "</p>" +
+
+            (
+                dob
+                    ? '<p class="profile-dob">Born: ' +
+                      escapeHtml(dob) +
+                      "</p>"
+                    : ""
+            ) +
+
+            (
+                isAdminUser
+                    ? '<span class="profile-admin-note">👑 Admin</span>'
+                    : ""
+            ) +
+
+            '<div class="profile-view-actions">' +
+
+            (
+                isAdminUser
+                    ? '<button type="button" class="btn ghost" data-open-users-overlay>' +
+                      "👑 Manage Users" +
+                      "</button>"
+                    : ""
+            ) +
+
+            '<button type="button" class="btn ghost" data-logout>' +
+
+            "Log out" +
+
+            "</button>" +
+
+            "</div>" +
+
+            "</div>";
 
     }
 
@@ -3366,34 +3484,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    function renderUsersTab() {
+    function renderUsersOverlay() {
 
-        els.empty.hidden = true;
-
-        els.countAll.textContent =
-            allData().length;
-
-        els.countFav.textContent =
-            favorites.length;
-
-        els.countMine.textContent =
-            mine.length;
-
-        els.countTrash.textContent =
-            deleted.length;
-
-
-        const countUsers =
-            document.getElementById(
-                "countUsers"
-            );
+        if (!usersOverlayContent) {
+            return;
+        }
 
 
         if (usersCache === null) {
 
-            els.results.innerHTML =
+            usersOverlayContent.innerHTML =
 
-                '<p class="empty-state" style="grid-column:1/-1;">' +
+                '<p class="empty-state">' +
 
                 "Loading users…" +
 
@@ -3410,7 +3512,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         usersCache =
                             result.users || [];
 
-                        renderUsersTab();
+                        renderUsersOverlay();
 
                     }
                 )
@@ -3420,9 +3522,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                         console.error(error);
 
-                        els.results.innerHTML =
+                        usersOverlayContent.innerHTML =
 
-                            '<p class="empty-state" style="grid-column:1/-1;">' +
+                            '<p class="empty-state">' +
 
                             "Couldn't load users (" +
 
@@ -3441,19 +3543,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        if (countUsers) {
-
-            countUsers.textContent =
-                usersCache.length;
-
-        }
-
-
         if (usersCache.length === 0) {
 
-            els.results.innerHTML =
+            usersOverlayContent.innerHTML =
 
-                '<p class="empty-state" style="grid-column:1/-1;">' +
+                '<p class="empty-state">' +
 
                 "No other users yet." +
 
@@ -3464,7 +3558,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
 
-        els.results.innerHTML =
+        usersOverlayContent.innerHTML =
 
             usersCache
 
@@ -3475,13 +3569,52 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
+    function openUsersOverlay() {
+
+        if (!usersOverlay) {
+            return;
+        }
+
+        usersOverlay.hidden =
+            false;
+
+        renderUsersOverlay();
+
+    }
+
+
+    function closeUsersOverlayFn() {
+
+        if (usersOverlay) {
+
+            usersOverlay.hidden =
+                true;
+
+        }
+
+    }
+
+
+    if (closeUsersOverlay) {
+
+        closeUsersOverlay.addEventListener(
+            "click",
+            closeUsersOverlayFn
+        );
+
+    }
+
+
     function refreshUsersCache() {
 
         usersCache = null;
 
-        if (currentTab === "users") {
+        if (
+            usersOverlay &&
+            !usersOverlay.hidden
+        ) {
 
-            render();
+            renderUsersOverlay();
 
         }
 
@@ -3860,6 +3993,48 @@ document.addEventListener("DOMContentLoaded", function () {
         els.results.addEventListener(
             "click",
             function (event) {
+
+
+                const logoutButton =
+                    event.target.closest(
+                        "[data-logout]"
+                    );
+
+
+                if (logoutButton) {
+
+                    logoutButton.disabled =
+                        true;
+
+                    performLogout()
+
+                        .finally(
+                            function () {
+
+                                logoutButton.disabled =
+                                    false;
+
+                            }
+                        );
+
+                    return;
+
+                }
+
+
+                const openUsersButton =
+                    event.target.closest(
+                        "[data-open-users-overlay]"
+                    );
+
+
+                if (openUsersButton) {
+
+                    openUsersOverlay();
+
+                    return;
+
+                }
 
 
                 const favButton =
