@@ -1637,3 +1637,88 @@ main {
   }
 
 }
+
+/* =====================================================
+   REMEMBER ME + FORGOT PASSWORD WINDOW
+   ===================================================== */
+
+.auth-box .remember-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+
+  margin: 0 0 4px;
+
+  font-size: 13px;
+  color: var(--on-surface-dim);
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.auth-box .remember-row[hidden] {
+  display: none;
+}
+
+.auth-box .remember-row input[type="checkbox"] {
+  display: inline-block;
+
+  width: 17px;
+  height: 17px;
+
+  margin: 0;
+  padding: 0;
+
+  accent-color: var(--gold);
+
+  cursor: pointer;
+}
+
+#forgot-password-section {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 100000;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background:
+    radial-gradient(
+      700px 500px at 50% 20%,
+      rgba(227,167,58,0.14),
+      transparent 65%
+    ),
+    rgb(9,20,18);
+}
+
+.forgot-help {
+  margin-bottom: 18px !important;
+  font-family: var(--font-body) !important;
+}
+
+#auth-message,
+#forgot-message,
+#reset-password-message {
+  min-height: 20px;
+  margin: 14px 0 4px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--on-surface-dim);
+}
+
+#auth-message.success,
+#forgot-message.success {
+  color: #6FCF8E;
+}
+
+#auth-message.error,
+#forgot-message.error {
+  color: #FF8A80;
+}

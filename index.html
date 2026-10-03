@@ -83,6 +83,21 @@
             autocomplete="current-password"
         >
 
+        <label
+            id="rememberRow"
+            class="remember-row"
+            for="auth-remember">
+
+            <input
+                type="checkbox"
+                id="auth-remember"
+                checked
+            >
+
+            <span>Remember me</span>
+
+        </label>
+
         <div
             id="signupExtraBottom"
             class="signup-only"
@@ -117,6 +132,53 @@
             class="auth-link"
             type="button">
             Forgot password?
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     FORGOT PASSWORD (full-screen window: enter email, send link)
+===================================================== -->
+
+<div id="forgot-password-section" hidden>
+
+    <div class="auth-box">
+
+        <div class="auth-logo">가</div>
+
+        <h2>Forgot password?</h2>
+
+        <p class="auth-subtitle">
+            Enter your recovery email
+        </p>
+
+        <p class="auth-credit forgot-help">
+            We'll email you a link to set a new password.
+        </p>
+
+        <input
+            type="email"
+            id="forgot-email"
+            placeholder="Email address"
+            autocomplete="email"
+        >
+
+        <button
+            id="forgot-send"
+            type="button">
+            Send reset link
+        </button>
+
+        <p id="forgot-message"></p>
+
+        <button
+            id="forgot-back"
+            class="auth-link"
+            type="button">
+            &larr; Back to login
         </button>
 
     </div>
@@ -161,6 +223,13 @@
         </button>
 
         <p id="reset-password-message"></p>
+
+        <button
+            id="reset-cancel"
+            class="auth-link"
+            type="button">
+            Cancel
+        </button>
 
     </div>
 

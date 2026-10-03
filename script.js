@@ -26,10 +26,106 @@ const SUPABASE_PUBLISHABLE_KEY =
 const ADMIN_EMAIL =
     "whitewalkerofnorth@gmail.com";
 
+/*
+ * REMEMBER ME
+ * Ticked   -> session kept in localStorage (stays logged in
+ *             after the browser is closed).
+ * Unticked -> session kept in sessionStorage (logged out when
+ *             the tab/browser is closed).
+ * The choice itself is stored in localStorage under REMEMBER_KEY.
+ */
+
+const REMEMBER_KEY = "kn_remember_me";
+
+function getRememberPreference() {
+
+    try {
+        return localStorage.getItem(REMEMBER_KEY) !== "0";
+    } catch (e) {
+        return true;
+    }
+
+}
+
+function setRememberPreference(remember) {
+
+    try {
+        localStorage.setItem(REMEMBER_KEY, remember ? "1" : "0");
+    } catch (e) {}
+
+}
+
+const rememberAwareStorage = {
+
+    getItem: function (key) {
+
+        try {
+
+            const fromLocal = localStorage.getItem(key);
+
+            return fromLocal !== null
+                ? fromLocal
+                : sessionStorage.getItem(key);
+
+        } catch (e) {
+            return null;
+        }
+
+    },
+
+    setItem: function (key, value) {
+
+        try {
+
+            const keep = getRememberPreference()
+                ? localStorage
+                : sessionStorage;
+
+            const drop = keep === localStorage
+                ? sessionStorage
+                : localStorage;
+
+            keep.setItem(key, value);
+            drop.removeItem(key);
+
+        } catch (e) {}
+
+    },
+
+    removeItem: function (key) {
+
+        try {
+            localStorage.removeItem(key);
+            sessionStorage.removeItem(key);
+        } catch (e) {}
+
+    }
+
+};
+
+
+/*
+ * Detect — BEFORE the Supabase client strips the URL — that the
+ * page was opened from a password-reset email link, or that the
+ * link was invalid/expired.
+ */
+
+const OPENED_FROM_RECOVERY_LINK =
+    /type=recovery/.test(window.location.hash) ||
+    /type=recovery/.test(window.location.search);
+
+const RESET_LINK_ERROR =
+    /error_code=|error_description=/.test(window.location.hash);
+
 const supabaseClient =
     supabase.createClient(
         SUPABASE_URL,
-        SUPABASE_PUBLISHABLE_KEY
+        SUPABASE_PUBLISHABLE_KEY,
+        {
+            auth: {
+                storage: rememberAwareStorage
+            }
+        }
     );
 
 
@@ -112,10 +208,60 @@ document.addEventListener("DOMContentLoaded", function () {
     const closeUsersOverlay =
         document.getElementById("closeUsersOverlay");
 
+    const authRemember =
+        document.getElementById("auth-remember");
+
+    const rememberRow =
+        document.getElementById("rememberRow");
+
+    const forgotSection =
+        document.getElementById("forgot-password-section");
+
+    const forgotEmail =
+        document.getElementById("forgot-email");
+
+    const forgotSend =
+        document.getElementById("forgot-send");
+
+    const forgotBack =
+        document.getElementById("forgot-back");
+
+    const forgotMessage =
+        document.getElementById("forgot-message");
+
+    const resetCancel =
+        document.getElementById("reset-cancel");
+
 
     let isSignupMode = false;
 
     let isAdminUser = false;
+
+    /*
+     * True while the user arrived from a reset-password email
+     * and hasn't chosen a new password yet. While true, the
+     * dictionary must NOT open (the recovery link signs the
+     * user in temporarily).
+     */
+    let recoveryMode = OPENED_FROM_RECOVERY_LINK;
+
+    if (authRemember) {
+        authRemember.checked = getRememberPreference();
+    }
+
+    function clearUrlHash() {
+
+        try {
+
+            history.replaceState(
+                null,
+                "",
+                window.location.pathname
+            );
+
+        } catch (e) {}
+
+    }
 
 
     /* =====================================================
@@ -143,6 +289,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showLogin() {
 
+        if (forgotSection) {
+            forgotSection.style.display = "none";
+        }
+
         if (authSection) {
             authSection.style.display = "flex";
         }
@@ -163,6 +313,16 @@ document.addEventListener("DOMContentLoaded", function () {
        ===================================================== */
 
     function showDictionary() {
+
+        /* Never open the dictionary mid-password-reset */
+        if (recoveryMode) {
+            showResetPasswordForm();
+            return;
+        }
+
+        if (forgotSection) {
+            forgotSection.style.display = "none";
+        }
 
         if (authSection) {
             authSection.style.display = "none";
@@ -189,6 +349,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showResetPasswordForm() {
 
+        const alreadyOpen =
+            resetPasswordSection &&
+            resetPasswordSection.style.display === "flex";
+
+        if (forgotSection) {
+            forgotSection.style.display = "none";
+        }
+
         if (authSection) {
             authSection.style.display = "none";
         }
@@ -201,8 +369,14 @@ document.addEventListener("DOMContentLoaded", function () {
             resetPasswordSection.style.display = "flex";
         }
 
+        /* Don't wipe what the user is typing if this re-runs */
+        if (alreadyOpen) {
+            return;
+        }
+
         if (newPasswordInput) {
             newPasswordInput.value = "";
+            newPasswordInput.focus();
         }
 
         if (confirmNewPasswordInput) {
@@ -622,6 +796,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
+                setRememberPreference(
+                    authRemember
+                        ? authRemember.checked
+                        : true
+                );
+
+
                 authSubmit.disabled = true;
 
 
@@ -899,6 +1080,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     forgotPassword.style.display =
                         "none";
 
+                    if (rememberRow) {
+                        rememberRow.hidden = true;
+                    }
+
 
                     if (signupExtraTop) {
                         signupExtraTop.hidden = false;
@@ -929,6 +1114,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     forgotPassword.style.display =
                         "block";
+
+                    if (rememberRow) {
+                        rememberRow.hidden = false;
+                    }
 
 
                     if (signupExtraTop) {
@@ -966,105 +1155,227 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       FORGOT PASSWORD
+       FORGOT PASSWORD  (full-screen window)
        ===================================================== */
 
-    if (forgotPassword) {
+    let forgotCooldownTimer = null;
 
-        forgotPassword.addEventListener(
-            "click",
-            async function () {
+    function showForgotMessage(message, type) {
 
-                const email =
-                    authEmail.value.trim();
+        if (!forgotMessage) return;
 
+        forgotMessage.textContent = message;
 
-                if (!email) {
+        forgotMessage.className = type || "";
 
-                    showAuthMessage(
-                        "Enter your email address first.",
-                        "error"
-                    );
+    }
 
-                    authEmail.focus();
+    function openForgotWindow() {
+
+        if (!forgotSection) return;
+
+        showForgotMessage("");
+
+        if (forgotEmail) {
+            forgotEmail.value =
+                authEmail ? authEmail.value.trim() : "";
+        }
+
+        if (authSection) {
+            authSection.style.display = "none";
+        }
+
+        forgotSection.style.display = "flex";
+
+        if (forgotEmail) {
+            forgotEmail.focus();
+        }
+
+    }
+
+    function closeForgotWindow() {
+
+        if (forgotSection) {
+            forgotSection.style.display = "none";
+        }
+
+        if (authSection) {
+            authSection.style.display = "flex";
+        }
+
+        showForgotMessage("");
+
+    }
+
+    function startForgotCooldown(seconds) {
+
+        if (!forgotSend) return;
+
+        clearInterval(forgotCooldownTimer);
+
+        let left = seconds;
+
+        forgotSend.disabled = true;
+
+        forgotSend.textContent =
+            "Resend in " + left + "s";
+
+        forgotCooldownTimer = setInterval(
+            function () {
+
+                left -= 1;
+
+                if (left <= 0) {
+
+                    clearInterval(forgotCooldownTimer);
+
+                    forgotSend.disabled = false;
+
+                    forgotSend.textContent =
+                        "Send reset link";
 
                     return;
-
                 }
 
+                forgotSend.textContent =
+                    "Resend in " + left + "s";
 
-                showAuthMessage(
-                    "Sending password reset email...",
-                    ""
-                );
+            },
+            1000
+        );
 
+    }
 
-                try {
+    async function sendResetEmail() {
 
+        const email =
+            forgotEmail
+                ? forgotEmail.value.trim()
+                : "";
 
-                    const {
-                        error
-                    } =
-                        await supabaseClient.auth
-                            .resetPasswordForEmail(
-                                email,
-                                {
-                                    redirectTo:
-                                        window.location.origin +
-                                        window.location.pathname
-                                }
-                            );
+        if (!email) {
 
+            showForgotMessage(
+                "Please enter your email address.",
+                "error"
+            );
 
-                    if (error) {
-                        throw error;
-                    }
+            forgotEmail.focus();
 
+            return;
+        }
 
-                    showAuthMessage(
-                        "Password reset email sent. Check your inbox.",
-                        "success"
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+
+            showForgotMessage(
+                "That doesn't look like a valid email address.",
+                "error"
+            );
+
+            forgotEmail.focus();
+
+            return;
+        }
+
+        forgotSend.disabled = true;
+
+        forgotSend.textContent = "Sending...";
+
+        showForgotMessage("");
+
+        try {
+
+            const { error } =
+                await supabaseClient.auth
+                    .resetPasswordForEmail(
+                        email,
+                        {
+                            redirectTo:
+                                window.location.origin +
+                                window.location.pathname
+                        }
                     );
 
+            if (error) {
+                throw error;
+            }
 
-                } catch (error) {
+            showForgotMessage(
+                "If an account exists for " + email +
+                ", a reset link is on its way. " +
+                "Check your inbox (and spam folder), " +
+                "then click the link to set a new password.",
+                "success"
+            );
 
-                    console.error(error);
+            startForgotCooldown(60);
 
+        } catch (error) {
 
-                    let message =
-                        error.message ||
-                        "Could not send password reset email.";
+            console.error(error);
 
+            let message =
+                error.message ||
+                "Could not send password reset email.";
 
-                    if (
-                        message
-                            .toLowerCase()
-                            .includes("rate limit")
-                    ) {
+            const lower = message.toLowerCase();
 
-                        message =
-                            "Too many emails sent recently. Please wait a bit and try again.";
+            if (lower.includes("rate limit")) {
 
+                message =
+                    "Too many emails sent recently. Please wait a bit and try again.";
+
+            } else if (lower.includes("error sending")) {
+
+                message =
+                    "Couldn't send the reset email right now. This usually means the site's email service needs attention — please contact the site owner.";
+
+            }
+
+            showForgotMessage(message, "error");
+
+            forgotSend.disabled = false;
+
+            forgotSend.textContent = "Send reset link";
+
+        }
+
+    }
+
+    if (forgotPassword) {
+        forgotPassword.addEventListener(
+            "click",
+            openForgotWindow
+        );
+    }
+
+    if (forgotSend) {
+        forgotSend.addEventListener(
+            "click",
+            sendResetEmail
+        );
+    }
+
+    if (forgotBack) {
+        forgotBack.addEventListener(
+            "click",
+            closeForgotWindow
+        );
+    }
+
+    if (forgotEmail) {
+
+        forgotEmail.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (event.key === "Enter") {
+
+                    event.preventDefault();
+
+                    if (!forgotSend.disabled) {
+                        sendResetEmail();
                     }
-
-
-                    if (
-                        message
-                            .toLowerCase()
-                            .includes("error sending")
-                    ) {
-
-                        message =
-                            "Couldn't send the reset email right now. This usually means the site's email service needs attention — please contact the site owner.";
-
-                    }
-
-
-                    showAuthMessage(
-                        message,
-                        "error"
-                    );
 
                 }
 
@@ -1072,6 +1383,21 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
     }
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                forgotSection &&
+                forgotSection.style.display === "flex"
+            ) {
+                closeForgotWindow();
+            }
+
+        }
+    );
 
 
     /* =====================================================
@@ -1122,6 +1448,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 data.session;
 
 
+            if (recoveryMode) {
+
+                if (session && session.user) {
+
+                    showResetPasswordForm();
+
+                    return;
+                }
+
+                /* link was invalid / already used */
+                recoveryMode = false;
+
+            }
+
+
             if (
                 session &&
                 session.user
@@ -1136,6 +1477,17 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
 
                 showLogin();
+
+                if (RESET_LINK_ERROR) {
+
+                    showAuthMessage(
+                        "That reset link is invalid or has expired. Tap \"Forgot password?\" to get a new one.",
+                        "error"
+                    );
+
+                    clearUrlHash();
+
+                }
 
             }
 
@@ -1169,7 +1521,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (event === "PASSWORD_RECOVERY") {
 
+                recoveryMode = true;
+
                 showResetPasswordForm();
+
+                return;
+
+            }
+
+
+            /* keep the reset window open until password is saved */
+            if (recoveryMode) {
+
+                if (session) {
+                    showResetPasswordForm();
+                }
 
                 return;
 
@@ -1266,6 +1632,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         "Password updated! Taking you to the dictionary…";
 
 
+                    recoveryMode = false;
+
+                    clearUrlHash();
+
+
                     setTimeout(
                         function () {
 
@@ -1304,6 +1675,26 @@ document.addEventListener("DOMContentLoaded", function () {
                         false;
 
                 }
+
+            }
+        );
+
+    }
+
+
+    if (resetCancel) {
+
+        resetCancel.addEventListener(
+            "click",
+            function () {
+
+                recoveryMode = false;
+
+                clearUrlHash();
+
+                performLogout(
+                    "Password reset cancelled."
+                );
 
             }
         );
