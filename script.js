@@ -1,4 +1,268 @@
 /* =========================================================
+   NO-ZOOM GUARD (pinch, double-tap, Ctrl+wheel, Ctrl +/-)
+   ========================================================= */
+(function () {
+
+    ["gesturestart", "gesturechange", "gestureend"].forEach(
+        function (type) {
+            document.addEventListener(
+                type,
+                function (event) { event.preventDefault(); },
+                { passive: false }
+            );
+        }
+    );
+
+    document.addEventListener(
+        "touchmove",
+        function (event) {
+            if (event.touches && event.touches.length > 1) {
+                event.preventDefault();
+            }
+        },
+        { passive: false }
+    );
+
+    document.addEventListener(
+        "wheel",
+        function (event) {
+            if (event.ctrlKey) { event.preventDefault(); }
+        },
+        { passive: false }
+    );
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+            if (
+                (event.ctrlKey || event.metaKey) &&
+                ["+", "-", "=", "_", "0"].indexOf(event.key) !== -1
+            ) {
+                event.preventDefault();
+            }
+        }
+    );
+
+})();
+
+
+/* =========================================================
+   PULL TO RELOAD (swipe down at the top / scroll up at the top)
+   ========================================================= */
+(function () {
+
+    const TRIGGER = 70;      /* px of pull needed */
+    const MAX_PULL = 120;
+
+    let indicator = null;
+    let startY = 0;
+    let pull = 0;
+    let tracking = false;
+    let reloading = false;
+
+    function appVisible() {
+
+        const app = document.getElementById("dictionary-app");
+
+        if (!app || app.hidden || app.style.display === "none") {
+            return false;
+        }
+
+        /* not while a pop-up or the user list is open */
+        return !document.querySelector(
+            ".modal-overlay:not([hidden]), .users-overlay:not([hidden])"
+        );
+
+    }
+
+    function ensureIndicator() {
+
+        if (indicator) return indicator;
+
+        indicator = document.createElement("div");
+
+        indicator.className = "ptr";
+
+        indicator.setAttribute("aria-hidden", "true");
+
+        indicator.innerHTML =
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" ' +
+            'stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">' +
+            '<path d="M21 12a9 9 0 1 1-3-6.7"/>' +
+            '<polyline points="21 3 21 9 15 9"/>' +
+            "</svg>";
+
+        document.body.appendChild(indicator);
+
+        return indicator;
+
+    }
+
+    function setPull(value) {
+
+        pull = value;
+
+        const el = ensureIndicator();
+
+        el.style.setProperty("--pull", value + "px");
+
+        el.style.setProperty("--spin", (value / MAX_PULL) * 270 + "deg");
+
+        el.classList.toggle("ptr-show", value > 4);
+
+        el.classList.toggle("ptr-ready", value >= TRIGGER);
+
+    }
+
+    function reloadNow() {
+
+        if (reloading) return;
+
+        reloading = true;
+
+        const el = ensureIndicator();
+
+        el.style.setProperty("--pull", "64px");
+
+        el.classList.add("ptr-show", "ptr-ready", "ptr-loading");
+
+        setTimeout(
+            function () { window.location.reload(); },
+            650
+        );
+
+    }
+
+    function reset() {
+
+        tracking = false;
+
+        if (!reloading) setPull(0);
+
+    }
+
+    document.addEventListener(
+        "touchstart",
+        function (event) {
+
+            if (
+                reloading ||
+                event.touches.length !== 1 ||
+                window.scrollY > 0 ||
+                !appVisible()
+            ) {
+                tracking = false;
+                return;
+            }
+
+            startY = event.touches[0].clientY;
+
+            tracking = true;
+
+        },
+        { passive: true }
+    );
+
+    document.addEventListener(
+        "touchmove",
+        function (event) {
+
+            if (!tracking || reloading) return;
+
+            const dy = event.touches[0].clientY - startY;
+
+            if (dy <= 0 || window.scrollY > 0) {
+                reset();
+                return;
+            }
+
+            /* rubber-band: pulling gets harder the further you go */
+            setPull(Math.min(MAX_PULL, dy * 0.5));
+
+            if (event.cancelable) event.preventDefault();
+
+        },
+        { passive: false }
+    );
+
+    function release() {
+
+        if (!tracking) return;
+
+        const ready = pull >= TRIGGER;
+
+        tracking = false;
+
+        if (ready) {
+            reloadNow();
+        } else {
+            setPull(0);
+        }
+
+    }
+
+    document.addEventListener("touchend", release);
+    document.addEventListener("touchcancel", reset);
+
+    /* ---- PC / trackpad: keep scrolling up while already at the top ---- */
+    let wheelSum = 0;
+    let wheelTimer = null;
+    let topSince = 0;
+
+    window.addEventListener(
+        "scroll",
+        function () {
+            topSince = window.scrollY <= 0 ? (topSince || Date.now()) : 0;
+        },
+        { passive: true }
+    );
+
+    document.addEventListener(
+        "wheel",
+        function (event) {
+
+            if (reloading || event.ctrlKey || !appVisible()) return;
+
+            if (window.scrollY > 0) {
+                wheelSum = 0;
+                return;
+            }
+
+            if (!topSince) topSince = Date.now();
+
+            /* only count scrolling that starts after resting at the top */
+            if (event.deltaY >= 0 || Date.now() - topSince < 400) {
+                wheelSum = 0;
+                return;
+            }
+
+            wheelSum += -event.deltaY;
+
+            setPull(Math.min(MAX_PULL, wheelSum / 4));
+
+            clearTimeout(wheelTimer);
+
+            wheelTimer = setTimeout(
+                function () {
+                    wheelSum = 0;
+                    if (!reloading) setPull(0);
+                },
+                350
+            );
+
+            if (wheelSum >= 450) {
+                wheelSum = 0;
+                reloadNow();
+            }
+
+        },
+        { passive: true }
+    );
+
+})();
+
+
+/* =========================================================
    KOREAN–NEPALI DICTIONARY
    Dictionary + Supabase Authentication
    ========================================================= */
@@ -3734,6 +3998,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     : ""
             ) +
             "</div>";
+
+        const activeLetter =
+            els.results.querySelector(".letter-tab.active");
+
+        if (activeLetter && activeLetter.parentElement) {
+
+            const row = activeLetter.parentElement;
+
+            row.scrollLeft =
+                activeLetter.offsetLeft -
+                (row.clientWidth - activeLetter.offsetWidth) / 2;
+
+        }
 
     }
 

@@ -1822,22 +1822,22 @@ main {
 .letter-tab {
   display: flex;
   align-items: baseline;
-  gap: 5px;
-  min-width: 42px;
-  padding: 6px 11px;
+  gap: 4px;
+  min-width: 36px;
+  padding: 5px 9px;
   border-radius: 10px;
   border: 1.5px solid var(--line-strong);
   background: transparent;
   color: var(--text-mid);
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: 14.5px;
   font-weight: 700;
   cursor: pointer;
 }
 
 .letter-tab .count {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 8.5px;
   font-weight: 400;
   opacity: 0.7;
 }
@@ -1862,7 +1862,7 @@ main {
 .home-head h2 {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 30px;
+  font-size: 25.5px;
   color: var(--gold);
 }
 
@@ -2174,4 +2174,304 @@ main { padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px)); }
 
 @media (max-width: 560px) {
   .home-cards { grid-template-columns: 1fr; }
+}
+
+
+/* =========================================================
+   RESPONSIVE LAYER  (phones < 600, tablets 600-1024, PCs 1025+)
+   + NO ZOOM
+   ========================================================= */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  touch-action: pan-x pan-y;      /* no pinch / double-tap zoom */
+  overflow-x: hidden;
+}
+
+body {
+  touch-action: pan-x pan-y;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: clip;
+  -webkit-tap-highlight-color: transparent;
+}
+
+img, svg, video { max-width: 100%; }
+
+.card, .ko-word, .user-row { min-width: 0; overflow-wrap: anywhere; }
+
+/* login / forgot / reset screens: scroll instead of clipping on short screens */
+#auth-section,
+#reset-password-section,
+#forgot-password-section {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding-left: max(20px, env(safe-area-inset-left));
+  padding-right: max(20px, env(safe-area-inset-right));
+}
+
+.auth-box { margin: auto; max-height: none; }
+
+/* pop-up windows never grow taller than the screen */
+.modal-overlay { overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+.modal {
+  margin: auto;
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+}
+
+.toast { max-width: calc(100% - 32px); text-align: center; }
+
+.users-overlay-content { width: 100%; max-width: 900px; margin-left: auto; margin-right: auto; }
+
+.profile-view { width: 100%; max-width: 460px; margin-left: auto; margin-right: auto; }
+
+.letter-tabs { position: relative; }
+
+/* bottom bar respects notches in landscape */
+nav.bottom-nav {
+  padding-left: max(6px, env(safe-area-inset-left));
+  padding-right: max(6px, env(safe-area-inset-right));
+}
+
+/* ---------- touch devices: bigger tap targets ---------- */
+@media (pointer: coarse) {
+  .icon-btn { width: 40px; height: 40px; }
+  .btn, .subtab, .letter-tab, .search-history-item { min-height: 44px; }
+  nav.bottom-nav .tab { min-height: 52px; }
+  .theme-switch { transform: scale(1.1); }
+}
+
+/* ---------- phones and tablets: 16px inputs stop iOS focus-zoom ---------- */
+@media (max-width: 1024px) {
+  input, select, textarea { font-size: 16px !important; }
+}
+
+/* ---------- phones ---------- */
+@media (max-width: 599px) {
+
+  header.topbar { padding-top: 14px; }
+
+  .brand-sub { font-size: 10.5px; line-height: 1.35; }
+
+  .brand-credit { font-size: 10.5px; }
+
+  main { padding-left: 14px; padding-right: 14px; }
+
+  .home-cards, #results { grid-template-columns: 1fr; }
+
+  .letter-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 6px;
+    touch-action: pan-x pan-y;
+  }
+
+  .letter-tabs::-webkit-scrollbar { display: none; }
+
+  .letter-tab { flex: 0 0 auto; }
+
+  .subtabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+
+  .subtab { flex: 0 0 auto; }
+
+  .home-head h2 { font-size: 24px; }
+
+  .auth-box { padding: 24px 20px; }
+
+  .modal { width: 100%; padding: 20px 16px; border-radius: 16px; }
+
+  .modal-actions { flex-wrap: wrap; }
+
+  .modal-actions .btn { flex: 1 1 120px; }
+
+  .user-row { padding: 12px 14px; }
+
+  .user-row-actions { width: 100%; }
+
+  .user-row-actions .btn, .user-row-actions button { flex: 1; }
+
+  nav.bottom-nav { width: 100%; border-radius: 14px 14px 0 0; }
+
+  nav.bottom-nav .tab { font-size: 10.5px; padding-left: 0; padding-right: 0; }
+}
+
+@media (max-width: 360px) {
+  nav.bottom-nav .tab { font-size: 9.5px; }
+  nav.bottom-nav .tab.add-tab { width: 46px; height: 46px; }
+}
+
+/* ---------- tablets ---------- */
+@media (min-width: 600px) and (max-width: 1024px) {
+
+  main { padding-left: 24px; padding-right: 24px; }
+
+  .home-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+  nav.bottom-nav { width: min(100%, 560px); }
+}
+
+/* ---------- PCs and large screens ---------- */
+@media (min-width: 1025px) {
+
+  main { max-width: 1200px; margin-left: auto; margin-right: auto; }
+
+  .home-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+  nav.bottom-nav { width: 600px; }
+
+  .card:hover { transform: translateY(-2px); }
+}
+
+@media (min-width: 1500px) {
+  main { max-width: 1360px; }
+  .home-cards { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* ---------- landscape phones: low screens ---------- */
+@media (max-height: 480px) and (orientation: landscape) {
+
+  nav.bottom-nav .nav-label { display: none; }
+
+  nav.bottom-nav .tab { min-height: 40px; padding: 4px 2px; }
+
+  nav.bottom-nav .tab.add-tab { width: 42px; height: 42px; margin-top: -10px; }
+
+  main { padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px)); }
+}
+
+
+/* =========================================================
+   FIXED LETTER HEADINGS (stay at the top while scrolling)
+   ========================================================= */
+
+.letter-tabs {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 30;
+  margin: 0 0 12px;
+  padding: 8px 0;
+  background: var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+
+/* =========================================================
+   BIGGER BOTTOM TABS (+15%)
+   ========================================================= */
+
+nav.bottom-nav {
+  padding-top: 7px;
+  padding-bottom: calc(7px + env(safe-area-inset-bottom, 0px));
+}
+
+nav.bottom-nav .tab {
+  font-size: 12.5px;
+  gap: 3px;
+  padding: 8px 2px;
+  min-height: 60px;
+  border-radius: 14px;
+}
+
+nav.bottom-nav .nav-icon { width: 25px; height: 25px; }
+
+nav.bottom-nav .tab.add-tab {
+  width: 60px;
+  height: 60px;
+  min-height: 0;
+  margin: -21px 4px 0;
+  padding: 0;
+}
+
+nav.bottom-nav .tab.add-tab .nav-icon { width: 30px; height: 30px; }
+
+main { padding-bottom: calc(125px + env(safe-area-inset-bottom, 0px)); }
+
+.foot { padding-bottom: calc(115px + env(safe-area-inset-bottom, 0px)); }
+
+.toast { bottom: calc(105px + env(safe-area-inset-bottom, 0px)); }
+
+@media (max-width: 599px) {
+  nav.bottom-nav .tab { font-size: 12px; }
+}
+
+@media (max-width: 360px) {
+  nav.bottom-nav .tab { font-size: 11px; }
+  nav.bottom-nav .tab.add-tab { width: 53px; height: 53px; margin-top: -18px; }
+}
+
+@media (pointer: coarse) {
+  nav.bottom-nav .tab { min-height: 60px; }
+  nav.bottom-nav .tab.add-tab { min-height: 0; }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+  nav.bottom-nav { width: min(100%, 650px); }
+}
+
+@media (min-width: 1025px) {
+  nav.bottom-nav { width: 690px; }
+}
+
+@media (max-height: 480px) and (orientation: landscape) {
+  nav.bottom-nav .tab { min-height: 46px; }
+  nav.bottom-nav .tab.add-tab { width: 48px; height: 48px; margin-top: -12px; }
+  main { padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px)); }
+}
+
+
+/* =========================================================
+   PULL-TO-RELOAD INDICATOR
+   ========================================================= */
+
+html, body { overscroll-behavior-y: contain; }   /* no double native refresh */
+
+.ptr {
+  --pull: 0px;
+  --spin: 0deg;
+  position: fixed;
+  top: env(safe-area-inset-top, 0px);
+  left: 50%;
+  z-index: 60;
+  width: 42px;
+  height: 42px;
+  margin-left: -21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--on-surface-dim);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(calc(var(--pull) - 52px));
+  transition: opacity 0.15s ease, transform 0.25s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.ptr svg {
+  width: 22px;
+  height: 22px;
+  transform: rotate(var(--spin));
+}
+
+.ptr.ptr-show { opacity: 1; }
+
+.ptr.ptr-ready {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+/* while dragging, follow the finger without easing */
+.ptr.ptr-show:not(.ptr-loading) { transition: opacity 0.15s ease, background 0.15s ease, color 0.15s ease; }
+
+.ptr.ptr-loading svg { animation: ptr-spin 0.8s linear infinite; }
+
+@keyframes ptr-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
