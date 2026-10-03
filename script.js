@@ -6028,6 +6028,8 @@ document.addEventListener(
         els.modalOverlay.hidden =
             false;
 
+        snapshotModal();
+
 
         document
             .getElementById("fKo")
@@ -6099,6 +6101,8 @@ document.addEventListener(
         els.modalOverlay.hidden =
             false;
 
+        snapshotModal();
+
 
         document
             .getElementById("fKo")
@@ -6140,40 +6144,101 @@ document.addEventListener(
     );
 
 
+    /* A stray tap/click outside the window, a text-selection drag that ends
+       outside it, or the Esc key must never throw away what was typed. */
+
+    let modalSnapshotValue = "";
+
+    function modalFormState() {
+
+        return Array.prototype.map.call(
+            els.addWordForm.elements,
+            function (field) {
+
+                if (field.type === "file") {
+                    return field.files && field.files.length ? "file" : "";
+                }
+
+                if (field.type === "checkbox" || field.type === "radio") {
+                    return field.checked ? "1" : "0";
+                }
+
+                return field.value || "";
+
+            }
+        ).join("\u0001");
+
+    }
+
+    function snapshotModal() {
+
+        modalSnapshotValue = modalFormState();
+
+    }
+
+    function isModalDirty() {
+
+        return modalFormState() !== modalSnapshotValue;
+
+    }
+
+    let backdropPressStartedOutside = false;
+
+    els.modalOverlay.addEventListener(
+        "pointerdown",
+        function (event) {
+            backdropPressStartedOutside =
+                event.target === els.modalOverlay;
+        }
+    );
+
     els.modalOverlay.addEventListener(
         "click",
         function (event) {
 
+            const startedOutside = backdropPressStartedOutside;
+
+            backdropPressStartedOutside = false;
+
             if (
-                event.target ===
-                els.modalOverlay
+                event.target === els.modalOverlay &&
+                startedOutside &&
+                !isModalDirty()
             ) {
-
                 closeModal();
-
             }
 
         }
     );
-
 
     document.addEventListener(
         "keydown",
         function (event) {
 
             if (
-                event.key ===
-                "Escape" &&
-                !els.modalOverlay.hidden
+                event.key === "Escape" &&
+                !els.modalOverlay.hidden &&
+                !isModalDirty()
             ) {
-
                 closeModal();
-
             }
 
         }
     );
 
+    /* warn before leaving the page (reload, back, closing the tab)
+       while an add/edit window has unsaved changes */
+    window.addEventListener(
+        "beforeunload",
+        function (event) {
+
+            if (!els.modalOverlay.hidden && isModalDirty()) {
+                event.preventDefault();
+                event.returnValue = "";
+            }
+
+        }
+    );
 
     els.resetEdit.addEventListener(
         "click",
