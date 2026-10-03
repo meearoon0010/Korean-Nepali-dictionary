@@ -649,6 +649,119 @@ main {
 
 /* Users panel (admin only) */
 
+.users-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+
+  background: var(--ink, #0A1412);
+
+  display: flex;
+  flex-direction: column;
+
+  padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
+}
+
+/*
+   FIX: .users-overlay sets display:flex, which overrides the
+   browser's built-in [hidden] { display:none }. Without this rule
+   the overlay is ALWAYS visible and the close button (which only
+   sets hidden = true) can't hide it.
+*/
+
+.users-overlay[hidden] {
+  display: none !important;
+}
+
+.users-overlay-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 20px;
+
+  border-bottom: 1px solid var(--line, rgba(255,255,255,0.1));
+
+  flex-shrink: 0;
+}
+
+.users-overlay-head h2 {
+  margin: 0;
+  font-size: 19px;
+  color: var(--text-hi, #F2ECDA);
+}
+
+.users-overlay-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px 32px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-view {
+  grid-column: 1 / -1;
+
+  max-width: 420px;
+  margin: 20px auto;
+
+  background: var(--surface);
+  color: var(--on-surface);
+
+  border-radius: var(--radius-stamp, 14px);
+
+  padding: 24px;
+
+  border: 1.5px dashed rgba(23,57,51,0.28);
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+.profile-view .profile-name {
+  margin: 0 0 4px;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.profile-view .profile-email {
+  margin: 0 0 4px;
+  font-size: 14px;
+  opacity: 0.85;
+  word-break: break-all;
+}
+
+.profile-view .profile-dob {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-family: var(--font-mono);
+  opacity: 0.75;
+}
+
+.profile-view .profile-admin-note {
+  display: inline-block;
+  margin: 0 0 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-2, #C98826);
+}
+
+.profile-view-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.profile-view-actions .btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
 .user-row {
   grid-column: 1 / -1;
 
@@ -1106,6 +1219,10 @@ main {
   gap: 12px;
 }
 
+.image-preview-wrap[hidden] {
+  display: none !important;
+}
+
 .image-preview {
   width: 72px;
   height: 72px;
@@ -1205,6 +1322,31 @@ main {
 
 #auth-section[hidden] {
   display: none !important;
+}
+
+#reset-password-section {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 99999;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background:
+    radial-gradient(
+      700px 500px at 50% 20%,
+      rgba(227,167,58,0.14),
+      transparent 65%
+    ),
+    rgba(9,20,18,0.96);
+
+  backdrop-filter: blur(8px);
 }
 
 /* Login card */
