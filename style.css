@@ -2504,3 +2504,16 @@ html, body { overscroll-behavior-y: contain; }   /* no double native refresh */
 
   .letter-tab .count { display: none; }
 }
+
+
+/* 어휘 / Picture headings: slightly wider and tinted so they read as filters */
+.letter-tab.letter-tab-special {
+  min-width: 0;
+  border-style: dashed;
+  color: var(--gold);
+}
+
+.letter-tab.letter-tab-special.active {
+  border-style: solid;
+  color: var(--ink);
+}

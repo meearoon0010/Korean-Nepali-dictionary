@@ -3839,6 +3839,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const GROUP_GRAMMAR = "grammar";
     const GROUP_OTHER = "other";
+const GROUP_EOHWI = "eohwi";
+const GROUP_PICTURE = "picture";
 
     function homeGroupKey(ko) {
 
@@ -3885,6 +3887,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function homeGroupLabel(key) {
 
         if (key === GROUP_GRAMMAR) return "Grammar";
+        if (key === GROUP_EOHWI) return "어휘";
+        if (key === GROUP_PICTURE) return "📷 Picture";
         if (key === GROUP_OTHER) return "Other";
         if (key.indexOf("x:") === 0) return key.slice(2);
 
@@ -3903,6 +3907,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 (groups[key] = groups[key] || []).push(entry);
 
+                /* separate headings for words that carry 어휘 or a picture */
+                if ((entry.description || "").trim()) {
+                    (groups[GROUP_EOHWI] = groups[GROUP_EOHWI] || []).push(entry);
+                }
+
+                if (entry.image_url) {
+                    (groups[GROUP_PICTURE] = groups[GROUP_PICTURE] || []).push(entry);
+                }
+
             }
         );
 
@@ -3913,6 +3926,8 @@ document.addEventListener("DOMContentLoaded", function () {
                         return (
                             HANGUL_INITIALS.indexOf(key) === -1 &&
                             key !== GROUP_GRAMMAR &&
+                            key !== GROUP_EOHWI &&
+                            key !== GROUP_PICTURE &&
                             key !== GROUP_OTHER
                         );
                     }
@@ -3925,7 +3940,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const order =
             HANGUL_INITIALS
-                .concat([GROUP_GRAMMAR])
+                .concat([GROUP_GRAMMAR, GROUP_EOHWI, GROUP_PICTURE])
                 .concat(extraKeys)
                 .concat([GROUP_OTHER])
                 .filter(
@@ -3964,6 +3979,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     function (key) {
                         return (
                             '<button type="button" class="letter-tab' +
+                            ((key === GROUP_EOHWI || key === GROUP_PICTURE) ? " letter-tab-special" : "") +
                             (key === homeGroup ? " active" : "") +
                             '" data-home-group="' + key + '">' +
                             escapeHtml(homeGroupLabel(key)) +
