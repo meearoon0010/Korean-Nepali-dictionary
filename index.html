@@ -271,34 +271,6 @@
 
         </div>
 
-
-        <div class="header-right">
-
-            <button
-                id="profileBtn"
-                class="icon-btn profile-btn"
-                data-tab="profile"
-                type="button"
-                title="Profile"
-                aria-label="Profile"
-                aria-selected="false">
-
-                <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true">
-                    <circle cx="12" cy="8" r="4"/>
-                    <path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
-                </svg>
-
-            </button>
-
-        </div>
-
     </header>
 
 
@@ -306,42 +278,7 @@
 
     <main>
 
-        <div class="sticky-controls">
-
-
-            
-
-
-            <!-- TABS -->
-
-            <nav
-                class="tabs"
-                role="tablist">
-
-                <button class="tab active" data-tab="home" role="tab" aria-selected="true">
-                    🏠 Home
-                </button>
-
-                <button class="tab" data-tab="search" role="tab" aria-selected="false">
-                    🔍 Search
-                </button>
-
-                <button class="tab" data-tab="mywords" role="tab" aria-selected="false">
-                    📚 My Words
-                </button>
-
-                <button
-                    id="addWordBtn"
-                    class="tab add-tab"
-                    type="button">
-
-                    + Add word
-
-                </button>
-
-            </nav>
-
-        </div>
+        
 
 
         <!-- SEARCH TAB PANEL -->
@@ -645,6 +582,39 @@
 
 
     <!-- =================================================
+         BOTTOM TAB BAR
+    ================================================= -->
+
+    <nav class="tabs bottom-nav" role="tablist" aria-label="Main">
+
+        <button class="tab active" data-tab="home" role="tab" aria-selected="true">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>
+            <span class="nav-label">Home</span>
+        </button>
+
+        <button class="tab" data-tab="search" role="tab" aria-selected="false">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <span class="nav-label">Search</span>
+        </button>
+
+        <button id="addWordBtn" class="tab add-tab" type="button" title="Add word" aria-label="Add word">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+
+        <button class="tab" data-tab="mywords" role="tab" aria-selected="false">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg>
+            <span class="nav-label">My Words</span>
+        </button>
+
+        <button class="tab" data-tab="profile" role="tab" aria-selected="false">
+            <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+            <span class="nav-label">Profile</span>
+        </button>
+
+    </nav>
+
+
+    <!-- =================================================
          MY DETAILS OVERLAY
     ================================================= -->
 
@@ -659,14 +629,18 @@
                     <dt>Username</dt>
                     <dd id="detailsUsername"></dd>
                 </div>
-                <div class="details-row">
-                    <dt>Display name</dt>
-                    <dd id="detailsDisplayName"></dd>
-                </div>
             </dl>
-            <div class="modal-actions">
-                <button id="detailsDone" class="btn primary" type="button">Close</button>
-            </div>
+            <form id="displayNameForm" autocomplete="off">
+                <label>
+                    <span>Display name</span>
+                    <input type="text" id="dnInput" maxlength="60" placeholder="Your name">
+                </label>
+                <p id="dnMessage" class="pw-message" aria-live="polite"></p>
+                <div class="modal-actions">
+                    <button id="detailsDone" class="btn ghost" type="button">Close</button>
+                    <button id="dnSave" class="btn primary" type="submit">Save name</button>
+                </div>
+            </form>
         </div>
     </div>
 

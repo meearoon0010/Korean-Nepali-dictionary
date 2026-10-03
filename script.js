@@ -1911,7 +1911,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let homeGroup = null;
 
-    let homeLimit = 300;
+    let homeLimit = 60;
 
     let currentQuery =
         "";
@@ -2786,7 +2786,442 @@ document.addEventListener("DOMContentLoaded", function () {
 
     }
 
-/* =====================================================
+    function tagWordsHtml(text) {
+
+        if (!text) {
+            return "";
+        }
+
+
+        const tokens =
+            text
+
+                .split(/[,\/]/)
+
+                .map(
+                    function (part) {
+
+                        return part.trim();
+
+                    }
+                )
+
+                .filter(
+                    function (part) {
+
+                        return part.length > 0;
+
+                    }
+                );
+
+
+        return tokens
+
+            .map(
+                function (word) {
+
+                    return (
+
+                        '<span class="tagword-item" data-search-word="' +
+
+                        escapeHtml(word) +
+
+                        '">' +
+
+                        escapeHtml(word) +
+
+                        "</span>"
+
+                    );
+
+                }
+            )
+
+            .join(
+                '<span class="tagword-sep">, </span>'
+            );
+
+    }
+
+
+    function uploadWordImage(file) {
+
+        const ext =
+            (
+                file.name.split(".").pop() ||
+                "jpg"
+            ).toLowerCase();
+
+
+        const path =
+            "word-" +
+            Date.now() +
+            "-" +
+            Math.floor(
+                Math.random() * 100000
+            ) +
+            "." +
+            ext;
+
+
+        return supabaseClient
+
+            .storage
+
+            .from("word-images")
+
+            .upload(
+                path,
+                file,
+                {
+                    cacheControl: "3600",
+                    upsert: false
+                }
+            )
+
+            .then(
+                function (response) {
+
+                    if (response.error) {
+
+                        throw response.error;
+
+                    }
+
+
+                    const { data } =
+                        supabaseClient
+
+                            .storage
+
+                            .from("word-images")
+
+                            .getPublicUrl(
+                                path
+                            );
+
+
+                    return data.publicUrl;
+
+                }
+            );
+
+    }
+
+
+    function resolveImageUrl(existingUrl) {
+
+        if (pendingImageRemoval) {
+
+            return Promise.resolve(
+                null
+            );
+
+        }
+
+
+        if (pendingImageFile) {
+
+            return uploadWordImage(
+                pendingImageFile
+            );
+
+        }
+
+
+        return Promise.resolve(
+            existingUrl || null
+        );
+
+    }
+
+
+    function cardHtml(
+        entry,
+        trashed
+    ) {
+
+        const favOn =
+            isFav(entry.id);
+
+
+        let meta = "";
+
+
+        if (entry.similar) {
+
+            meta +=
+
+                '<div class="meta-line similar-line">' +
+
+                "<b>similar</b> " +
+
+                '<span class="tagword">' +
+
+                tagWordsHtml(
+                    entry.similar
+                ) +
+
+                "</span></div>";
+
+        }
+
+
+        if (entry.opposite) {
+
+            meta +=
+
+                '<div class="meta-line opposite-line">' +
+
+                "<b>opposite</b> " +
+
+                '<span class="tagword">' +
+
+                tagWordsHtml(
+                    entry.opposite
+                ) +
+
+                "</span></div>";
+
+        }
+
+
+        let badge = "";
+
+
+        if (trashed) {
+
+            badge =
+                '<span class="mine-tag deleted-tag">deleted</span>';
+
+        }
+
+        else if (entry.mine) {
+
+            badge =
+                '<span class="mine-tag">yours</span>';
+
+        }
+
+        else if (entry.edited) {
+
+            badge =
+                '<span class="mine-tag edited-tag">edited</span>';
+
+        }
+
+
+        let actions;
+
+
+        if (trashed) {
+
+            actions =
+
+                '<button class="icon-btn restore-btn" ' +
+
+                'data-restore="' +
+
+                entry.id +
+
+                '" ' +
+
+                'title="Restore this word" ' +
+
+                'aria-label="Restore">' +
+
+                restoreIcon +
+
+                "</button>";
+
+        }
+
+        else {
+
+            actions =
+
+                '<button class="icon-btn speak-btn" ' +
+
+                'data-speak="' +
+
+                entry.id +
+
+                '" ' +
+
+                'title="Hear Korean pronunciation" ' +
+
+                'aria-label="Pronounce">' +
+
+                speakIcon +
+
+                "</button>" +
+
+
+                '<button class="icon-btn edit-btn" ' +
+
+                'data-edit="' +
+
+                entry.id +
+
+                '" ' +
+
+                'title="Edit this entry" ' +
+
+                'aria-label="Edit">' +
+
+                editIcon +
+
+                "</button>" +
+
+
+                '<button class="icon-btn fav-btn' +
+
+                (
+                    favOn
+                        ? " fav-on"
+                        : ""
+                ) +
+
+                '" data-fav="' +
+
+                entry.id +
+
+                '" ' +
+
+                'title="Toggle favorite" ' +
+
+                'aria-label="Toggle favorite">' +
+
+                (
+                    favOn
+                        ? "★"
+                        : "☆"
+                ) +
+
+                "</button>" +
+
+
+                '<button class="icon-btn delete-btn" ' +
+
+                'data-delete="' +
+
+                entry.id +
+
+                '" ' +
+
+                'title="Delete this word" ' +
+
+                'aria-label="Delete">' +
+
+                trashIcon +
+
+                "</button>";
+
+        }
+
+
+        return (
+
+            '<div class="card' +
+
+            (
+                entry.mine
+                    ? " mine"
+                    : ""
+            ) +
+
+            (
+                entry.edited
+                    ? " edited"
+                    : ""
+            ) +
+
+            (
+                trashed
+                    ? " trashed"
+                    : ""
+            ) +
+
+            '" data-id="' +
+
+            entry.id +
+
+            '">' +
+
+
+            badge +
+
+
+            '<div class="card-top">' +
+
+            '<p class="ko-word">' +
+
+            escapeHtml(
+                entry.ko
+            ) +
+
+            "</p>" +
+
+
+            '<div class="card-actions">' +
+
+            actions +
+
+            "</div>" +
+
+
+            "</div>" +
+
+
+            '<p class="np-word">' +
+
+            escapeHtml(
+                entry.np
+            ) +
+
+            "</p>" +
+
+
+            (
+                entry.description
+                    ? '<p class="word-description">' +
+                      "<b>어휘</b>" +
+                      escapeHtml(entry.description) +
+                      "</p>"
+                    : ""
+            ) +
+
+
+            (
+                entry.image_url
+                    ? '<img class="word-image" src="' +
+                      escapeHtml(entry.image_url) +
+                      '" alt="' +
+                      escapeHtml(entry.ko) +
+                      '" loading="lazy" data-view-image="' +
+                      escapeHtml(entry.image_url) +
+                      '">'
+                    : ""
+            ) +
+
+
+            (
+                meta
+                    ? '<div class="meta-row">' +
+                      meta +
+                      "</div>"
+                    : ""
+            ) +
+
+
+            "</div>"
+
+        );
+
+    }
+
+
+    /* =====================================================
        RENDER
        ===================================================== */
 
@@ -3247,13 +3682,7 @@ document.addEventListener("DOMContentLoaded", function () {
             shown
                 .map(
                     function (entry) {
-                        return (
-                            '<button type="button" class="home-word" data-home-word="' +
-                            escapeHtml(entry.ko) + '">' +
-                            '<span class="hw-ko">' + escapeHtml(entry.ko) + "</span>" +
-                            '<span class="hw-np">' + escapeHtml(entry.np) + "</span>" +
-                            "</button>"
-                        );
+                        return cardHtml(entry, false);
                     }
                 )
                 .join("");
@@ -3265,7 +3694,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "<h2>" + escapeHtml(homeGroupLabel(homeGroup)) + "</h2>" +
             "<span>" + list.length + " words</span>" +
             "</div>" +
-            '<div class="home-columns">' + wordsHtml + "</div>" +
+            '<div class="home-cards">' + wordsHtml + "</div>" +
             (
                 list.length > shown.length
                     ? '<button type="button" class="btn ghost home-more" data-home-more>Show more (' +
@@ -3325,6 +3754,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             '<p class="profile-name">' +
             escapeHtml(name) +
+            ' <button type="button" class="name-edit" data-open-details ' +
+            'title="Change display name" aria-label="Change display name">✏️</button>' +
             "</p>" +
 
             '<p class="profile-email">' +
@@ -3409,8 +3840,18 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("detailsUsername").textContent =
             currentUserEmail || "—";
 
-        document.getElementById("detailsDisplayName").textContent =
-            currentUserMetadata.full_name || "Not set";
+        const dnInputEl = document.getElementById("dnInput");
+
+        if (dnInputEl) {
+            dnInputEl.value = currentUserMetadata.full_name || "";
+        }
+
+        const dnMsgEl = document.getElementById("dnMessage");
+
+        if (dnMsgEl) {
+            dnMsgEl.textContent = "";
+            dnMsgEl.className = "pw-message";
+        }
 
         detailsOverlay.hidden = false;
 
@@ -3500,6 +3941,89 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }
     );
+
+    const displayNameForm =
+        document.getElementById("displayNameForm");
+
+    function setDisplayNameMessage(text, type) {
+
+        const el = document.getElementById("dnMessage");
+
+        if (!el) return;
+
+        el.textContent = text || "";
+
+        el.className = "pw-message" + (type ? " " + type : "");
+
+    }
+
+    if (displayNameForm) {
+
+        displayNameForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+                const input = document.getElementById("dnInput");
+                const saveBtn = document.getElementById("dnSave");
+
+                const name =
+                    input.value.replace(/\s+/g, " ").trim();
+
+                if (!name) {
+                    setDisplayNameMessage("Display name can't be empty.", "error");
+                    return;
+                }
+
+                if (name === (currentUserMetadata.full_name || "")) {
+                    setDisplayNameMessage("That's already your display name.");
+                    return;
+                }
+
+                saveBtn.disabled = true;
+
+                setDisplayNameMessage("Saving…");
+
+                try {
+
+                    const { data, error } =
+                        await supabaseClient.auth.updateUser({
+                            data: { full_name: name }
+                        });
+
+                    if (error) throw error;
+
+                    currentUserMetadata =
+                        (data && data.user && data.user.user_metadata) ||
+                        Object.assign({}, currentUserMetadata, { full_name: name });
+
+                    closeDetailsOverlay();
+
+                    if (currentTab === "profile") {
+                        renderProfileTab();
+                    }
+
+                    showToast("Display name updated.");
+
+                } catch (err) {
+
+                    setDisplayNameMessage(
+                        (err && err.message) || "Could not save your display name.",
+                        "error"
+                    );
+
+                } finally {
+
+                    saveBtn.disabled = false;
+
+                }
+
+            }
+        );
+
+    }
+
 
     if (changePasswordForm) {
 
@@ -4390,7 +4914,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (groupBtn) {
                     homeGroup = groupBtn.getAttribute("data-home-group");
-                    homeLimit = 300;
+                    homeLimit = 60;
                     render();
                     return;
                 }
@@ -4399,7 +4923,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     event.target.closest("[data-home-more]");
 
                 if (moreBtn) {
-                    homeLimit += 300;
+                    homeLimit += 60;
                     render();
                     return;
                 }
@@ -5060,6 +5584,8 @@ document.addEventListener(
                     setTab(tab.getAttribute("data-tab"));
 
                     render();
+
+                    window.scrollTo({ top: 0 });
 
                     if (currentTab === "search" && els.search) {
                         els.search.focus();
