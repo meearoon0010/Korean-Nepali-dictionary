@@ -3602,6 +3602,18 @@ document.addEventListener("DOMContentLoaded", function () {
             return text.charAt(0);
         }
 
+        /* Any other starting character gets its own heading, so a
+           brand-new heading appears on Home as soon as a word needs it */
+        const first = Array.from(text)[0].toUpperCase();
+
+        if (/[0-9]/.test(first)) {
+            return "0-9";
+        }
+
+        if (/\p{L}/u.test(first)) {
+            return "x:" + first;
+        }
+
         return GROUP_OTHER;
 
     }
@@ -3610,6 +3622,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (key === GROUP_GRAMMAR) return "Grammar";
         if (key === GROUP_OTHER) return "Other";
+        if (key.indexOf("x:") === 0) return key.slice(2);
 
         return key;
 
@@ -3629,9 +3642,28 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         );
 
+        const extraKeys =
+            Object.keys(groups)
+                .filter(
+                    function (key) {
+                        return (
+                            HANGUL_INITIALS.indexOf(key) === -1 &&
+                            key !== GROUP_GRAMMAR &&
+                            key !== GROUP_OTHER
+                        );
+                    }
+                )
+                .sort(
+                    function (a, b) {
+                        return a.localeCompare(b);
+                    }
+                );
+
         const order =
             HANGUL_INITIALS
-                .concat([GROUP_GRAMMAR, GROUP_OTHER])
+                .concat([GROUP_GRAMMAR])
+                .concat(extraKeys)
+                .concat([GROUP_OTHER])
                 .filter(
                     function (key) {
                         return !!groups[key];
