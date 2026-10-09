@@ -240,6 +240,22 @@
      DICTIONARY APPLICATION
 ===================================================== -->
 
+<!-- =====================================================
+     WAITING FOR ADMIN APPROVAL
+===================================================== -->
+
+<div id="approval-section" hidden>
+    <div class="auth-box approval-box">
+        <div class="auth-logo" id="approvalIcon">⏳</div>
+        <h2 id="approvalTitle">Waiting for approval</h2>
+        <p class="auth-subtitle" id="approvalEmail"></p>
+        <p class="auth-credit forgot-help" id="approvalText"></p>
+        <button id="approvalCheck" type="button">Check again</button>
+        <button id="approvalLogout" class="auth-link" type="button">Log out</button>
+    </div>
+</div>
+
+
 <div id="dictionary-app" hidden>
 
     <div class="stampfield" aria-hidden="true"></div>
@@ -609,6 +625,7 @@
         <button class="tab" data-tab="profile" role="tab" aria-selected="false">
             <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
             <span class="nav-label">Profile</span>
+            <span class="nav-badge" id="profileBadge" hidden></span>
         </button>
 
     </nav>
@@ -678,6 +695,19 @@
         id="toast"
         class="toast"
         hidden>
+    </div>
+
+
+    <!-- =====================================================
+         MY REQUESTS (admin, full screen)
+    ================================================= -->
+
+    <div id="requestsOverlay" class="users-overlay" hidden>
+        <div class="users-overlay-head">
+            <h2>📥 My requests</h2>
+            <button id="closeRequestsOverlay" class="icon-btn" type="button" aria-label="Close">&times;</button>
+        </div>
+        <div id="requestsOverlayContent" class="users-overlay-content"></div>
     </div>
 
 

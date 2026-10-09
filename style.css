@@ -2517,3 +2517,89 @@ html, body { overscroll-behavior-y: contain; }   /* no double native refresh */
   border-style: solid;
   color: var(--ink);
 }
+
+
+/* =========================================================
+   WAITING-FOR-APPROVAL SCREEN
+   ========================================================= */
+
+#approval-section {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+  background:
+    radial-gradient(700px 500px at 50% 20%, rgba(227,167,58,0.14), transparent 65%),
+    rgb(9,20,18);
+}
+
+#approval-section .auth-logo { font-size: 34px; }
+
+#approval-section button { width: 100%; }
+
+#approval-section .auth-link { margin-top: 10px; }
+
+/* =========================================================
+   MY REQUESTS (admin)
+   ========================================================= */
+
+.requests-filters {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  padding: 4px 0 10px;
+  background: var(--ink);
+}
+
+.req-status {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.req-status-pending  { background: #f3d89b; color: #5a3d00; }
+.req-status-approved { background: #bfe6c8; color: #14502a; }
+.req-status-rejected { background: #f2c0bd; color: #7a1b16; }
+
+.request-row .user-row-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.req-badge,
+nav.bottom-nav .nav-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--crimson, #c0392b);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.req-badge { margin-left: 8px; }
+
+nav.bottom-nav .tab { position: relative; }
+
+nav.bottom-nav .nav-badge {
+  position: absolute;
+  top: 4px;
+  left: calc(50% + 6px);
+}
+
+nav.bottom-nav .nav-badge[hidden] { display: none; }
+
+@media (max-width: 599px) {
+  .request-row .user-row-actions { width: 100%; }
+  .request-row .user-row-actions .btn { flex: 1; }
+}

@@ -481,6 +481,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const forgotSection =
         document.getElementById("forgot-password-section");
 
+    const approvalSection =
+        document.getElementById("approval-section");
+
     const forgotEmail =
         document.getElementById("forgot-email");
 
@@ -552,6 +555,10 @@ document.addEventListener("DOMContentLoaded", function () {
        ===================================================== */
 
     function showLogin() {
+        if (approvalSection) {
+            approvalSection.style.display = "none";
+        }
+
 
         if (forgotSection) {
             forgotSection.style.display = "none";
@@ -582,6 +589,10 @@ document.addEventListener("DOMContentLoaded", function () {
         if (recoveryMode) {
             showResetPasswordForm();
             return;
+        }
+
+        if (approvalSection) {
+            approvalSection.style.display = "none";
         }
 
         if (forgotSection) {
@@ -616,6 +627,10 @@ document.addEventListener("DOMContentLoaded", function () {
         const alreadyOpen =
             resetPasswordSection &&
             resetPasswordSection.style.display === "flex";
+
+        if (approvalSection) {
+            approvalSection.style.display = "none";
+        }
 
         if (forgotSection) {
             forgotSection.style.display = "none";
@@ -1151,13 +1166,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                             setTimeout(
                                 function () {
-
-                                    showDictionary();
-
-                                    updateUserInterface(
-                                        data.user
-                                    );
-
+                                    handleSignedIn(data.user);
                                 },
                                 700
                             );
@@ -1206,19 +1215,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         );
 
 
-                        updateUserInterface(
-                            data.user
-                        );
-
-
-                        setTimeout(
-                            function () {
-
-                                showDictionary();
-
-                            },
-                            500
-                        );
+                        handleSignedIn(data.user);
 
                     }
 
@@ -1689,6 +1686,649 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
+       ACCESS APPROVAL (new users wait for the admin)
+       ===================================================== */
+
+    let approvedFor = null;
+    let dictionaryLoadedFor = null;
+    let accessPollTimer = null;
+    let adminPollTimer = null;
+    let accessCheckSeq = 0;
+    let approvalUser = null;
+
+    let pendingRequestCount = 0;
+    let requestsCache = null;
+    let requestsFilter = "pending";
+
+    const requestsOverlay =
+        document.getElementById("requestsOverlay");
+
+    const requestsOverlayContent =
+        document.getElementById("requestsOverlayContent");
+
+    function isAdminEmail(email) {
+
+        return (
+            !!email &&
+            email.toLowerCase() === ADMIN_EMAIL.toLowerCase()
+        );
+
+    }
+
+    function stopAccessPolling() {
+
+        if (accessPollTimer) {
+            clearInterval(accessPollTimer);
+            accessPollTimer = null;
+        }
+
+    }
+
+    function stopAdminPolling() {
+
+        if (adminPollTimer) {
+            clearInterval(adminPollTimer);
+            adminPollTimer = null;
+        }
+
+    }
+
+    function showApprovalScreen(state, user, errorText) {
+
+        if (!approvalSection) return;
+
+        approvalUser = user;
+
+        if (authSection) authSection.style.display = "none";
+        if (forgotSection) forgotSection.style.display = "none";
+        if (resetPasswordSection) resetPasswordSection.style.display = "none";
+        if (dictionaryApp) dictionaryApp.hidden = true;
+
+        const icon = document.getElementById("approvalIcon");
+        const title = document.getElementById("approvalTitle");
+        const text = document.getElementById("approvalText");
+        const mail = document.getElementById("approvalEmail");
+        const checkBtn = document.getElementById("approvalCheck");
+
+        if (mail) mail.textContent = (user && user.email) || "";
+
+        if (state === "rejected") {
+
+            icon.textContent = "🚫";
+            title.textContent = "Request declined";
+            text.textContent =
+                "The admin hasn't approved your access. If you think this is a mistake, please contact the admin.";
+
+        } else if (state === "error") {
+
+            icon.textContent = "⚠️";
+            title.textContent = "Couldn't check your approval";
+            text.textContent =
+                (errorText || "Something went wrong.") +
+                " Check your connection and try again.";
+
+        } else {
+
+            icon.textContent = "⏳";
+            title.textContent = "Waiting for approval";
+            text.textContent =
+                "Thanks for signing up! The admin needs to approve your request before you can open the dictionary. This page updates by itself once you're approved.";
+
+        }
+
+        if (checkBtn) {
+            checkBtn.disabled = false;
+            checkBtn.textContent = "Check again";
+        }
+
+        approvalSection.hidden = false;
+        approvalSection.style.display = "flex";
+
+        stopAccessPolling();
+
+        accessPollTimer = setInterval(
+            function () {
+                if (approvalUser) handleSignedIn(approvalUser);
+            },
+            20000
+        );
+
+    }
+
+    async function fetchApprovalStatus(user) {
+
+        try {
+
+            const { data, error } =
+                await supabaseClient
+                    .from("user_approvals")
+                    .select("status")
+                    .eq("user_id", user.id)
+                    .maybeSingle();
+
+            if (error) throw error;
+
+            if (data && data.status) {
+                return { status: data.status };
+            }
+
+            /* no request on file yet: create one */
+            const meta = user.user_metadata || {};
+
+            const inserted =
+                await supabaseClient
+                    .from("user_approvals")
+                    .insert({
+                        user_id: user.id,
+                        email: user.email || "",
+                        full_name: meta.full_name || "",
+                        date_of_birth: meta.date_of_birth || "",
+                        status: "pending"
+                    });
+
+            if (inserted.error && inserted.error.code !== "23505") {
+                throw inserted.error;
+            }
+
+            return { status: "pending" };
+
+        } catch (error) {
+
+            console.error("Approval check failed:", error);
+
+            return {
+                status: "error",
+                error: (error && error.message) || "Unknown error."
+            };
+
+        }
+
+    }
+
+    function enterDictionary(user) {
+
+        stopAccessPolling();
+
+        if (approvalSection) {
+            approvalSection.style.display = "none";
+        }
+
+        showDictionary();
+
+        updateUserInterface(user);
+
+        if (dictionaryLoadedFor !== user.id) {
+            dictionaryLoadedFor = user.id;
+            loadDictionary();
+        }
+
+        if (isAdminEmail(user.email)) {
+            refreshPendingCount();
+            startAdminPolling();
+        }
+
+    }
+
+    async function handleSignedIn(user) {
+
+        if (!user) return;
+
+        const seq = ++accessCheckSeq;
+
+        if (isAdminEmail(user.email) || approvedFor === user.id) {
+            enterDictionary(user);
+            return;
+        }
+
+        const result = await fetchApprovalStatus(user);
+
+        if (seq !== accessCheckSeq) return;
+
+        if (result.status === "approved") {
+
+            approvedFor = user.id;
+
+            enterDictionary(user);
+
+            return;
+
+        }
+
+        /* keep name / email ready for the profile once approved */
+        currentUserEmail = user.email || "";
+        currentUserMetadata = user.user_metadata || {};
+
+        showApprovalScreen(result.status, user, result.error);
+
+    }
+
+    (function wireApprovalScreen() {
+
+        const checkBtn = document.getElementById("approvalCheck");
+        const logoutBtn = document.getElementById("approvalLogout");
+
+        if (checkBtn) {
+            checkBtn.addEventListener(
+                "click",
+                async function () {
+                    checkBtn.disabled = true;
+                    checkBtn.textContent = "Checking…";
+                    if (approvalUser) {
+                        await handleSignedIn(approvalUser);
+                    }
+                    checkBtn.disabled = false;
+                    checkBtn.textContent = "Check again";
+                }
+            );
+        }
+
+        if (logoutBtn) {
+            logoutBtn.addEventListener(
+                "click",
+                function () { performLogout(""); }
+            );
+        }
+
+        document.addEventListener(
+            "visibilitychange",
+            function () {
+                if (
+                    !document.hidden &&
+                    approvalUser &&
+                    approvalSection &&
+                    approvalSection.style.display === "flex"
+                ) {
+                    handleSignedIn(approvalUser);
+                }
+            }
+        );
+
+    })();
+
+
+    /* =====================================================
+       ADMIN: MY REQUESTS
+       ===================================================== */
+
+    function updateRequestBadges() {
+
+        const badge = document.getElementById("profileBadge");
+
+        if (!badge) return;
+
+        const show = isAdminUser && pendingRequestCount > 0;
+
+        badge.hidden = !show;
+
+        badge.textContent =
+            pendingRequestCount > 99 ? "99+" : String(pendingRequestCount);
+
+    }
+
+    async function refreshPendingCount() {
+
+        if (!isAdminUser) return;
+
+        try {
+
+            const { count, error } =
+                await supabaseClient
+                    .from("user_approvals")
+                    .select("user_id", { count: "exact", head: true })
+                    .eq("status", "pending");
+
+            if (error) throw error;
+
+            pendingRequestCount = count || 0;
+
+        } catch (error) {
+
+            console.error("Pending count failed:", error);
+
+            return;
+
+        }
+
+        updateRequestBadges();
+
+        if (currentTab === "profile") {
+            renderProfileTab();
+        }
+
+    }
+
+    function startAdminPolling() {
+
+        stopAdminPolling();
+
+        adminPollTimer = setInterval(
+            function () {
+
+                refreshPendingCount();
+
+                if (requestsOverlay && !requestsOverlay.hidden) {
+                    loadRequests();
+                }
+
+            },
+            45000
+        );
+
+    }
+
+    function requestRowHtml(r) {
+
+        const labels = {
+            pending: "Pending",
+            approved: "Approved",
+            rejected: "Rejected"
+        };
+
+        const when =
+            r.requested_at
+                ? new Date(r.requested_at).toLocaleString()
+                : "";
+
+        const decided =
+            r.decided_at && r.status !== "pending"
+                ? " · " + labels[r.status] + " " +
+                  new Date(r.decided_at).toLocaleDateString()
+                : "";
+
+        const id = escapeHtml(r.user_id);
+
+        let actions = "";
+
+        if (r.status === "pending") {
+
+            actions =
+                '<button class="btn primary" data-req-approve="' + id + '">Approve</button>' +
+                '<button class="btn ghost" data-req-reject="' + id + '">Reject</button>';
+
+        } else if (r.status === "approved") {
+
+            actions =
+                '<button class="btn ghost" data-req-reject="' + id + '">Revoke access</button>';
+
+        } else {
+
+            actions =
+                '<button class="btn primary" data-req-approve="' + id + '">Approve</button>';
+
+        }
+
+        return (
+            '<div class="user-row request-row" data-request-id="' + id + '">' +
+            '<div class="user-row-info">' +
+            '<p class="user-row-name">' +
+            escapeHtml(r.full_name || "(no name)") +
+            ' <span class="req-status req-status-' + escapeHtml(r.status) + '">' +
+            escapeHtml(labels[r.status] || r.status) +
+            "</span></p>" +
+            '<p class="user-row-email">' + escapeHtml(r.email || "") + "</p>" +
+            '<p class="user-row-meta">' +
+            (r.date_of_birth ? "Born " + escapeHtml(r.date_of_birth) + " · " : "") +
+            "Requested " + escapeHtml(when) + escapeHtml(decided) +
+            "</p>" +
+            "</div>" +
+            '<div class="user-row-actions">' + actions + "</div>" +
+            "</div>"
+        );
+
+    }
+
+    function renderRequestsOverlay() {
+
+        if (!requestsOverlayContent) return;
+
+        if (requestsCache === null) {
+
+            requestsOverlayContent.innerHTML =
+                '<p class="empty-state">Loading requests…</p>';
+
+            return;
+
+        }
+
+        const counts = { pending: 0, approved: 0, rejected: 0 };
+
+        requestsCache.forEach(
+            function (r) {
+                counts[r.status] = (counts[r.status] || 0) + 1;
+            }
+        );
+
+        function chip(key, label) {
+
+            return (
+                '<button type="button" class="subtab' +
+                (requestsFilter === key ? " active" : "") +
+                '" data-req-filter="' + key + '">' +
+                label + ' <span class="count">' + (counts[key] || 0) + "</span>" +
+                "</button>"
+            );
+
+        }
+
+        const list =
+            requestsCache.filter(
+                function (r) { return r.status === requestsFilter; }
+            );
+
+        const emptyText = {
+            pending: "No pending requests. New sign-ups will appear here.",
+            approved: "No approved users yet.",
+            rejected: "No rejected requests."
+        }[requestsFilter];
+
+        requestsOverlayContent.innerHTML =
+            '<div class="subtabs requests-filters">' +
+            chip("pending", "Pending") +
+            chip("approved", "Approved") +
+            chip("rejected", "Rejected") +
+            "</div>" +
+            (
+                list.length
+                    ? list.map(requestRowHtml).join("")
+                    : '<p class="empty-state">' + emptyText + "</p>"
+            );
+
+    }
+
+    async function loadRequests() {
+
+        if (!isAdminUser) return;
+
+        try {
+
+            const { data, error } =
+                await supabaseClient
+                    .from("user_approvals")
+                    .select("*")
+                    .order("requested_at", { ascending: false })
+                    .limit(2000);
+
+            if (error) throw error;
+
+            requestsCache =
+                (data || []).filter(
+                    function (r) { return !isAdminEmail(r.email); }
+                );
+
+            pendingRequestCount =
+                requestsCache.filter(
+                    function (r) { return r.status === "pending"; }
+                ).length;
+
+            updateRequestBadges();
+
+            if (currentTab === "profile") {
+                renderProfileTab();
+            }
+
+            renderRequestsOverlay();
+
+        } catch (error) {
+
+            console.error("Load requests failed:", error);
+
+            if (requestsOverlayContent) {
+                requestsOverlayContent.innerHTML =
+                    '<p class="empty-state">Couldn\'t load requests (' +
+                    escapeHtml((error && error.message) || "unknown error") +
+                    "). Make sure approval_setup.sql has been run in Supabase.</p>";
+            }
+
+        }
+
+    }
+
+    function openRequestsOverlay() {
+
+        if (!requestsOverlay) return;
+
+        requestsOverlay.hidden = false;
+
+        renderRequestsOverlay();
+
+        loadRequests();
+
+    }
+
+    function closeRequestsOverlayFn() {
+
+        if (requestsOverlay) requestsOverlay.hidden = true;
+
+    }
+
+    async function decideRequest(userId, status, button) {
+
+        if (status === "rejected") {
+
+            const sure = window.confirm(
+                "Block this user from the dictionary?"
+            );
+
+            if (!sure) return;
+
+        }
+
+        if (button) button.disabled = true;
+
+        try {
+
+            const { data, error } =
+                await supabaseClient
+                    .from("user_approvals")
+                    .update({
+                        status: status,
+                        decided_at: new Date().toISOString()
+                    })
+                    .eq("user_id", userId)
+                    .select("user_id");
+
+            if (error) throw error;
+
+            if (!data || data.length === 0) {
+                throw new Error("Not allowed, or the request no longer exists.");
+            }
+
+            const row =
+                (requestsCache || []).find(
+                    function (r) { return r.user_id === userId; }
+                );
+
+            if (row) {
+                row.status = status;
+                row.decided_at = new Date().toISOString();
+            }
+
+            pendingRequestCount =
+                (requestsCache || []).filter(
+                    function (r) { return r.status === "pending"; }
+                ).length;
+
+            updateRequestBadges();
+
+            if (currentTab === "profile") {
+                renderProfileTab();
+            }
+
+            renderRequestsOverlay();
+
+            showToast(
+                status === "approved"
+                    ? "Approved. They can open the dictionary now."
+                    : "Access blocked."
+            );
+
+        } catch (error) {
+
+            console.error("Decision failed:", error);
+
+            showToast(
+                "Couldn't update: " +
+                ((error && error.message) || "unknown error")
+            );
+
+            if (button) button.disabled = false;
+
+        }
+
+    }
+
+    const closeRequestsBtn =
+        document.getElementById("closeRequestsOverlay");
+
+    if (closeRequestsBtn) {
+        closeRequestsBtn.addEventListener("click", closeRequestsOverlayFn);
+    }
+
+    if (requestsOverlayContent) {
+
+        requestsOverlayContent.addEventListener(
+            "click",
+            function (event) {
+
+                const filterBtn =
+                    event.target.closest("[data-req-filter]");
+
+                if (filterBtn) {
+                    requestsFilter = filterBtn.getAttribute("data-req-filter");
+                    renderRequestsOverlay();
+                    return;
+                }
+
+                const approveBtn =
+                    event.target.closest("[data-req-approve]");
+
+                if (approveBtn) {
+                    decideRequest(
+                        approveBtn.getAttribute("data-req-approve"),
+                        "approved",
+                        approveBtn
+                    );
+                    return;
+                }
+
+                const rejectBtn =
+                    event.target.closest("[data-req-reject]");
+
+                if (rejectBtn) {
+                    decideRequest(
+                        rejectBtn.getAttribute("data-req-reject"),
+                        "rejected",
+                        rejectBtn
+                    );
+                }
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
        CHECK EXISTING SESSION
        ===================================================== */
 
@@ -1732,11 +2372,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 session.user
             ) {
 
-                showDictionary();
-
-                updateUserInterface(
-                    session.user
-                );
+                handleSignedIn(session.user);
 
             } else {
 
@@ -1783,6 +2419,14 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
+            if (event === "SIGNED_OUT") {
+                approvedFor = null;
+                dictionaryLoadedFor = null;
+                accessCheckSeq++;
+                stopAccessPolling();
+                stopAdminPolling();
+            }
+
             if (event === "PASSWORD_RECOVERY") {
 
                 recoveryMode = true;
@@ -1811,11 +2455,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 session.user
             ) {
 
-                showDictionary();
-
-                updateUserInterface(
-                    session.user
-                );
+                handleSignedIn(session.user);
 
             }
 
@@ -1904,18 +2544,10 @@ document.addEventListener("DOMContentLoaded", function () {
                     setTimeout(
                         function () {
 
-                            showDictionary();
-
-
-                            if (
-                                data &&
-                                data.user
-                            ) {
-
-                                updateUserInterface(
-                                    data.user
-                                );
-
+                            if (data && data.user) {
+                                handleSignedIn(data.user);
+                            } else {
+                                showDictionary();
                             }
 
                         },
@@ -2007,7 +2639,17 @@ document.addEventListener("DOMContentLoaded", function () {
         authPassword.value = "";
 
         isAdminUser = false;
-
+        approvedFor = null;
+        dictionaryLoadedFor = null;
+        accessCheckSeq++;
+        stopAccessPolling();
+        stopAdminPolling();
+        pendingRequestCount = 0;
+        requestsCache = null;
+        updateRequestBadges();
+        if (typeof closeRequestsOverlayFn === "function") {
+            closeRequestsOverlayFn();
+        }
         stopPresenceHeartbeat();
 
         if (typeof closeUsersOverlayFn === "function") {
@@ -4118,6 +4760,19 @@ const GROUP_PICTURE = "picture";
 
             (
                 isAdminUser
+                    ? '<button type="button" class="btn ghost" data-open-requests>' +
+                      "📥 My requests" +
+                      (
+                          pendingRequestCount > 0
+                              ? ' <span class="req-badge">' + pendingRequestCount + "</span>"
+                              : ""
+                      ) +
+                      "</button>"
+                    : ""
+            ) +
+
+            (
+                isAdminUser
                     ? '<button type="button" class="btn ghost" data-open-users-overlay>' +
                       "👑 Manage Users" +
                       "</button>"
@@ -5220,6 +5875,14 @@ const GROUP_PICTURE = "picture";
 
                 }
 
+
+                const requestsBtn =
+                    event.target.closest("[data-open-requests]");
+
+                if (requestsBtn) {
+                    openRequestsOverlay();
+                    return;
+                }
 
                 const detailsBtn =
                     event.target.closest("[data-open-details]");
@@ -7065,7 +7728,7 @@ document.addEventListener(
        START DICTIONARY
        ===================================================== */
 
-    loadDictionary();
+    /* the words load after login, once the user is approved */
 
 
     /* =====================================================
